@@ -22,7 +22,8 @@ const testimonials: {
     quote: (
       <>
         I can <strong>pick up where I left off</strong> without losing context.
-        It's like the app understands how <strong>memory really works</strong>.
+        It&apos;s like the app understands how{" "}
+        <strong>memory really works</strong>.
       </>
     ),
   },

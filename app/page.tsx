@@ -5,6 +5,7 @@ import Features from "./sections/features";
 import FadingHighlight from "./components/fading-text";
 import Testimonials from "./sections/testimonials";
 import Image from "next/image";
+import FAQ from "./sections/faq";
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
@@ -79,7 +80,7 @@ export default function Home() {
       </section>
 
       {/* Jank Mockup Section */}
-      <div className="max-w-4xl mb-48 px-4">
+      <div className="max-w-4xl mb-16 px-4">
         <Image
           src={"/mockup3.jpg"}
           alt={"Quial Mockup on Iphone"}
@@ -87,6 +88,11 @@ export default function Home() {
           height={1200}
         />
       </div>
+
+      <section className="max-w-3xl mx-auto mb-32 px-6 flex flex-col gap-8 items-center">
+        <h1 className="text-3xl font-header">FAQ</h1>
+        <FAQ />
+      </section>
 
       {/* Call to Action */}
       <section
