@@ -100,7 +100,7 @@ export default function Home() {
       {/* Call to Action */}
       <section
         id="cta"
-        className="bg-surface rounded-lg text-text text-center py-20 mx-8 px-12 mb-12"
+        className="bg-surface rounded-lg text-text text-center py-20 mx-8 px-12 mb-12 flex flex-col items-center"
       >
         <h2 className="font-header font-semibold text-3xl md:text-4xl mb-4">
           Unlock your memory
@@ -109,8 +109,9 @@ export default function Home() {
           Join thousands of learners optimizing their memory with Quail.
         </p>
         <a
+          type="button"
           href="#get-started"
-          className="px-8 py-3 text-lg bg-background border-2 border-primary text-primary font-bold 
+          className="flex w-fit justify-center px-8 py-3 text-lg bg-background border-2 border-primary text-primary font-bold 
           rounded-md hover:bg-primary hover:text-background transition"
         >
           Optimize Your Memory
