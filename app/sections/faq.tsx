@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useId, useState } from "react";
 import { FaCaretDown } from "react-icons/fa6";
 
 type faqItem = { question: string; answer: React.ReactNode };
@@ -60,33 +60,45 @@ function FAQItem({
   children: React.ReactNode;
 }) {
   const [open, setOpen] = useState(false);
+  const buttonId = useId();
+  const panelId = useId();
 
   return (
-    <div
-      className=" py-4 px-4 border-b border-surface group transition-all text-left cursor-pointer"
-      onClick={() => setOpen((prev) => !prev)}
-    >
-      <div
-        className="w-full flex gap-2  items-center  transition-colors duration-200
-       group"
-      >
-        <FaCaretDown
-          className={`transition-transform duration-300 ${
-            open ? "rotate-180" : ""
-          }`}
-        />
-        <h3
-          className={`text-xl font-regular font-header select-none px-1 group-hover:bg-highlight rounded-md `}
+    <div className="border-b border-surface">
+      <h3 className="m-0">
+        <button
+          id={buttonId}
+          type="button"
+          aria-expanded={open}
+          aria-controls={panelId}
+          onClick={() => setOpen((prev) => !prev)}
+          className="w-full py-4 px-4 text-left flex items-center gap-2 group
+                     focus:outline-none focus-visible:ring-2 focus-visible:ring-primary
+                     transition-colors cursor-pointer"
         >
-          {question}
-        </h3>
-      </div>
+          <FaCaretDown
+            aria-hidden="true"
+            className={`shrink-0 transition-transform duration-300 ${
+              open ? "rotate-180" : ""
+            }`}
+          />
+          <span className="text-xl font-regular font-header px-1 group-hover:bg-highlight rounded-md">
+            {question}
+          </span>
+        </button>
+      </h3>
+
       <div
-        className={`select-none text-[0.9375rem] leading-relaxed transition-all duration-300 ${
-          open
-            ? "max-h-64 mb-2 mt-4 opacity-100"
-            : "max-h-0 opacity-0 overflow-hidden"
-        }`}
+        id={panelId}
+        role="region"
+        aria-labelledby={buttonId}
+        className={`px-4 text-[0.9375rem] leading-relaxed transition-[max-height,opacity,margin] duration-300
+          ${
+            open
+              ? "max-h-64 mb-2 mt-1 opacity-100"
+              : "max-h-0 opacity-0 overflow-hidden"
+          }
+        `}
       >
         {children}
       </div>

@@ -6,6 +6,7 @@ import FadingHighlight from "./components/fading-text";
 import Testimonials from "./sections/testimonials";
 import Image from "next/image";
 import FAQ from "./sections/faq";
+import EmailSignup from "./components/email-signup";
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
@@ -50,9 +51,9 @@ export default function Home() {
             </FadingHighlight>
             ?
           </p>
-        </div>
-        <div className="flex gap-4 items-center">
-          <a
+
+          <div className="flex gap-4 items-center">
+            {/* <a
             href="#get-started"
             className={`px-8 py-2 text-lg text-background font-bold rounded-lg transition-all duration-150
               ${
@@ -62,7 +63,9 @@ export default function Home() {
               }`}
           >
             Try now for free
-          </a>
+          </a> */}
+            <EmailSignup />
+          </div>
         </div>
       </section>
 

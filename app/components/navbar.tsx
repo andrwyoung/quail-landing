@@ -36,6 +36,7 @@ export default function Navbar({ scrolled }: { scrolled: boolean }) {
           ))}
         </div> */}
         <button
+          type="button"
           className={`py-1 px-4 rounded-md   font-body font-bold
             transition-all duration-700 cursor-pointer border-2 border-primary
             ${

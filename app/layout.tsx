@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     title: "Quail – Memory Optimized Reader",
     description:
       "Most reading is forgotten within 24 hours. Quail helps you keep it.",
-    images: ["/og-image.png"], // same as open graph
+    // images: ["/og-image.png"],
     // creator: "@yourhandle",
   },
   icons: {
