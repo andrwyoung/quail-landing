@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
 export default function Navbar({ scrolled }: { scrolled: boolean }) {
@@ -37,11 +36,15 @@ export default function Navbar({ scrolled }: { scrolled: boolean }) {
           ))}
         </div> */}
         <button
-          className={`py-1 px-4 rounded-md  text-text-inverse font-body font-bold
-            transition-all duration-700
-            ${scrolled ? "bg-primary" : "bg-accent"}`}
+          className={`py-1 px-4 rounded-md   font-body font-bold
+            transition-all duration-700 cursor-pointer border-2 border-primary
+            ${
+              scrolled
+                ? "bg-primary hover:bg-primary-hover text-text-inverse"
+                : "bg-background hover:bg-primary text-primary hover:text-text-inverse"
+            }`}
         >
-          Get in App Store
+          Start now for free
         </button>
       </div>
     </div>

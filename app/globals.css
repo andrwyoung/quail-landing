@@ -8,7 +8,7 @@
 @theme {
   /* Brand / Accent */
   --color-primary: #51837e;
-  --color-primary-hover: #6a9d97; /* lighter */
+  --color-primary-hover: rgb(96, 148, 154); /* lighter */
   --color-primary-active: #3e6c67; /* darker */
 
   --color-accent: #9d8379; /* warm neutral */
