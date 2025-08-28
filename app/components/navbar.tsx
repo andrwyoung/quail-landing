@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Navbar({ scrolled }: { scrolled: boolean }) {
   return (
@@ -10,16 +11,16 @@ export default function Navbar({ scrolled }: { scrolled: boolean }) {
       <div className="flex flex-row justify-between items-center py-4 px-4">
         <Link
           href="/"
-          className="flex flex-row items-center transition-transform gap-2"
+          className="flex flex-row items-center transition-transform gap-1 hover:scale-105"
         >
-          {/* <Image
-            src="/logo.png"
+          <Image
+            src="/logo3.png"
             alt="Inquiryon Logo. Sparkle!"
             width={40}
             height={40}
-          /> */}
-          <div className="h-6 w-6 bg-accent translate-y-0.5 rounded-md"></div>
-          <h6 className="text-2xl font-header hover:text-primary">Quail</h6>
+          />
+          {/* <div className="h-6 w-6 bg-accent translate-y-0.5 rounded-md"></div> */}
+          <h6 className="text-2xl font-header text-primary">Quail</h6>
         </Link>
         {/* <div className="hidden lg:flex flex-row gap-10 text-lg font-medium font-header">
           {[
