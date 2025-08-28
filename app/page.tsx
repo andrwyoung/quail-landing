@@ -1,60 +1,87 @@
+"use client";
+import { useEffect, useState } from "react";
+import Navbar from "./components/navbar";
+import Features from "./sections/features";
+import FadingHighlight from "./components/fading-text";
+
 export default function Home() {
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 30);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <main className="flex flex-col items-center min-h-screen bg-background text-text font-body">
+    <main className="relative flex flex-col items-center min-h-screen bg-background text-text font-body">
+      <Navbar scrolled={scrolled} />
+
       {/* Hero Section */}
-      <section className="flex flex-col items-center justify-center py-32 text-center">
-        <h1 className="font-header text-5xl md:text-6xl text-primary mb-6">
-          Welcome to Quail
-        </h1>
-        <p className="text-lg md:text-xl  max-w-2xl mb-8">
-          Build modern, elegant web experiences faster with our tools and
-          expertise.
-        </p>
-        <div className="flex gap-4">
+      <section
+        className="flex flex-col max-w-4xl items-start justify-center 
+      min-h-[65vh] pt-[18vh] text-center mb-32 "
+      >
+        <div className="text-left">
+          <h1
+            className="font-header font-medium leading-20 text-left
+             text-5xl md:text-6xl text-text mb-6"
+          >
+            World’s First <br />
+            <FadingHighlight scrolled={scrolled} fontClass="font-semibold px-1">
+              Memory Optimized
+            </FadingHighlight>{" "}
+            Reader
+          </h1>
+          <p className="text-lg max-w-2xl mb-8 font-medium">
+            You forget{" "}
+            <FadingHighlight scrolled={scrolled} fontClass="font-bold">
+              70% of what you read
+            </FadingHighlight>{" "}
+            within 24 hours, and 90% by the end of the week. Is there a way to
+            keep your reading from{" "}
+            <FadingHighlight scrolled={scrolled} fontClass="font-bold">
+              fading away
+            </FadingHighlight>
+            ?
+          </p>
+        </div>
+        <div className="flex gap-4 items-center">
           <a
             href="#get-started"
-            className="px-6 py-3 bg-primary text-background font-semibold rounded-lg hover:bg-primary-hover transition"
+            className={`px-6 py-2  text-background font-bold rounded-lg transition-all duration-300
+              ${
+                scrolled
+                  ? "bg-accent hover:bg-accent-hover"
+                  : "bg-primary hover:bg-primary-hover"
+              }`}
           >
-            Get Started
+            Get in App Store
           </a>
-          <a
+          {/* <a
             href="#learn-more"
-            className="px-6 py-3 border border-border text-text rounded-lg hover:bg-secondary-bg transition"
+            className="px-6 py-1.5 border-2  border-accent text-accent-active font-semibold rounded-lg hover:bg-secondary-bg transition"
           >
             Learn More
-          </a>
+          </a> */}
         </div>
       </section>
+      {/* </section> */}
 
       {/* Features Section */}
       <section
         id="features"
         className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto py-24 px-6"
       >
-        <div className="p-6 rounded-lg bg-secondary-bg">
-          <h3 className="font-header text-xl mb-2 text-text-light">Fast</h3>
-          <p className="text-text-light">
-            Optimized for speed with modern tooling and minimal overhead.
-          </p>
-        </div>
-        <div className="p-6 rounded-lg bg-secondary-bg">
-          <h3 className="font-header text-xl mb-2 text-primary">Flexible</h3>
-          <p className="text-text-light">
-            Tailor the design system to your brand with ease.
-          </p>
-        </div>
-        <div className="p-6 rounded-lg bg-secondary-bg">
-          <h3 className="font-header text-xl mb-2 text-primary">Beautiful</h3>
-          <p className="text-text-light">
-            Clean typography and accessible color choices out of the box.
-          </p>
-        </div>
+        <Features />
       </section>
 
       {/* Call to Action */}
       <section
         id="cta"
-        className="bg-primary rounded-lg text-background text-center py-20 px-6"
+        className="bg-surface rounded-lg text-text text-center py-20 px-6"
       >
         <h2 className="font-header text-3xl md:text-4xl mb-4">
           Ready to start?

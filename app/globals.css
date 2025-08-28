@@ -7,23 +7,32 @@
 
 @theme {
   /* Brand / Accent */
-  --color-primary: #f0e5d0;
-  --color-primary-hover: #a2ead3;
-  --color-accent: #faba79;
+  --color-primary: #51837e;
+  --color-primary-hover: #6a9d97; /* lighter */
+  --color-primary-active: #3e6c67; /* darker */
 
-  --color-background: #53525e;
+  --color-accent: #9d8379; /* warm neutral */
+  --color-accent-hover: #bba79e;
+  --color-accent-active: #7a645b;
 
-  /* Neutrals */
-  --color-secondary-bg: #f3f5f6;
-  --color-border: #9ea2a3;
+  /* Backgrounds */
+  --color-background: #faf9f7; /* off-white */
+  --color-surface: #f0ede9; /* cards/sections */
+
+  /* Neutrals / Borders */
+  --color-secondary-bg: #eceae7;
+  --color-border: #e5e7eb;
 
   /* Text */
-  --color-text: #f5f5f4; /* gray-900 */
-  --color-text-light: #6b7280; /* gray-500 */
-  --color-text-inverse: #ffffff;
+  --color-text: #111827; /* main dark */
+  --color-text-light: #6d7175; /* muted */
+  --color-text-inverse: #f3f4f6; /* on dark */
 
   /* Semantic */
   --color-success: #10b981; /* emerald-500 */
   --color-warning: #f59e0b; /* amber-500 */
-  --color-error: #ef4444; /* red-500 */
+  --color-error: #d4374f; /* destructive red */
+
+  /* Highlight */
+  --color-highlight: #feebae; /* warm gold */
 }
