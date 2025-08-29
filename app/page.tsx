@@ -33,23 +33,25 @@ export default function Home() {
             className="font-header font-medium leading-12 md:leading-20 text-left
              text-4xl md:text-6xl text-text mb-6"
           >
-            World’s First <br />
-            <FadingHighlight scrolled={scrolled} fontClass="font-semibold px-1">
-              Memory Optimized
-            </FadingHighlight>{" "}
-            Reader
-          </h1>
-          <p className="text-md md:text-lg max-w-2xl mb-8 font-medium">
-            You forget{" "}
-            <FadingHighlight scrolled={scrolled} fontClass="font-bold">
-              70% of what you read
-            </FadingHighlight>{" "}
-            within 24 hours, and 90% by the end of the week. Is there a way to
-            keep your reading from{" "}
-            <FadingHighlight scrolled={scrolled} fontClass="font-bold">
-              fading away
+            <FadingHighlight scrolled={scrolled} fontClass="px-1">
+              World’s First
             </FadingHighlight>
-            ?
+            <br />
+            Memory Optimized{" "}
+            <FadingHighlight scrolled={scrolled} fontClass="px-1">
+              Reader
+            </FadingHighlight>
+          </h1>
+          <p className="text-md md:text-lg max-w-2xl mb-8 font-bold">
+            <FadingHighlight scrolled={scrolled} fontClass="font-medium">
+              You forget
+            </FadingHighlight>{" "}
+            70% of what you read{" "}
+            <FadingHighlight scrolled={scrolled} fontClass="font-medium">
+              within 24 hours, and 90% by the end of the week. Is there a way to
+              keep your reading from
+            </FadingHighlight>{" "}
+            fading away?
           </p>
 
           <div className="flex gap-4 items-center">

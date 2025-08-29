@@ -10,12 +10,12 @@ export default function FadingHighlight({
   return (
     <span
       className={`transition-color duration-600 rounded-md ${
-        scrolled ? "bg-highlight" : "bg-transparent"
+        scrolled ? "" : "bg-transparent"
       }`}
     >
       <span
         className={`transition-opacity duration-700 ${fontClass} ${
-          scrolled ? "opacity-0" : "opacity-100"
+          scrolled ? "opacity-20" : "opacity-100"
         }`}
       >
         {children}
