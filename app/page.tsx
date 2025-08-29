@@ -10,6 +10,7 @@ import EmailSignup from "./components/email-signup";
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
+  const [showForm, setShowForm] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 30);
@@ -54,19 +55,28 @@ export default function Home() {
             fading away?
           </p>
 
-          <div className="flex gap-4 items-center">
-            {/* <a
-            href="#get-started"
-            className={`px-8 py-2 text-lg text-background font-bold rounded-lg transition-all duration-150
-              ${
-                scrolled
-                  ? "bg-primary hover:bg-primary-hover"
-                  : "bg-primary hover:bg-primary-hover"
-              }`}
+          <div className="w-full flex justify-center mb-6">
+            <button
+              type="button"
+              className="rounded-full px-14 md:px-20 py-6 text-lg font-bold bg-primary hover:bg-primary-hover text-background text-center
+              shadow-md hover:shadow-lg transition-transform duration-200 ease-out transform hover:-translate-y-0.5 active:translate-y-0 active:scale-95"
+              onClick={() => setShowForm((v) => !v)}
+            >
+              Stop forgetting, Click Here
+            </button>
+          </div>
+
+          <div
+            className={`w-full flex justify-center transition-all duration-500 ease-out ${
+              showForm ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-3 pointer-events-none"
+            }`}
           >
-            Try now for free
-          </a> */}
-            <EmailSignup />
+            <div
+              className="w-full max-w-2xl bg-surface/70 border border-border px-5 py-6"
+              style={{ borderRadius: 17 }}
+            >
+              <EmailSignup />
+            </div>
           </div>
         </div>
       </section>
