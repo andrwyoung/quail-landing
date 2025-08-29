@@ -65,14 +65,14 @@ export default function Home() {
             fading away?
           </p>
 
-          <div className="w-full flex justify-center ">
+          <div className="w-full flex justify-center mb-6">
             <button
               ref={buttonRef}
               type="button"
               aria-controls={formId}
               aria-expanded={showForm}
               title="Open sign up sheet"
-              className={`rounded-full px-14 md:px-16 py-3 text-lg font-bold  text-center border-2 border-primary
+              className={`rounded-full px-14 md:px-16 py-2 md:py-3 text-lg font-bold text-center border-2 border-primary
               shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer ease-out transform hover:-translate-y-0.5 
               active:translate-y-0 active:scale-95 ${
                 showForm
@@ -81,7 +81,8 @@ export default function Home() {
               }`}
               onClick={() => setShowForm((v) => !v)}
             >
-              Stop Forgetting, Click Here
+              <span className="hidden md:inline">Stop Forgetting. </span>
+              Join the Waitlist!
             </button>
           </div>
         </div>
@@ -107,14 +108,14 @@ export default function Home() {
       </AnimatePresence>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="max-w-3xl mx-auto mt-48 mb-36 px-6">
+      {/* <section id="testimonials" className="max-w-3xl mx-auto mt-48 mb-36 px-6">
         <Testimonials />
-      </section>
+      </section> */}
 
       {/* Features Section */}
       <section
         id="features"
-        className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-48 px-6"
+        className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mt-48 mb-48 px-6"
       >
         <Features />
       </section>
@@ -150,7 +151,7 @@ export default function Home() {
           title="Scroll to sign up sheet"
           aria-label="Scroll to sign up sheet"
           onClick={onSecondaryCtaClick}
-          className="flex w-fit justify-center px-8 py-2 text-lg bg-background border-2 border-primary text-primary font-bold 
+          className="flex w-fit justify-center px-8 py-2 text-md md:text-lg bg-background border-2 border-primary text-primary font-bold 
           rounded-full hover:bg-primary hover:text-background transition-all duration-200 cursor-pointer"
         >
           Optimize Your Memory
