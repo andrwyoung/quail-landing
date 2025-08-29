@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from "react";
 import Navbar from "./components/navbar";
 import Features from "./sections/features";
 import FadingHighlight from "./components/fading-text";
-import Testimonials from "./sections/testimonials";
 import Image from "next/image";
 import FAQ from "./sections/faq";
 import EmailSignup from "./components/email-signup";

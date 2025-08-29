@@ -142,15 +142,7 @@ export default function EmailSignup({
       <div className="w-full flex flex-col items-center">
         <div className="w-full max-w-xl flex flex-col gap-2 md:gap-3 justify-center mb-4">
           {fields.map(
-            ({
-              id,
-              type,
-              autoComplete,
-              inputMode,
-              placeholder,
-              value,
-              set,
-            }) => (
+            ({ id, autoComplete, inputMode, placeholder, value, set }) => (
               <input
                 key={id}
                 id={id}
@@ -233,7 +225,7 @@ export default function EmailSignup({
       >
         {status === "success" && (
           <span className="text-emerald-600">
-            Thank you! We're looking forward to being in touch.
+            Thank you! We&apos;re looking forward to being in touch.
           </span>
         )}
         {hasError && (
