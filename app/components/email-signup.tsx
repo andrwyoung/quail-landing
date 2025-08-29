@@ -24,6 +24,39 @@ export default function EmailSignup({
   const errorId = hasError ? "email-signup-error" : undefined;
   const statusId = "email-signup-status";
 
+  const fields = [
+    {
+      id: "name-signup-input",
+      type: "text" as const,
+      autoComplete: "name",
+      inputMode: undefined,
+      placeholder: "Your name",
+      value: name,
+      set: setName,
+      label: "Full name",
+    },
+    {
+      id: "email-signup-input",
+      type: "email" as const,
+      autoComplete: "email",
+      inputMode: "email" as const,
+      placeholder: "Email address",
+      value: email,
+      set: setEmail,
+      label: "Email address",
+    },
+    {
+      id: "phone-signup-input",
+      type: "tel" as const,
+      autoComplete: "tel",
+      inputMode: "tel" as const,
+      placeholder: "Phone number (optional)",
+      value: phone,
+      set: setPhone,
+      label: "Phone number",
+    },
+  ];
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setErrorMsg(null);
@@ -90,7 +123,7 @@ export default function EmailSignup({
   return (
     <form
       onSubmit={handleSubmit}
-      className={`w-full ${className}`}
+      className={`w-full flex flex-col items-center ${className}`}
       aria-busy={status === "loading" ? true : undefined}
       aria-describedby={statusId}
       noValidate
@@ -107,66 +140,40 @@ export default function EmailSignup({
       </label>
 
       <div className="w-full flex flex-col items-center">
-        <div className="w-full max-w-xl flex flex-col gap-2 md:gap-3 justify-center">
-          <input
-          id="name-signup-input"
-          value={name}
-          type="text"
-          autoComplete="name"
-          onChange={(e) => {
-            setErrorMsg(null);
-            setStatus("idle");
-            setName(e.target.value);
-          }}
-          placeholder="Your name"
-          aria-invalid={hasError ? true : undefined}
-          aria-describedby={errorId || statusId}
-          spellCheck={false}
-          className="w-full px-4 py-3 rounded-full border-2 border-border 
-                    focus:border-primary/20
-                     bg-background text-text placeholder:text-muted placeholder:font-semibold
-                     focus:outline-none focus:ring-2 focus:ring-primary"
-          ></input>
-          <input
-          id="email-signup-input"
-          value={email}
-          type="email"
-          inputMode="email"
-          autoComplete="email"
-          onChange={(e) => {
-            setErrorMsg(null);
-            setStatus("idle");
-            setEmail(e.target.value);
-          }}
-          placeholder="Email address"
-          aria-invalid={hasError ? true : undefined}
-          aria-describedby={errorId || statusId}
-          spellCheck={false}
-          className="w-full px-4 py-3 rounded-full border-2 border-border 
-                    focus:border-primary/20
-                     bg-background text-text placeholder:text-muted placeholder:font-semibold
-                     focus:outline-none focus:ring-2 focus:ring-primary"
-          ></input>
-          <input
-          id="phone-signup-input"
-          value={phone}
-          type="tel"
-          inputMode="tel"
-          autoComplete="tel"
-          onChange={(e) => {
-            setErrorMsg(null);
-            setStatus("idle");
-            setPhone(e.target.value);
-          }}
-          placeholder="Phone number (optional)"
-          aria-invalid={hasError ? true : undefined}
-          aria-describedby={errorId || statusId}
-          spellCheck={false}
-          className="w-full px-4 py-3 rounded-full border-2 border-border 
-                    focus:border-primary/20
-                     bg-background text-text placeholder:text-muted placeholder:font-semibold
-                     focus:outline-none focus:ring-2 focus:ring-primary"
-          ></input>
+        <div className="w-full max-w-xl flex flex-col gap-2 md:gap-3 justify-center mb-4">
+          {fields.map(
+            ({
+              id,
+              type,
+              autoComplete,
+              inputMode,
+              placeholder,
+              value,
+              set,
+            }) => (
+              <input
+                key={id}
+                id={id}
+                value={value}
+                // type={type}
+                autoComplete={autoComplete}
+                inputMode={inputMode}
+                onChange={(e) => {
+                  setErrorMsg(null);
+                  setStatus("idle");
+                  set(e.target.value);
+                }}
+                placeholder={placeholder}
+                aria-invalid={hasError ? true : undefined}
+                aria-describedby={errorId || statusId}
+                spellCheck={false}
+                className="w-full px-4 py-2 rounded-lg border-2 border-border
+                   focus:border-primary/20
+                   bg-background text-text placeholder:text-muted placeholder:font-semibold
+                   focus:outline-none focus:ring-2 focus:ring-primary"
+              ></input>
+            )
+          )}
         </div>
 
         <div className="mt-3 w-full flex justify-center">
@@ -175,10 +182,10 @@ export default function EmailSignup({
             disabled={status === "loading"}
             title="Join the Waitlist!"
             aria-controls={statusId}
-            className="px-8 py-3 text-lg font-bold rounded-full transition-transform duration-150
+            className={`px-8 py-2 text-lg font-bold rounded-lg transition-all duration-150
                        bg-primary hover:bg-primary-hover text-background shadow-md hover:shadow-lg
                        disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer
-                       inline-flex items-center justify-center gap-2 active:scale-95"
+                       inline-flex items-center justify-center gap-2 active:scale-95`}
           >
             {status === "loading" && (
               <svg
@@ -225,7 +232,9 @@ export default function EmailSignup({
         aria-live="polite"
       >
         {status === "success" && (
-          <span className="text-emerald-600">Success! Check your inbox.</span>
+          <span className="text-emerald-600">
+            Thank you! We're looking forward to being in touch.
+          </span>
         )}
         {hasError && (
           <span id={errorId} className="text-rose-600">

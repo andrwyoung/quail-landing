@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Navbar from "./components/navbar";
 import Features from "./sections/features";
 import FadingHighlight from "./components/fading-text";
@@ -7,10 +7,15 @@ import Testimonials from "./sections/testimonials";
 import Image from "next/image";
 import FAQ from "./sections/faq";
 import EmailSignup from "./components/email-signup";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [showForm, setShowForm] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
+
+  const formId = "waitlist-panel";
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 30);
@@ -20,14 +25,19 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const onSecondaryCtaClick = () => {
+    window.scrollTo({ top: 314, behavior: "smooth" });
+    setShowForm(true);
+  };
+
   return (
     <main className="relative flex flex-col items-center min-h-screen bg-background text-text font-body">
-      <Navbar scrolled={scrolled} />
+      <Navbar scrolled={scrolled} onClick={onSecondaryCtaClick} />
 
       {/* Hero Section */}
       <section
         className="flex flex-col max-w-4xl px-4 md:px-6 items-start justify-center 
-      min-h-[65vh] pt-[18vh] text-center mb-48"
+      min-h-[65vh] pt-[18vh] text-center"
       >
         <div className="text-left">
           <h1
@@ -55,34 +65,49 @@ export default function Home() {
             fading away?
           </p>
 
-          <div className="w-full flex justify-center mb-6">
+          <div className="w-full flex justify-center ">
             <button
+              ref={buttonRef}
               type="button"
-              className="rounded-full px-14 md:px-20 py-6 text-lg font-bold bg-primary hover:bg-primary-hover text-background text-center
-              shadow-md hover:shadow-lg transition-transform duration-200 ease-out transform hover:-translate-y-0.5 active:translate-y-0 active:scale-95"
+              aria-controls={formId}
+              aria-expanded={showForm}
+              title="Open sign up sheet"
+              className={`rounded-full px-14 md:px-16 py-3 text-lg font-bold  text-center border-2 border-primary
+              shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer ease-out transform hover:-translate-y-0.5 
+              active:translate-y-0 active:scale-95 ${
+                showForm
+                  ? "text-primary"
+                  : " bg-primary hover:bg-primary-hover text-background"
+              }`}
               onClick={() => setShowForm((v) => !v)}
             >
-              Stop forgetting, Click Here
+              Stop Forgetting, Click Here
             </button>
-          </div>
-
-          <div
-            className={`w-full flex justify-center transition-all duration-500 ease-out ${
-              showForm ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-3 pointer-events-none"
-            }`}
-          >
-            <div
-              className="w-full max-w-2xl bg-surface/70 border border-border px-5 py-6"
-              style={{ borderRadius: 17 }}
-            >
-              <EmailSignup />
-            </div>
           </div>
         </div>
       </section>
 
+      <AnimatePresence>
+        {showForm && (
+          <motion.div
+            id={formId}
+            role="region"
+            aria-label="Waitlist sign-up"
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="w-full flex justify-center"
+          >
+            <div className="w-full max-w-2xl bg-surface/70 rounded-md  mx-4 px-5 pt-8 pb-2">
+              <EmailSignup />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Testimonials Section */}
-      <section id="testimonials" className="max-w-3xl mx-auto mb-36 px-6">
+      <section id="testimonials" className="max-w-3xl mx-auto mt-48 mb-36 px-6">
         <Testimonials />
       </section>
 
@@ -120,14 +145,16 @@ export default function Home() {
         <p className="mb-12 text-md">
           Join thousands of learners optimizing their memory with Quail.
         </p>
-        <a
+        <button
           type="button"
-          href="#get-started"
-          className="flex w-fit justify-center px-8 py-3 text-lg bg-background border-2 border-primary text-primary font-bold 
-          rounded-md hover:bg-primary hover:text-background transition"
+          title="Scroll to sign up sheet"
+          aria-label="Scroll to sign up sheet"
+          onClick={onSecondaryCtaClick}
+          className="flex w-fit justify-center px-8 py-2 text-lg bg-background border-2 border-primary text-primary font-bold 
+          rounded-full hover:bg-primary hover:text-background transition-all duration-200 cursor-pointer"
         >
           Optimize Your Memory
-        </a>
+        </button>
       </section>
     </main>
   );

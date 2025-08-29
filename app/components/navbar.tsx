@@ -1,7 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default function Navbar({ scrolled }: { scrolled: boolean }) {
+export default function Navbar({
+  scrolled,
+  onClick,
+}: {
+  scrolled: boolean;
+  onClick: () => void;
+}) {
   return (
     <div
       //   className={`sticky top-0 z-50 w-full bg-background  transition-all duration-700
@@ -38,7 +44,10 @@ export default function Navbar({ scrolled }: { scrolled: boolean }) {
         </div> */}
         <button
           type="button"
-          className={`py-1 px-4 rounded-md   font-body font-bold
+          onClick={onClick}
+          title="Scroll to sign up sheet"
+          aria-label="Scroll to sign up sheet"
+          className={`py-1 px-4 rounded-full font-body font-bold
             transition-all duration-700 cursor-pointer border-2 border-primary
             ${
               scrolled
