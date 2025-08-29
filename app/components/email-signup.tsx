@@ -13,7 +13,9 @@ export default function EmailSignup({
   className = "",
   onSuccess,
 }: EmailSignupProps) {
+  const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
+  const [phone, setPhone] = React.useState("");
   const [status, setStatus] = React.useState<Status>("idle");
   const [errorMsg, setErrorMsg] = React.useState<string | null>(null);
   const [trap, setTrap] = React.useState(""); // honeypot to catch bots
@@ -22,6 +24,39 @@ export default function EmailSignup({
   const errorId = hasError ? "email-signup-error" : undefined;
   const statusId = "email-signup-status";
 
+  const fields = [
+    {
+      id: "name-signup-input",
+      type: "text" as const,
+      autoComplete: "name",
+      inputMode: undefined,
+      placeholder: "Your name",
+      value: name,
+      set: setName,
+      label: "Full name",
+    },
+    {
+      id: "email-signup-input",
+      type: "email" as const,
+      autoComplete: "email",
+      inputMode: "email" as const,
+      placeholder: "Email address",
+      value: email,
+      set: setEmail,
+      label: "Email address",
+    },
+    {
+      id: "phone-signup-input",
+      type: "tel" as const,
+      autoComplete: "tel",
+      inputMode: "tel" as const,
+      placeholder: "Phone number (optional)",
+      value: phone,
+      set: setPhone,
+      label: "Phone number",
+    },
+  ];
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setErrorMsg(null);
@@ -29,8 +64,17 @@ export default function EmailSignup({
     // Bot check
     if (trap) return;
 
+    const valueName = name.trim();
+    const valueEmail = email.trim();
+
     // Basic client-side validation
-    const ok = /\S+@\S+\.\S+/.test(email);
+    if (!valueName) {
+      setStatus("error");
+      setErrorMsg("Please enter your name.");
+      return;
+    }
+
+    const ok = /\S+@\S+\.\S+/.test(valueEmail);
     if (!ok) {
       setStatus("error");
       setErrorMsg("Please enter a valid email address.");
@@ -43,7 +87,7 @@ export default function EmailSignup({
       const res = await fetch(action, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ name: valueName, email: valueEmail, phone }),
       });
 
       if (!res.ok) {
@@ -59,7 +103,9 @@ export default function EmailSignup({
       }
 
       setStatus("success");
+      setName("");
       setEmail("");
+      setPhone("");
       onSuccess?.();
     } catch (err: unknown) {
       const message =
@@ -77,67 +123,91 @@ export default function EmailSignup({
   return (
     <form
       onSubmit={handleSubmit}
-      className={`w-full ${className}`}
+      className={`w-full flex flex-col items-center ${className}`}
       aria-busy={status === "loading" ? true : undefined}
       aria-describedby={statusId}
       noValidate
     >
       {/* accessability: screen readers */}
+      <label htmlFor="name-signup-input" className="sr-only">
+        Full name
+      </label>
       <label htmlFor="email-signup-input" className="sr-only">
         Email address
       </label>
+      <label htmlFor="phone-signup-input" className="sr-only">
+        Phone number
+      </label>
 
-      <div className="flex flex-col md:flex-row  gap-2 w-full max-w-lg">
-        <input
-          id="email-signup-input"
-          value={email}
-          //   type="email"
-          //   inputMode="email"
-          autoComplete="email"
-          onChange={(e) => {
-            setErrorMsg(null);
-            setStatus("idle");
-            setEmail(e.target.value);
-          }}
-          placeholder="Enter your email"
-          aria-invalid={hasError ? true : undefined}
-          aria-describedby={errorId || statusId}
-          spellCheck={false}
-          className="max-w-xl px-4 py-2 rounded-md border-2 border-border 
-                    focus:border-primary/20
-                     bg-background text-text placeholder:text-muted placeholder:font-semibold
-                     focus:outline-none focus:ring-2 focus:ring-primary"
-        ></input>
-        <button
-          type="submit"
-          disabled={status === "loading"}
-          title="Join the Waitlist!"
-          aria-controls={statusId}
-          className="px-6 py-2 text-lg font-bold rounded-md transition-all duration-150
-                     bg-primary hover:bg-primary-hover text-background
-                     disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer
-                     inline-flex items-center justify-center gap-2 md:w-48"
-        >
-          {status === "loading" && (
-            <svg
-              className="animate-spin h-5 w-5"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <circle
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                strokeWidth="4"
-                fill="none"
-                opacity="0.25"
-              />
-              <path d="M22 12a10 10 0 0 1-10 10" fill="currentColor" />
-            </svg>
+      <div className="w-full flex flex-col items-center">
+        <div className="w-full max-w-xl flex flex-col gap-2 md:gap-3 justify-center mb-4">
+          {fields.map(
+            ({
+              id,
+              type,
+              autoComplete,
+              inputMode,
+              placeholder,
+              value,
+              set,
+            }) => (
+              <input
+                key={id}
+                id={id}
+                value={value}
+                // type={type}
+                autoComplete={autoComplete}
+                inputMode={inputMode}
+                onChange={(e) => {
+                  setErrorMsg(null);
+                  setStatus("idle");
+                  set(e.target.value);
+                }}
+                placeholder={placeholder}
+                aria-invalid={hasError ? true : undefined}
+                aria-describedby={errorId || statusId}
+                spellCheck={false}
+                className="w-full px-4 py-2 rounded-lg border-2 border-border
+                   focus:border-primary/20
+                   bg-background text-text placeholder:text-muted placeholder:font-semibold
+                   focus:outline-none focus:ring-2 focus:ring-primary"
+              ></input>
+            )
           )}
-          {status === "loading" ? "Submitting..." : "Join the Waitlist!"}
-        </button>
+        </div>
+
+        <div className="mt-3 w-full flex justify-center">
+          <button
+            type="submit"
+            disabled={status === "loading"}
+            title="Join the Waitlist!"
+            aria-controls={statusId}
+            className={`px-8 py-2 text-lg font-bold rounded-lg transition-all duration-150
+                       bg-primary hover:bg-primary-hover text-background shadow-md hover:shadow-lg
+                       disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer
+                       inline-flex items-center justify-center gap-2 active:scale-95`}
+          >
+            {status === "loading" && (
+              <svg
+                className="animate-spin h-5 w-5"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                  fill="none"
+                  opacity="0.25"
+                />
+                <path d="M22 12a10 10 0 0 1-10 10" fill="currentColor" />
+              </svg>
+            )}
+            {status === "loading" ? "Submitting..." : "Join the Waitlist!"}
+          </button>
+        </div>
       </div>
 
       {/* Honeypot */}
@@ -162,7 +232,9 @@ export default function EmailSignup({
         aria-live="polite"
       >
         {status === "success" && (
-          <span className="text-emerald-600">Success! Check your inbox.</span>
+          <span className="text-emerald-600">
+            Thank you! We're looking forward to being in touch.
+          </span>
         )}
         {hasError && (
           <span id={errorId} className="text-rose-600">
