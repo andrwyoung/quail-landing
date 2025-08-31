@@ -231,7 +231,7 @@ export default function Home() {
         <Testimonials />
       </section> */}
 
-      <section className="max-w-3xl mx-auto mb-32 px-6 flex flex-col gap-8 items-center">
+      <section id="faq" className="max-w-3xl mx-auto mb-32 px-6 flex flex-col gap-8 items-center">
         <h1 className="text-3xl font-header">FAQ</h1>
         <FAQ />
       </section>
@@ -254,7 +254,7 @@ export default function Home() {
             className="flex w-fit justify-center px-8 py-2 text-md md:text-lg bg-background border-2 border-primary text-primary font-bold 
             rounded-full hover:bg-primary hover:text-background transition-all duration-200 cursor-pointer"
           >
-            Unlock the future
+            Join the Future
           </button>
         </div>
       </section>

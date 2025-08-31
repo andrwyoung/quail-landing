@@ -46,8 +46,22 @@ const faqText: faqItem[] = [
     question: "Is there a free plan or early access?",
     answer: (
       <>
-        We’re in early access. <strong>Join the waitlist</strong> in the hero
-        and we’ll email invites as we open more spots.
+        We’re in early access. <strong>
+          <a
+            href="#home"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById("home")?.scrollIntoView({ behavior: "smooth" });
+              const heroBtn = document.querySelector(
+                '[aria-controls="waitlist-panel"]'
+              ) as HTMLElement | null;
+              setTimeout(() => heroBtn?.click(), 300);
+            }}
+            className="underline text-primary"
+          >
+            Join the waitlist
+          </a>
+        </strong> and we’ll email invites as we open more spots.
       </>
     ),
   },
