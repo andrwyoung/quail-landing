@@ -79,6 +79,24 @@ export default function Home() {
               Get Early Access
             </button>
           </div>
+          <AnimatePresence>
+            {showForm && (
+              <motion.div
+                id={formId}
+                role="region"
+                aria-label="Waitlist sign-up"
+                initial={{ opacity: 0, y: -12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="w-full flex justify-center mt-2 md:hidden"
+              >
+                <div className="w-full max-w-2xl bg-surface/70 rounded-md mx-0 px-5 pt-8 pb-2">
+                  <EmailSignup />
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
         <aside className="w-full flex justify-center md:justify-end">
           <div className="relative w-full max-w-md">
@@ -100,16 +118,16 @@ export default function Home() {
       <AnimatePresence>
         {showForm && (
           <motion.div
-            id={formId}
+            id={`${formId}-desktop`}
             role="region"
             aria-label="Waitlist sign-up"
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            className="w-full flex justify-center"
+            className="w-full justify-center hidden md:flex"
           >
-            <div className="w-full max-w-2xl bg-surface/70 rounded-md  mx-4 px-5 pt-8 pb-2">
+            <div className="w-full max-w-2xl bg-surface/70 rounded-md mx-4 px-5 pt-8 pb-2">
               <EmailSignup />
             </div>
           </motion.div>
