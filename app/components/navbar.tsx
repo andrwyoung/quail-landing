@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import Image from "next/image";
 
 export default function Navbar({
@@ -23,12 +22,14 @@ export default function Navbar({
           href="#home"
           onClick={(e) => {
             e.preventDefault();
-            document.getElementById("home")?.scrollIntoView({ behavior: "smooth" });
+            document
+              .getElementById("home")
+              ?.scrollIntoView({ behavior: "smooth" });
           }}
           className="flex flex-row items-center transition-transform gap-1 hover:scale-105"
         >
           <Image
-            src="/logo3.png"
+            src="/logo-lighter.png"
             alt="Inquiryon Logo. Sparkle!"
             width={40}
             height={40}
@@ -41,7 +42,9 @@ export default function Navbar({
             href="#how"
             onClick={(e) => {
               e.preventDefault();
-              document.getElementById("how")?.scrollIntoView({ behavior: "smooth" });
+              document
+                .getElementById("how")
+                ?.scrollIntoView({ behavior: "smooth" });
             }}
             className="hover:text-accent"
           >
@@ -51,7 +54,9 @@ export default function Navbar({
             href="#faq"
             onClick={(e) => {
               e.preventDefault();
-              document.getElementById("faq")?.scrollIntoView({ behavior: "smooth" });
+              document
+                .getElementById("faq")
+                ?.scrollIntoView({ behavior: "smooth" });
             }}
             className="hover:text-accent"
           >

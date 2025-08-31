@@ -33,7 +33,8 @@ export default function Home() {
       <Navbar scrolled={scrolled} onClick={onSecondaryCtaClick} />
 
       {/* Hero Section */}
-      <section id="home"
+      <section
+        id="home"
         className="grid md:grid-cols-2 gap-8 max-w-5xl px-4 md:px-6 items-center justify-center 
       min-h-[65vh] pt-[18vh]"
       >
@@ -53,11 +54,12 @@ export default function Home() {
           </h1>
           <p className="text-md md:text-lg max-w-2xl mb-8">
             <FadingHighlight scrolled={scrolled} fontClass="">
-              Import any text. 
+              Import any text.
             </FadingHighlight>{" "}
             <span>Read normally. </span>
             <FadingHighlight scrolled={scrolled} fontClass="">
-              Mark what's important. Quail auto‑builds a review queue with evidence-based memory techniques. We help you to
+              Mark what&apos;s important. Quail auto‑builds a review queue with
+              evidence-based memory techniques. We help you to
             </FadingHighlight>{" "}
             <span className="font-bold">Remember what matters</span>
           </p>
@@ -129,39 +131,63 @@ export default function Home() {
         <div className="grid md:grid-cols-2 gap-8 md:gap-10 items-start">
           {/* Left: Features-style card */}
           <div className="bg-surface/70 border border-white/10 rounded-2xl p-6 md:p-8">
-            <div className="text-xs uppercase tracking-[.18em] font-bold text-primary">How Quail Works</div>
-            <h2 className="font-header text-2xl md:text-3xl mt-1 mb-4">Designed for retention</h2>
+            <div className="text-xs uppercase tracking-[.18em] font-bold text-primary">
+              How Quail Works
+            </div>
+            <h2 className="font-header text-2xl md:text-3xl mt-1 mb-4">
+              Designed for retention
+            </h2>
 
             <div className="grid grid-cols-[24px_1fr] gap-3 md:gap-4 items-start mb-5">
               <div className="mt-2 h-2.5 w-2.5 rounded-full bg-gradient-to-br from-primary to-primary/70" />
               <div>
                 <h4 className="font-header text-lg mb-1">Import anything</h4>
-                <p className="text-sm md:text-base text-text-light">Save all your PDFs, epubs, newsletters, web clips, and more into your library. As long as it's text.</p>
-                <p className="text-xs text-text-light mt-2">(If you don't know what to read first, we got you! Import any article from wikipedia to begin learning)</p>
+                <p className="text-sm md:text-base text-text-light">
+                  Save all your PDFs, epubs, newsletters, web clips, and more
+                  into your library. As long as it&apos;s text.
+                </p>
+                <p className="text-xs text-text-light mt-2">
+                  (If you don&apos;t know what to read first, we got you! Import
+                  any article from wikipedia to begin learning)
+                </p>
               </div>
             </div>
 
             <div className="grid grid-cols-[24px_1fr] gap-3 md:gap-4 items-start mb-5">
               <div className="mt-2 h-2.5 w-2.5 rounded-full bg-gradient-to-br from-primary to-primary/70" />
               <div>
-                <h4 className="font-header text-lg mb-1">Collect the most important ideas</h4>
-                <p className="text-sm md:text-base text-text-light">As you read, clip the quotes or sections you want to remember. Quail brings them back just when you’re about to forget.</p>
+                <h4 className="font-header text-lg mb-1">
+                  Collect the most important ideas
+                </h4>
+                <p className="text-sm md:text-base text-text-light">
+                  As you read, clip the quotes or sections you want to remember.
+                  Quail brings them back just when you’re about to forget.
+                </p>
               </div>
             </div>
 
             <div className="grid grid-cols-[24px_1fr] gap-3 md:gap-4 items-start mb-5">
               <div className="mt-2 h-2.5 w-2.5 rounded-full bg-gradient-to-br from-primary to-primary/70" />
               <div>
-                <h4 className="font-header text-lg mb-1">Reinforce with Spaced Repetition</h4>
-                <p className="text-sm md:text-base text-text-light">Review your clips tailored to your memory and uncover new connections across your knowledge.</p>
+                <h4 className="font-header text-lg mb-1">
+                  Reinforce with Spaced Repetition
+                </h4>
+                <p className="text-sm md:text-base text-text-light">
+                  Review your clips tailored to your memory and uncover new
+                  connections across your knowledge.
+                </p>
               </div>
             </div>
 
             <div className="grid grid-cols-[24px_1fr] gap-3 md:gap-4 items-start">
               <div className="mt-2 h-2.5 w-2.5 rounded-full bg-gradient-to-br from-primary to-primary/70" />
               <div>
-                <h4 className="font-header text-lg mb-1">Focus on What Matters</h4>
-                <p className="text-sm md:text-base text-text-light">Reinforce only the most important ideas. Let noise fall away.</p>
+                <h4 className="font-header text-lg mb-1">
+                  Focus on What Matters
+                </h4>
+                <p className="text-sm md:text-base text-text-light">
+                  Reinforce only the most important ideas. Let noise fall away.
+                </p>
               </div>
             </div>
           </div>
@@ -170,38 +196,55 @@ export default function Home() {
           <aside className="grid gap-4">
             <div className="p-5 rounded-md bg-surface/60 border border-white/10">
               <strong className="block mb-1">Why it works</strong>
-              <p className="text-sm md:text-base text-text-light">Forgetting follows a curve. Hitting ideas right before they fade produces the best retention for the least time. Quail automates that timing per item.</p>
+              <p className="text-sm md:text-base text-text-light">
+                Forgetting follows a curve. Hitting ideas right before they fade
+                produces the best retention for the least time. Quail automates
+                that timing per item.
+              </p>
             </div>
             <div className="p-5 rounded-md bg-surface/60 border border-white/10">
               <strong className="block mb-1">Who it’s for</strong>
-              <p className="text-sm md:text-base text-text-light">Founders, super readers, researchers - anyone who needs ideas to stick without turning reading into a second job.</p>
+              <p className="text-sm md:text-base text-text-light">
+                Founders, super readers, researchers - anyone who needs ideas to
+                stick without turning reading into a second job.
+              </p>
             </div>
             <div className="p-5 rounded-md bg-surface/60 border border-white/10">
               <strong className="block mb-1">What it replaces</strong>
-              <p className="text-sm md:text-base text-text-light">Your e-reader + highlights + spaced-repetition app juggling. Quail compresses that stack to lower friction.</p>
+              <p className="text-sm md:text-base text-text-light">
+                Your e-reader + highlights + spaced-repetition app juggling.
+                Quail compresses that stack to lower friction.
+              </p>
             </div>
           </aside>
         </div>
       </section>
 
-      
-
       <section className="w-full text-center mb-24 px-6">
-        <h2 className="font-header font-bold text-5xl md:text-6xl">Clip, Clip, Clip</h2>
+        <h2 className="font-header font-bold text-5xl md:text-6xl">
+          Clip, Clip, Clip
+        </h2>
       </section>
 
       {/* Read → Mark → Review explainer */}
       <section className="max-w-5xl mx-auto mb-24 px-6">
         <div className="bg-surface/70 border border-white/10 rounded-2xl p-6 md:p-8">
-          <div className="text-xs uppercase tracking-[.18em] font-bold text-primary">One simple loop</div>
-          <h3 className="font-header text-2xl md:text-3xl mt-1 mb-4">Read · Clip · Review</h3>
+          <div className="text-xs uppercase tracking-[.18em] font-bold text-primary">
+            One simple loop
+          </div>
+          <h3 className="font-header text-2xl md:text-3xl mt-1 mb-4">
+            Read · Clip · Review
+          </h3>
 
           <div className="grid gap-5">
             <div className="grid grid-cols-[24px_1fr] gap-3 md:gap-4 items-start">
               <div className="mt-2 h-2.5 w-2.5 rounded-full bg-gradient-to-br from-primary to-primary/70" />
               <div>
                 <h4 className="font-header text-lg mb-1">Read normally</h4>
-                <p className="text-sm md:text-base text-text-light">Open anything in your library and read as usual - no new workflow to learn.</p>
+                <p className="text-sm md:text-base text-text-light">
+                  Open anything in your library and read as usual - no new
+                  workflow to learn.
+                </p>
               </div>
             </div>
 
@@ -209,20 +252,34 @@ export default function Home() {
               <div className="mt-2 h-2.5 w-2.5 rounded-full bg-gradient-to-br from-primary to-primary/70" />
               <div>
                 <h4 className="font-header text-lg mb-1">Clip what matters</h4>
-                <p className="text-sm md:text-base text-text-light">Highlight a sentence or block that's important. Each clip gets automatically scheduled to come back when you need to see it again - no setup required.</p>
+                <p className="text-sm md:text-base text-text-light">
+                  Highlight a sentence or block that&apos;s important. Each clip
+                  gets automatically scheduled to come back when you need to see
+                  it again - no setup required.
+                </p>
               </div>
             </div>
 
             <div className="grid grid-cols-[24px_1fr] gap-3 md:gap-4 items-start">
               <div className="mt-2 h-2.5 w-2.5 rounded-full bg-gradient-to-br from-primary to-primary/70" />
               <div>
-                <h4 className="font-header text-lg mb-1">Review at the right time</h4>
-                <p className="text-sm md:text-base text-text-light">Each day, a short review shows only what’s due - arriving right before you’d forget - so the important ideas stick while the noise falls away.</p>
+                <h4 className="font-header text-lg mb-1">
+                  Review at the right time
+                </h4>
+                <p className="text-sm md:text-base text-text-light">
+                  Each day, a short review shows only what’s due - arriving
+                  right before you’d forget - so the important ideas stick while
+                  the noise falls away.
+                </p>
               </div>
             </div>
           </div>
 
-          <p className="text-sm md:text-base text-text-light mt-6">This simple loop builds lasting memory in minutes a day. Just a reader that brings back your important ideas exactly when you need them.</p>
+          <p className="text-sm md:text-base text-text-light mt-6">
+            This simple loop builds lasting memory in minutes a day. Just a
+            reader that brings back your important ideas exactly when you need
+            them.
+          </p>
         </div>
       </section>
 
@@ -231,15 +288,20 @@ export default function Home() {
         <Testimonials />
       </section> */}
 
-      <section id="faq" className="max-w-3xl mx-auto mb-32 px-6 flex flex-col gap-8 items-center">
+      <section
+        id="faq"
+        className="max-w-3xl mx-auto mb-32 px-6 flex flex-col gap-8 items-center"
+      >
         <h1 className="text-3xl font-header">FAQ</h1>
         <FAQ />
       </section>
 
       {/* Call to Action */}
       <section id="cta" className="mx-8 px-6 md:px-12 mb-12 w-full">
-        <div className="max-w-3xl mx-auto text-text text-center py-14 md:py-16 px-6 md:px-10 
-          bg-surface/70 border border-white/10 rounded-2xl flex flex-col items-center">
+        <div
+          className="max-w-3xl mx-auto text-text text-center py-14 md:py-16 px-6 md:px-10 
+          bg-surface/70 border border-white/10 rounded-2xl flex flex-col items-center"
+        >
           <h2 className="font-header font-semibold text-3xl md:text-4xl mb-3">
             Shape the future of reading
           </h2>

@@ -8,14 +8,14 @@ const faqText: faqItem[] = [
     question: "What is Quail?",
     answer: (
       <>
-        Quail is a reader that helps you <strong>remember what you read</strong>.
-        You read normally, clip important lines, and Quail brings them back at
+        Quail is a reader that helps you <strong>remember what you read</strong>
+        . You read normally, clip important lines, and Quail brings them back at
         the right time so ideas stick.
       </>
     ),
   },
   {
-    question: "What is a \"clip\"?",
+    question: 'What is a "clip"?',
     answer: (
       <>
         A clip is a <strong>highlight of a quote or short block</strong> you
@@ -46,12 +46,15 @@ const faqText: faqItem[] = [
     question: "Is there a free plan or early access?",
     answer: (
       <>
-        We’re in early access. <strong>
+        We’re in early access.{" "}
+        <strong>
           <a
             href="#home"
             onClick={(e) => {
               e.preventDefault();
-              document.getElementById("home")?.scrollIntoView({ behavior: "smooth" });
+              document
+                .getElementById("home")
+                ?.scrollIntoView({ behavior: "smooth" });
               const heroBtn = document.querySelector(
                 '[aria-controls="waitlist-panel"]'
               ) as HTMLElement | null;
@@ -61,7 +64,8 @@ const faqText: faqItem[] = [
           >
             Join the waitlist
           </a>
-        </strong> and we’ll email invites as we open more spots.
+        </strong>{" "}
+        and we’ll email invites as we open more spots.
       </>
     ),
   },
@@ -100,7 +104,7 @@ function FAQItem({
               open ? "rotate-180" : ""
             }`}
           />
-          <span className="text-xl font-regular font-header px-1 group-hover:bg-highlight rounded-md">
+          <span className="text-xl font-regular font-header px-1 group-hover:bg-primary rounded-md">
             {question}
           </span>
         </button>
