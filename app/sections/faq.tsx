@@ -8,18 +8,19 @@ const faqText: faqItem[] = [
     question: "What is Quail?",
     answer: (
       <>
-        Quail is a <strong>memory-optimized reader</strong> that helps you
-        retain what you read using incremental reading and spaced recall.
+        Quail is a reader that helps you <strong>remember what you read</strong>.
+        You read normally, clip important lines, and Quail brings them back at
+        the right time so ideas stick.
       </>
     ),
   },
   {
-    question: "How is this different from a normal reading app?",
+    question: "What is a \"clip\"?",
     answer: (
       <>
-        Traditional readers focus on presentation. Quail focuses on{" "}
-        <strong>retention</strong>: excerpts, prompts, and review timing so
-        ideas actually stick.
+        A clip is a <strong>highlight of a quote or short block</strong> you
+        want to remember. Quail saves it and gently schedules it to reappear
+        later - no decks or setup.
       </>
     ),
   },
@@ -27,26 +28,26 @@ const faqText: faqItem[] = [
     question: "Do I need to change how I read?",
     answer: (
       <>
-        Not much. Keep reading. Quail <strong>surfaces the right chunks</strong>{" "}
-        at the right time and lets you capture highlights without breaking flow.
+        No. <strong>Read as you always do</strong>. When something matters, tap
+        to clip it. Quail handles the timing in the background.
       </>
     ),
   },
   {
-    question: "Is there a free plan?",
+    question: "Is my data private?",
     answer: (
       <>
-        We’re in early access. You can <strong>join the waitlist</strong> in the
-        hero and we’ll notify you as spots open.
+        Your library is <strong>private</strong>. We don’t sell your data, and
+        you can export your content anytime.
       </>
     ),
   },
   {
-    question: "Does it work offline?",
+    question: "Is there a free plan or early access?",
     answer: (
       <>
-        Core reading works offline; sync and spaced review scheduling require a
-        connection to keep data consistent across devices.
+        We’re in early access. <strong>Join the waitlist</strong> in the hero
+        and we’ll email invites as we open more spots.
       </>
     ),
   },
@@ -55,11 +56,14 @@ const faqText: faqItem[] = [
 function FAQItem({
   question,
   children,
+  open,
+  onToggle,
 }: {
   question: string;
   children: React.ReactNode;
+  open: boolean;
+  onToggle: () => void;
 }) {
-  const [open, setOpen] = useState(false);
   const buttonId = useId();
   const panelId = useId();
 
@@ -71,7 +75,7 @@ function FAQItem({
           type="button"
           aria-expanded={open}
           aria-controls={panelId}
-          onClick={() => setOpen((prev) => !prev)}
+          onClick={onToggle}
           className="w-full py-4 px-4 text-left flex items-center gap-2 group
                      focus:outline-none focus-visible:ring-2 focus-visible:ring-primary
                      transition-colors cursor-pointer"
@@ -107,10 +111,17 @@ function FAQItem({
 }
 
 export default function FAQ() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
   return (
     <div className="flex flex-col gap-4">
       {faqText.map((faq, index) => (
-        <FAQItem key={index} question={faq.question}>
+        <FAQItem
+          key={index}
+          question={faq.question}
+          open={openIndex === index}
+          onToggle={() => setOpenIndex(openIndex === index ? null : index)}
+        >
           {faq.answer}
         </FAQItem>
       ))}
