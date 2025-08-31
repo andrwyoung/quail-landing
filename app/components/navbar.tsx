@@ -15,8 +15,8 @@ export default function Navbar({
       className={`sticky top-0 z-50 w-full bg-transparent transition-all duration-700`}
     >
       <div
-        className="flex flex-row justify-between items-center py-4 px-4 max-w-5xl mx-auto
-        rounded-full bg-secondary-bg shadow-md"
+        className="flex flex-row justify-between items-center py-2 md:py-4 px-3 md:px-4 max-w-5xl mx-auto
+        rounded-full bg-secondary-bg shadow-md flex-wrap md:flex-nowrap gap-2"
       >
         <a
           href="#home"
@@ -26,18 +26,19 @@ export default function Navbar({
               .getElementById("home")
               ?.scrollIntoView({ behavior: "smooth" });
           }}
-          className="flex flex-row items-center transition-transform gap-1 hover:scale-105"
+          className="flex flex-row items-center transition-transform gap-1 hover:scale-105 my-1"
         >
           <Image
             src="/logo-lighter.png"
             alt="Inquiryon Logo. Sparkle!"
             width={40}
             height={40}
+            className="w-7 h-7 md:w-10 md:h-10"
           />
-          <h6 className="text-2xl font-header text-text">Quail</h6>
+          <h6 className="text-xl md:text-2xl font-header text-text">Quail</h6>
         </a>
 
-        <nav className="flex flex-row gap-6 text-sm md:text-base font-header">
+        <nav className="flex flex-row gap-3 md:gap-6 text-xs md:text-base font-header my-1 basis-full md:basis-auto justify-center">
           <a
             href="#how"
             onClick={(e) => {
@@ -68,7 +69,7 @@ export default function Navbar({
           onClick={onClick}
           title="Scroll to sign up sheet"
           aria-label="Scroll to sign up sheet"
-          className={`py-2 px-6 rounded-full font-body font-bold
+          className={`py-1.5 md:py-2 px-4 md:px-6 rounded-full font-body font-bold text-sm md:text-base my-1
             transition-all duration-700 cursor-pointer border-2 border-primary
             ${
               scrolled
