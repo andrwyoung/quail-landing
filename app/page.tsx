@@ -35,8 +35,8 @@ export default function Home() {
 
       {/* Hero Section */}
       <section
-        className="flex flex-col max-w-4xl px-4 md:px-6 items-start justify-center 
-      min-h-[65vh] pt-[18vh] text-center"
+        className="grid md:grid-cols-2 gap-8 max-w-5xl px-4 md:px-6 items-center justify-center 
+      min-h-[65vh] pt-[18vh]"
       >
         <div className="text-left">
           <h1
@@ -75,11 +75,25 @@ export default function Home() {
               }`}
               onClick={() => setShowForm((v) => !v)}
             >
-              <span className="hidden md:inline">Stop Forgetting. </span>
-              Join the Waitlist!
+              Get Early Access
             </button>
           </div>
         </div>
+        <aside className="w-full flex justify-center md:justify-end">
+          <div className="relative w-full max-w-md">
+            <div className="bg-white rounded-3xl p-2 shadow-2xl border border-black/10">
+              <div className="overflow-hidden rounded-2xl border border-black/5">
+                <Image
+                  src={"/mockup3.jpg"}
+                  alt={"Quial Mockup on Iphone"}
+                  width={1377}
+                  height={1200}
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </aside>
       </section>
 
       <AnimatePresence>
@@ -104,8 +118,11 @@ export default function Home() {
       {/* Forgetting Statistic Section */}
       <section className="max-w-3xl mx-auto mt-16 mb-24 px-6 text-center">
         <h2 className="font-header font-bold text-4xl md:text-5xl">
-          You <u>forget</u> 70% of what you read in <u>one day</u> &amp; 90% in <u>one week</u>
+          You forget 70% in a day and 90% in a week
         </h2>
+        <p className="font-header font-semibold text-2xl md:text-3xl mt-2">
+          Quail is here to fix that
+        </p>
       </section>
 
       {/* How It Works Section */}
@@ -161,15 +178,7 @@ export default function Home() {
         <Features />
       </section>
 
-      {/* Jank Mockup Section */}
-      <div className="max-w-4xl mb-16 px-4">
-        <Image
-          src={"/mockup3.jpg"}
-          alt={"Quial Mockup on Iphone"}
-          width={1377}
-          height={1200}
-        />
-      </div>
+      
 
       <section className="max-w-3xl mx-auto mb-32 px-6 flex flex-col gap-8 items-center">
         <h1 className="text-3xl font-header">FAQ</h1>
