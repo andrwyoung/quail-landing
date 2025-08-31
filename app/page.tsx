@@ -52,16 +52,11 @@ export default function Home() {
               Reader
             </FadingHighlight>
           </h1>
-          <p className="text-md md:text-lg max-w-2xl mb-8 font-bold">
-            <FadingHighlight scrolled={scrolled} fontClass="font-medium">
-              You forget
+          <p className="text-md md:text-lg max-w-2xl mb-8">
+            <FadingHighlight scrolled={scrolled} fontClass="">
+              Whether you read ebooks, newsletters, or wikipedia articles, we want you to
             </FadingHighlight>{" "}
-            70% of what you read{" "}
-            <FadingHighlight scrolled={scrolled} fontClass="font-medium">
-              within 24 hours, and 90% by the end of the week. Is there a way to
-              keep your reading from
-            </FadingHighlight>{" "}
-            fading away?
+            <span className="font-bold">Remember what matters</span>
           </p>
 
           <div className="w-full flex justify-center mb-6">
@@ -105,6 +100,53 @@ export default function Home() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Forgetting Statistic Section */}
+      <section className="max-w-3xl mx-auto mt-16 mb-24 px-6 text-center">
+        <h2 className="font-header font-bold text-4xl md:text-5xl">
+          You <u>forget</u> 70% of what you read in <u>one day</u> &amp; 90% in <u>one week</u>
+        </h2>
+      </section>
+
+      {/* How It Works Section */}
+      <section className="max-w-5xl mx-auto mt-8 mb-24 px-6 text-center">
+        <h2 className="font-header font-bold text-4xl md:text-5xl mb-2">
+          From passive consumption to retention
+        </h2>
+        <h3 className="text-2xl md:text-3xl font-semibold mb-10">
+          How Quail Works
+        </h3>
+        <div className="grid grid-cols-1 gap-10 md:gap-12 text-left">
+          <div className="p-6 rounded-lg bg-secondary-bg">
+            <h4 className="font-header text-xl mb-3">Save Everything</h4>
+            <p className="text-md text-text-light">
+              Save all your PDFs, epubs, newsletters, web clips, and more in one place.
+            </p>
+          </div>
+          <div className="p-6 rounded-lg bg-secondary-bg">
+            <h4 className="font-header text-xl mb-3">Collect the most important ideas</h4>
+            <p className="text-md text-text-light">
+              As you read, clip the quotes or sections you want to remember. Quail brings them back just when you’re about to forget.
+            </p>
+          </div>
+          <div className="p-6 rounded-lg bg-secondary-bg">
+            <h4 className="font-header text-xl mb-3">Reinforce with Incremental Learning</h4>
+            <p className="text-md text-text-light">
+              Review your clips in minutes and uncover new connections across your knowledge.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div className="w-full text-center px-6 mb-24">
+        <p className="text-sm md:text-md text-text-light">
+          (If you don't know what to read first, we got you! Import any article from wikipedia to begin learning)
+        </p>
+      </div>
+
+      <section className="w-full text-center mb-24 px-6">
+        <h2 className="font-header font-bold text-5xl md:text-6xl">Clip, Clip, Clip</h2>
+      </section>
 
       {/* Testimonials Section */}
       {/* <section id="testimonials" className="max-w-3xl mx-auto mt-48 mb-36 px-6">

@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quail — Memory-Optimized Reader</title>
+  <meta name="description" content="Quail is the memory-optimized reader that helps you retain what you read. Stop forgetting books, articles, and papers.">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@14..144,600;14..144,700;14..144,800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      /* Dark Theme Contrast — tweak as needed */
+      --bg-0:#0F1B2B;      /* deep navy backdrop */
+      --bg-1:#121F31;      /* panels */
+      --bg-2:#0F1B2B;      /* sections that should visually melt into bg */
+      --surface:#1B2B3F;   /* cards */
+      --text-0:#F4F7FB;    /* primary text */
+      --text-1:#C9D3E0;    /* muted */
+      --brand:#3B7C77;     /* your existing teal/green */
+      --brand-2:#61B3AC;   /* lighter teal for gradients/hover */
+      --accent:#E6D5C3;    /* warm sand for CTAs */
+      --accent-2:#F2E7DA;  /* lighter sand for hover */
+      --shadow: 0 20px 60px hsla(210, 60%, 2%, .55);
+
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+      --w: clamp(960px, 88vw, 1200px);
+    }
+
+    /* Base */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--text-0);
+      background:
+        radial-gradient(1200px 600px at 70% -10%, rgba(97,179,172,.18), transparent 60%),
+        radial-gradient(800px 400px at 10% 0%, rgba(230,213,195,.12), transparent 60%),
+        var(--bg-0);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      line-height:1.5;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--w);margin-inline:auto;padding:0 20px}
+
+    /* Top Nav */
+    header{
+      position:sticky;top:0;z-index:40;
+      backdrop-filter:saturate(140%) blur(8px);
+      background:linear-gradient(to bottom, rgba(5,12,20,.65), rgba(5,12,20,0));
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;
+      height:72px;
+    }
+    .brand{
+      display:flex;gap:10px;align-items:center;font-weight:700;letter-spacing:.2px
+    }
+    .logo{
+      width:34px;height:34px;border-radius:9px;display:grid;place-items:center;
+      background:linear-gradient(145deg, var(--brand), var(--brand-2));
+      box-shadow:0 6px 16px rgba(0,0,0,.35), inset 0 0 0 2px rgba(255,255,255,.15);
+    }
+    .logo svg{width:20px;height:20px;fill:white}
+    .nav .cta{
+      padding:10px 16px;border-radius:999px;
+      background:linear-gradient(180deg, var(--accent), var(--accent-2));
+      color:#1A1A1A;font-weight:700;border:0;cursor:pointer
+    }
+    .nav .cta:hover{filter:brightness(1.02)}
+    .navlinks{display:flex;gap:22px}
+    .navlinks a{color:var(--text-1)}
+    .navlinks a:hover{color:var(--text-0)}
+
+    /* Hero */
+    .hero{
+      padding:72px 0 36px;
+      display:grid;gap:40px;
+      grid-template-columns: 1.15fr .85fr;
+      align-items:center;
+    }
+    @media (max-width: 960px){
+      .hero{grid-template-columns:1fr; padding:48px 0}
+    }
+    .h-eyebrow{
+      color:var(--brand-2);
+      font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+      font-size:.78rem
+    }
+    h1{
+      font-family: Fraunces, serif;
+      font-size: clamp(36px, 6vw, 56px);
+      line-height:1.05;margin:10px 0 14px;
+    }
+    .sub{color:var(--text-1);font-size:1.1rem;max-width:46ch}
+    .hero-ctas{display:flex;gap:14px;margin-top:22px;flex-wrap:wrap}
+    .btn{
+      appearance:none;border:0;border-radius:999px;
+      font-weight:700;cursor:pointer;transition:.15s transform ease, .15s filter ease;
+      padding:14px 20px;font-size:1rem
+    }
+    .btn-primary{
+      color:#0D141C;
+      background:linear-gradient(180deg, var(--accent), var(--accent-2));
+      box-shadow:var(--shadow)
+    }
+    .btn-primary:hover{transform:translateY(-1px)}
+    .btn-ghost{
+      background:transparent;color:var(--text-0);
+      border:1px solid rgba(255,255,255,.14)
+    }
+    .btn-ghost:hover{border-color:rgba(255,255,255,.28)}
+    .kicker{font-size:.95rem;color:var(--text-1)}
+
+    /* Device Mock */
+    .device{
+      width:min(460px, 90vw);justify-self:center;
+      background:#fff;border-radius:36px;padding:18px;
+      box-shadow:0 30px 80px rgba(0,0,0,.55), inset 0 0 0 1px rgba(0,0,0,.08);
+      position:relative;
+    }
+    .device:before{
+      content:"";position:absolute;inset:-12px;z-index:-1;border-radius:42px;
+      background:linear-gradient(145deg, rgba(230,213,195,.18), rgba(59,124,119,.18));
+      filter:blur(14px);
+    }
+    .screen{
+      background:#fff;border-radius:28px;height:680px;overflow:hidden;
+      border:1px solid rgba(0,0,0,.06)
+    }
+    .screen > img{display:block;width:100%;height:100%;object-fit:cover}
+
+    /* Trust / stats */
+    .stats{
+      padding:40px 0 10px;border-top:1px solid rgba(255,255,255,.06);
+      display:grid;grid-template-columns:repeat(3,1fr);gap:20px;text-align:center
+    }
+    @media (max-width: 800px){.stats{grid-template-columns:1fr 1fr}}
+    @media (max-width: 520px){.stats{grid-template-columns:1fr}}
+    .stat{
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:var(--radius-md);padding:20px
+    }
+    .stat h3{font-size:clamp(26px, 4vw, 36px);margin:4px 0 6px}
+    .stat p{color:var(--text-1);margin:0}
+
+    /* Split section (features + proof) */
+    section.split{
+      background:var(--bg-1);
+      padding:72px 0;border-top:1px solid rgba(255,255,255,.06)
+    }
+    .grid-2{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:start}
+    @media (max-width: 960px){.grid-2{grid-template-columns:1fr}}
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius-lg);padding:26px
+    }
+    .feat{display:grid;grid-template-columns:32px 1fr;gap:14px;margin:8px 0}
+    .feat .dot{width:10px;height:10px;border-radius:50%;
+      background:linear-gradient(145deg, var(--brand-2), var(--brand))}
+    .feat h4{margin:0 0 3px}
+    .feat p{margin:0;color:var(--text-1)}
+    .proof{
+      display:grid;gap:16px
+    }
+    .quote{
+      padding:20px;border-radius:var(--radius-md);
+      background:linear-gradient(180deg, rgba(97,179,172,.10), rgba(230,213,195,.08));
+      border:1px solid rgba(255,255,255,.10)
+    }
+    .small{font-size:.95rem;color:var(--text-1)}
+    code.badge{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      background:rgba(230,213,195,.16);color:#fff;border:1px solid rgba(255,255,255,.18);
+      padding:4px 8px;border-radius:999px
+    }
+
+    /* Gallery */
+    section.gallery{
+      padding:68px 0;background:var(--bg-2);
+      border-top:1px solid rgba(255,255,255,.06)
+    }
+    .shotrow{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    @media (max-width: 980px){.shotrow{grid-template-columns:1fr 1fr}}
+    @media (max-width: 620px){.shotrow{grid-template-columns:1fr}}
+    .shot{
+      background:#fff;border-radius:18px;aspect-ratio: 16 / 10;overflow:hidden;
+      box-shadow:0 16px 50px rgba(0,0,0,.45);
+      border:1px solid rgba(0,0,0,.08)
+    }
+    .shot img{width:100%;height:100%;object-fit:cover;display:block}
+
+    /* Waitlist */
+    section.cta{
+      padding:80px 0;background:linear-gradient(180deg, var(--bg-1), var(--bg-0));
+      border-top:1px solid rgba(255,255,255,.06)
+    }
+    .cta-card{
+      display:grid;gap:16px;justify-items:center;text-align:center;
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.09);
+      border-radius:24px;padding:32px
+    }
+    form.waitlist{display:flex;gap:10px;flex-wrap:wrap}
+    input[type="email"]{
+      padding:14px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.16);
+      background:rgba(6,12,18,.6);color:var(--text-0);min-width:280px
+    }
+    input::placeholder{color:#9AA6B2}
+    footer{
+      padding:34px 0;color:var(--text-1);font-size:.95rem;
+      border-top:1px solid rgba(255,255,255,.06)
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation -->
+  <header>
+    <div class="wrap nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <!-- simple quail mark -->
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 4c-2 0-3.8 1.1-4.6 2.7C6.6 7.1 5 9.2 5 11.7c0 3.1 2.6 5.6 5.8 5.6 1.4 0 2.6-.4 3.6-1.2 1 .8 2.3 1.2 3.6 1.2.6 0 1.1-.1 1.6-.2-.6-1-1-2.2-1-3.5 0-3.7-2.9-6.7-6.6-6.7-.4 0-.8 0-1.2.1.6-1.2 1.9-2 3.4-2 1.3 0 2.4.6 3.1 1.4.4-.5.7-1.1.8-1.8C17.6 4.7 15.7 4 13.5 4z"/></svg>
+        </div>
+        <span>Quail</span>
+      </div>
+
+      <nav class="navlinks" aria-label="Primary">
+        <a href="#how">How it works</a>
+        <a href="#features">Features</a>
+        <a href="#shots">Screens</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <button class="cta" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Join the Waitlist</button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main class="wrap hero" id="home">
+    <div>
+      <div class="h-eyebrow">Memory-Optimized Reading</div>
+      <h1>Stop forgetting what you read.</h1>
+      <p class="sub">Quail helps you retain books, papers, newsletters, and articles by turning passive reading into spaced, memory-aware sessions—without changing your habits.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#waitlist">Get Early Access</a>
+        <a class="btn btn-ghost" href="#features">See how it works</a>
+      </div>
+      <p class="kicker">No spam. We’ll email when your invite is ready.</p>
+    </div>
+
+    <!-- White app mockup against dark bg -->
+    <figure class="device" aria-label="App preview">
+      <div class="screen">
+        <img src="https://images.unsplash.com/photo-1529336953121-ad5a0d43d0d2?q=80&w=1200&auto=format&fit=crop" alt="Quail app screen placeholder" />
+      </div>
+    </figure>
+  </main>
+
+  <!-- Stats / social proof -->
+  <section class="wrap stats" aria-label="Stats">
+    <div class="stat">
+      <div class="small">Common Outcome</div>
+      <h3>Forget 70% in 24h</h3>
+      <p>Quail schedules the right snippets before they fade.</p>
+    </div>
+    <div class="stat">
+      <div class="small">Retention Target</div>
+      <h3>Keep the 10% that matters</h3>
+      <p>Prioritize ideas you mark as important.</p>
+    </div>
+    <div class="stat">
+      <div class="small">Workflow</div>
+      <h3><code class="badge">Read → Mark → Review</code></h3>
+      <p>Simple loop. No decks or busywork required.</p>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="split" id="features">
+    <div class="wrap grid-2">
+      <div class="card">
+        <div class="h-eyebrow">Features</div>
+        <h2 style="margin:6px 0 6px;font-family:Fraunces,serif;">Designed for retention, not skimming</h2>
+
+        <div class="feat">
+          <div class="dot"></div>
+          <div>
+            <h4>Memory-aware reading</h4>
+            <p>Quail spaces your returns to each article based on decay—so important parts surface just in time.</p>
+          </div>
+        </div>
+
+        <div class="feat">
+          <div class="dot"></div>
+          <div>
+            <h4>One-tap extracts</h4>
+            <p>Highlight sentences or blocks. Quail converts them into reviewable snippets automatically.</p>
+          </div>
+        </div>
+
+        <div class="feat">
+          <div class="dot"></div>
+          <div>
+            <h4>Import anything</h4>
+            <p>EPUBs, PDFs, newsletters, web articles. Keep your library in one place.</p>
+          </div>
+        </div>
+
+        <div class="feat">
+          <div class="dot"></div>
+          <div>
+            <h4>Low friction</h4>
+            <p>No decks, no complex settings. Keep reading; Quail handles the schedule.</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="proof">
+        <div class="quote">
+          <strong>Why it works</strong>
+          <p class="small">Forgetting follows a curve. Hitting ideas right before they fade produces the best retention for the least time. Quail automates that timing per item.</p>
+        </div>
+        <div class="quote">
+          <strong>Who it’s for</strong>
+          <p class="small">Founders, students, researchers—anyone who needs ideas to stick without turning reading into a second job.</p>
+        </div>
+        <div class="quote">
+          <strong>What it replaces</strong>
+          <p class="small">Reader + highlights + spaced-repetition app juggling. Quail compresses that stack.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- App Gallery / Showcase -->
+  <section class="gallery" id="shots">
+    <div class="wrap">
+      <div class="h-eyebrow">Screens</div>
+      <h2 style="margin:6px 0 22px;font-family:Fraunces,serif;">The app pops on dark</h2>
+      <div class="shotrow" role="list">
+        <figure class="shot" role="listitem">
+          <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1280&auto=format&fit=crop" alt="Reader view placeholder">
+        </figure>
+        <figure class="shot" role="listitem">
+          <img src="https://images.unsplash.com/photo-1551281044-8c7ae5f2f6b4?q=80&w=1280&auto=format&fit=crop" alt="Highlights view placeholder">
+        </figure>
+        <figure class="shot" role="listitem">
+          <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=1280&auto=format&fit=crop" alt="Review session placeholder">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="split" id="how" aria-label="How it works">
+    <div class="wrap grid-2">
+      <div class="card">
+        <div class="h-eyebrow">How it works</div>
+        <h2 style="margin:6px 0 10px;font-family:Fraunces,serif;">Daily flow</h2>
+        <ol class="small" style="display:grid;gap:10px;margin:0;padding-left:18px">
+          <li>Read as usual. Tap once to mark key lines or blocks.</li>
+          <li>Quail generates concise snippets and schedules them.</li>
+          <li>Your “Daily Review” surfaces only what’s due. 3–7 minutes.</li>
+          <li>Important items get reinforced; noise falls away.</li>
+        </ol>
+      </div>
+      <div class="card">
+        <div class="h-eyebrow">Control</div>
+        <h2 style="margin:6px 0 10px;font-family:Fraunces,serif;">You set what matters</h2>
+        <p class="small">Use priority to bias the schedule. Tag projects or exams. Export summaries when needed.</p>
+        <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+          <span class="badge" style="background:rgba(97,179,172,.16)">Priority</span>
+          <span class="badge" style="background:rgba(230,213,195,.16)">Projects</span>
+          <span class="badge" style="background:rgba(255,255,255,.10)">Exports</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Waitlist CTA -->
+  <section class="cta" id="waitlist" aria-label="Waitlist">
+    <div class="wrap cta-card">
+      <h2 style="font-family:Fraunces,serif;margin:0">Join the waitlist</h2>
+      <p class="small" style="max-width:52ch;margin:0">Get early access and help shape the roadmap.</p>
+      <form class="waitlist" onsubmit="event.preventDefault(); alert('Thanks — you’re on the list.');">
+        <label class="sr-only" for="email">Email</label>
+        <input id="email" type="email" placeholder="you@domain.com" required>
+        <button class="btn btn-primary" type="submit">Request Invite</button>
+      </form>
+      <small class="small">We’ll only contact you about Quail.</small>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap" id="faq">
+      <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+        <div>© <span id="y"></span> Quail</div>
+        <div class="small">Privacy · Terms · Contact</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
