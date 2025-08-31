@@ -200,6 +200,9 @@ export default function EmailSignup({
             {status === "loading" ? "Submitting..." : "Join the Waitlist!"}
           </button>
         </div>
+        <div className="w-full text-center mt-2">
+          <span className="text-sm text-text-light">No spam. We’ll only contact you when your Quail invite is ready.</span>
+        </div>
       </div>
 
       {/* Honeypot */}
@@ -225,7 +228,7 @@ export default function EmailSignup({
       >
         {status === "success" && (
           <span className="text-emerald-600">
-            Thank you! We&apos;re looking forward to being in touch.
+            Thank you for your interest. We will let you know when your invite is ready.
           </span>
         )}
         {hasError && (

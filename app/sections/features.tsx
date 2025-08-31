@@ -10,37 +10,25 @@ const features: {
     title: "Fast",
     description: (
       <>
-        Optimized for speed with modern tooling and minimal overhead. Tailor the
-        design system to your brand <strong>with ease</strong>.
-      </>
-    ),
-    icon: <FaBook />,
-  },
-  {
-    title: "Flexible",
-    // description: (
-    //   <>
-    //     Optimized for speed with modern tooling and minimal overhead.{" "}
-    //     <span className="bg-highlight font-bold px-0.5">
-    //       Tailor the design system
-    //     </span>{" "}
-    //     system to your brand <strong>with ease</strong>.
-    //   </>
-    // ),
-    description: (
-      <>
-        Optimized for speed with modern tooling and minimal overhead. Tailor the
-        design system to your brand <strong>with ease</strong>.
+        Get what you want to know right away
       </>
     ),
     icon: <FaBoltLightning />,
   },
   {
+    title: "Flexible",
+    description: (
+      <>
+        Support for newsletters, documents, epubs, and more
+      </>
+    ),
+    icon: <FaBook />,
+  },
+  {
     title: "Beautiful",
     description: (
       <>
-        Optimized for speed with modern tooling and minimal overhead. Tailor the
-        design
+        Minimalist design for maximum focus.
       </>
     ),
     icon: <FaBrain />,

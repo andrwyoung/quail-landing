@@ -7,26 +7,27 @@
 
 @theme {
   /* Brand / Accent */
-  --color-primary: #51837e;
-  --color-primary-hover: rgb(96, 148, 154); /* lighter */
-  --color-primary-active: #3e6c67; /* darker */
+  /* --color-primary: #3B7C77; brand */
+  --color-primary: #61b3ac; /* brand */
+  --color-primary-hover: rgb(114, 193, 187); /* brand-2 */
+  --color-primary-active: #3b7c77; /* same as brand for consistency */
 
-  --color-accent: #9d8379; /* warm neutral */
-  --color-accent-hover: #bba79e;
-  --color-accent-active: #7a645b;
+  --color-accent: #e6d5c3; /* accent */
+  --color-accent-hover: #f2e7da; /* accent-2 */
+  --color-accent-active: #e6d5c3;
 
   /* Backgrounds */
-  --color-background: #faf9f7; /* off-white */
-  --color-surface: #f0ede9; /* cards/sections */
+  --color-background: #0f1b2b; /* bg-0 */
+  --color-surface: #1b2b3f; /* surface */
 
   /* Neutrals / Borders */
-  --color-secondary-bg: #eceae7;
-  --color-border: #e5e7eb;
+  --color-secondary-bg: #121f31; /* bg-1 */
+  --color-border: rgba(255, 255, 255, 0.12);
 
   /* Text */
-  --color-text: #111827; /* main dark */
-  --color-text-light: #6d7175; /* muted */
-  --color-text-inverse: #f3f4f6; /* on dark */
+  --color-text: #f4f7fb; /* text-0 */
+  --color-text-light: #c9d3e0; /* text-1 */
+  --color-text-inverse: #0d141c; /* on light surfaces */
 
   /* Semantic */
   --color-success: #10b981; /* emerald-500 */
@@ -34,5 +35,5 @@
   --color-error: #d4374f; /* destructive red */
 
   /* Highlight */
-  --color-highlight: #feebae; /* warm gold */
+  --color-highlight: #e6d5c3; /* align with accent */
 }
