@@ -98,6 +98,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Section separator */}
+      <div aria-hidden="true" className="w-full border-t border-border my-12" />
+
       {/* Forgetting Statistic Section */}
       <section className="max-w-3xl mx-auto mt-16 mb-24 px-6 text-center">
         <h2 className="font-header font-bold text-4xl md:text-5xl">
@@ -107,6 +110,9 @@ export default function Home() {
           Quail fixes that. Start retaining more today.
         </p>
       </section>
+
+      {/* Section separator */}
+      <div aria-hidden="true" className="w-full border-t border-border my-12" />
 
       {/* How It Works Section - Simplified */}
       <section id="how" className="max-w-5xl mx-auto mt-8 mb-24 px-6">
@@ -138,15 +144,18 @@ export default function Home() {
 
         {/* Clip Clip Clip: Introducing Incremental Reading */}
         <div className="mt-12 bg-surface/50 border border-border rounded-2xl p-6 shadow-md">
-          <h3 className="font-header text-2xl mb-4 text-text">Clip, Clip, Clip: The Power of Incremental Reading</h3>
+          <h3 className="font-header text-2xl mb-4 text-text">Clip, Clip, Clip: How it sticks</h3>
           <p className="text-base text-text-light mb-4">
-            You clip a key insight. Quail breaks it into bite-sized reviews. You retain it for good—even if life gets busy.
+            You clip a key insight. Quail turns it into short reviews so you keep it, even when life gets busy.
           </p>
           <p className="text-base text-text-light">
-            It's simple incremental reading: Read in small, repeated doses to build lasting memory. No decks to manage. Just effortless retention that fits your day.
+            This is incremental reading. Read in small, repeated passes to build lasting memory. No decks to manage. Just retention that fits your day.
           </p>
         </div>
       </section>
+
+      {/* Section separator */}
+      <div aria-hidden="true" className="w-full border-t border-border my-12" />
 
       {/* Trust Signals/Proof Section */}
       <section className="max-w-4xl mx-auto mb-24 px-6">
@@ -181,6 +190,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Section separator */}
+      <div aria-hidden="true" className="w-full border-t border-border my-12" />
 
       {/* Read → Mark → Review explainer */}
       <section className="max-w-5xl mx-auto mb-24 px-6">

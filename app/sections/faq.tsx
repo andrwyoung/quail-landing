@@ -1,6 +1,8 @@
 import React, { useId, useState } from "react";
 import { FaCaretDown } from "react-icons/fa6";
 
+// [GPT-5] (Edit made)
+
 type faqItem = { question: string; answer: React.ReactNode };
 
 const faqText: faqItem[] = [
@@ -8,9 +10,18 @@ const faqText: faqItem[] = [
     question: "What is Quail?",
     answer: (
       <>
-        Quail is a reader that helps you <strong>remember what you read</strong>
-        . You read normally, clip important lines, and Quail brings them back at
-        the right time so ideas stick.
+        Quail is a reader that helps you <strong>remember what you read</strong>.
+        You read normally, clip what matters, and Quail brings it back at the
+        right time so ideas stick.
+      </>
+    ),
+  },
+  {
+    question: "Do I need new habits?",
+    answer: (
+      <>
+        No. <strong>You read as usual</strong>. When something matters, you clip it.
+        Reviews arrive automatically and take just minutes a day.
       </>
     ),
   },
@@ -18,18 +29,36 @@ const faqText: faqItem[] = [
     question: 'What is a "clip"?',
     answer: (
       <>
-        A clip is a <strong>highlight of a quote or short block</strong> you
-        want to remember. Quail saves it and gently schedules it to reappear
-        later - no decks or setup.
+        A clip is a <strong>highlight of a quote or short block</strong> you want to
+        remember. Quail keeps the context and schedules it for you.
       </>
     ),
   },
   {
-    question: "Do I need to change how I read?",
+    question: "What is incremental reading?",
     answer: (
       <>
-        No. <strong>Read as you always do</strong>. When something matters, tap
-        to clip it. Quail handles the timing in the background.
+        It is <strong>short, repeated refreshers</strong> that turn your clips into
+        long‑term memory. You do not build decks or manage schedules. Quail
+        handles timing for you.
+      </>
+    ),
+  },
+  {
+    question: "How much time does this take?",
+    answer: (
+      <>
+        Most days take <strong>2–5 minutes</strong>. You only see what is due today,
+        so reviews stay quick and focused.
+      </>
+    ),
+  },
+  {
+    question: "Can I import my reading?",
+    answer: (
+      <>
+        Yes. Import <strong>PDFs, EPUBs, newsletters, and web clips</strong> so your
+        library lives in one place.
       </>
     ),
   },
@@ -37,35 +66,8 @@ const faqText: faqItem[] = [
     question: "Is my data private?",
     answer: (
       <>
-        Your library is <strong>private</strong>. We don’t sell your data, and
-        you can export your content anytime.
-      </>
-    ),
-  },
-  {
-    question: "Is there a free plan or early access?",
-    answer: (
-      <>
-        We’re in early access.{" "}
-        <strong>
-          <a
-            href="#home"
-            onClick={(e) => {
-              e.preventDefault();
-              document
-                .getElementById("home")
-                ?.scrollIntoView({ behavior: "smooth" });
-              const heroBtn = document.querySelector(
-                '[aria-controls="waitlist-panel"]'
-              ) as HTMLElement | null;
-              setTimeout(() => heroBtn?.click(), 300);
-            }}
-            className="underline text-primary"
-          >
-            Join the waitlist
-          </a>
-        </strong>{" "}
-        and we’ll email invites as we open more spots.
+        Your library is <strong>private</strong>. We do not sell your data, and you
+        can export your content anytime.
       </>
     ),
   },
