@@ -32,12 +32,29 @@ export default function Home() {
     <main className="relative flex flex-col items-center min-h-screen bg-background text-text font-body">
       <Navbar scrolled={scrolled} onClick={onSecondaryCtaClick} />
 
-      {/* Hero Section */}
+      {/* Hero Section with full-width gradient - extended to cover navbar area */}
       <section
         id="home"
-        className="grid md:grid-cols-2 gap-8 max-w-5xl px-4 md:px-6 items-center justify-center 
-      min-h-[65vh] pt-[18vh]"
+        className="relative overflow-hidden w-full -mt-[80px] pt-[80px]"
+        style={{
+          minHeight: 'calc(100vh - 0px)',
+          background: `
+            radial-gradient(1800px 900px at 18% -10%, color-mix(in oklab, var(--color-primary) 26%, transparent) 0%, transparent 65%),
+            radial-gradient(1400px 750px at 82% 15%, color-mix(in oklab, var(--color-accent) 18%, transparent) 0%, transparent 70%),
+            linear-gradient(180deg, color-mix(in oklab, var(--color-background) 92%, #000 8%), var(--color-background))
+          `
+        }}
       >
+        {/* Subtle grain texture overlay */}
+        <div 
+          className="absolute inset-0 pointer-events-none opacity-[0.03]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+            mixBlendMode: 'overlay'
+          }}
+        />
+        
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl px-4 md:px-6 items-center justify-center min-h-[65vh] pt-[18vh] mx-auto">
         <div className="text-left">
           <h1
             className="font-header font-medium leading-12 md:leading-20 text-left
@@ -113,6 +130,7 @@ export default function Home() {
             </div>
           </div>
         </aside>
+        </div>
       </section>
 
       <AnimatePresence>

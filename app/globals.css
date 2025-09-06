@@ -6,28 +6,27 @@
 }
 
 @theme {
-  /* Brand / Accent */
-  /* --color-primary: #3B7C77; brand */
-  --color-primary: #61b3ac; /* brand */
-  --color-primary-hover: rgb(114, 193, 187); /* brand-2 */
-  --color-primary-active: #3b7c77; /* same as brand for consistency */
+  /* Brand / Accent - Updated to match landingpage2.html */
+  --color-primary: #67C6B8; /* quail-mint */
+  --color-primary-hover: #3FA796; /* primary-600 */
+  --color-primary-active: #3FA796; /* hover/mix */
 
-  --color-accent: #e6d5c3; /* accent */
-  --color-accent-hover: #f2e7da; /* accent-2 */
-  --color-accent-active: #e6d5c3;
+  --color-accent: #EAD9BE; /* sand highlight (annotation) */
+  --color-accent-hover: #f2e7da; /* lighter accent */
+  --color-accent-active: #EAD9BE;
 
-  /* Backgrounds */
-  --color-background: #0f1b2b; /* bg-0 */
-  --color-surface: #1b2b3f; /* surface */
+  /* Backgrounds - Updated to Calm-Play palette */
+  --color-background: #0F1417; /* charcoal with teal undertone */
+  --color-surface: #121A1E; /* card/nav surface */
 
   /* Neutrals / Borders */
-  --color-secondary-bg: #121f31; /* bg-1 */
-  --color-border: rgba(255, 255, 255, 0.12);
+  --color-secondary-bg: #121A1E; /* match surface */
+  --color-border: #223036; /* hairline/outline */
 
-  /* Text */
-  --color-text: #f4f7fb; /* text-0 */
-  --color-text-light: #c9d3e0; /* text-1 */
-  --color-text-inverse: #0d141c; /* on light surfaces */
+  /* Text - Updated to match landingpage2.html */
+  --color-text: #F3F6F5; /* ink - primary text */
+  --color-text-light: #9FB1AE; /* muted - secondary text */
+  --color-text-inverse: #0B1310; /* for light surfaces */
 
   /* Semantic */
   --color-success: #10b981; /* emerald-500 */
@@ -35,5 +34,21 @@
   --color-error: #d4374f; /* destructive red */
 
   /* Highlight */
-  --color-highlight: #e6d5c3; /* align with accent */
+  --color-highlight: #EAD9BE; /* align with accent */
+}
+
+/* Light mode support - matching landingpage2.html */
+@media (prefers-color-scheme: light) {
+  @theme {
+    --color-background: #F6F7F6;
+    --color-surface: #FFFFFF;
+    --color-text: #0C1211;
+    --color-text-light: #556A66;
+    --color-primary: #3FA796;
+    --color-primary-hover: #2D887A;
+    --color-accent: #DCC39D;
+    --color-border: #E5EBE8;
+    --color-secondary-bg: #FFFFFF;
+    --color-text-inverse: #F3F6F5;
+  }
 }
