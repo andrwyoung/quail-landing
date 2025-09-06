@@ -3,10 +3,8 @@ import Image from "next/image";
 
 export default function Navbar({
   scrolled,
-  onClick,
 }: {
   scrolled: boolean;
-  onClick: () => void;
 }) {
   return (
     <div
@@ -66,7 +64,9 @@ export default function Navbar({
         </nav>
         <button
           type="button"
-          onClick={onClick}
+          onClick={() => {
+            document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth' });
+          }}
           title="Scroll to sign up sheet"
           aria-label="Scroll to sign up sheet"
           className={`py-1 md:py-2 px-3 md:px-6 rounded-full font-body font-bold text-xs md:text-base
