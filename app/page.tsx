@@ -53,21 +53,19 @@ export default function Home() {
               World’s First
             </FadingHighlight>
             <br />
-            Memory Optimized{" "}
-            <FadingHighlight scrolled={scrolled} fontClass="px-1">
-              Reader
-            </FadingHighlight>
+            Memory Optimized <FadingHighlight scrolled={scrolled} fontClass="px-1">Reader</FadingHighlight>
           </h1>
           <p className="text-md md:text-lg max-w-2xl mb-8">
             <FadingHighlight scrolled={scrolled} fontClass="">
-              Import any text.
+              Ideal for busy readers who forget insights days after finishing a book or newsletter. 
+              You import any text. You
             </FadingHighlight>{" "}
-            <span>Read normally. </span>
+            {" "}read normally.{" "}
             <FadingHighlight scrolled={scrolled} fontClass="">
-              Mark what&apos;s important. Quail auto‑builds a review queue with
-              evidence-based memory techniques. We help you to
+              You mark what's important and remember it effortlessly with auto-built reviews that fit your life. 
+              We help you
             </FadingHighlight>{" "}
-            <span className="font-bold">Remember what matters</span>
+            <span className="font-bold">Remember what matters.</span>
           </p>
 
           {/* Always visible email signup */}
@@ -100,14 +98,13 @@ export default function Home() {
         </div>
       </section>
 
-
       {/* Forgetting Statistic Section */}
       <section className="max-w-3xl mx-auto mt-16 mb-24 px-6 text-center">
         <h2 className="font-header font-bold text-4xl md:text-5xl">
           You forget 70% in a day and 90% in a week
         </h2>
         <p className="font-header font-semibold text-2xl md:text-3xl mt-2">
-          Quail is here to fix that
+          Quail fixes that. Start retaining more today.
         </p>
       </section>
 
@@ -124,46 +121,62 @@ export default function Home() {
 
         <div className="grid md:grid-cols-3 gap-6">
           <div className="bg-surface border border-border rounded-2xl p-6 shadow-lg">
-            <div className="text-lg font-bold text-text mb-2">1) Import anything</div>
-            <p className="text-text-light">
-              PDFs, EPUBs, newsletters, and web clips live in one place.
-            </p>
+            <div className="text-lg font-bold text-text mb-2">1) You import anything</div>
+            <p className="text-text-light">PDFs, EPUBs, newsletters, web clips—seamlessly in one place.</p>
           </div>
           
           <div className="bg-surface border border-border rounded-2xl p-6 shadow-lg">
-            <div className="text-lg font-bold text-text mb-2">2) Clip what matters</div>
-            <p className="text-text-light">
-              Highlight while you read. Quail keeps context automatically.
-            </p>
+            <div className="text-lg font-bold text-text mb-2">2) You clip what matters</div>
+            <p className="text-text-light">Highlight while reading. Context saves automatically—no extra steps.</p>
           </div>
           
           <div className="bg-surface border border-border rounded-2xl p-6 shadow-lg">
-            <div className="text-lg font-bold text-text mb-2">3) Review on time</div>
-            <p className="text-text-light">
-              Short refreshers are scheduled right before you&apos;re likely to forget.
-            </p>
+            <div className="text-lg font-bold text-text mb-2">3) You review on time</div>
+            <p className="text-text-light">Short refreshers arrive just before you'd forget. Effortless retention.</p>
           </div>
+        </div>
+
+        {/* Clip Clip Clip: Introducing Incremental Reading */}
+        <div className="mt-12 bg-surface/50 border border-border rounded-2xl p-6 shadow-md">
+          <h3 className="font-header text-2xl mb-4 text-text">Clip, Clip, Clip: The Power of Incremental Reading</h3>
+          <p className="text-base text-text-light mb-4">
+            You clip a key insight. Quail breaks it into bite-sized reviews. You retain it for good—even if life gets busy.
+          </p>
+          <p className="text-base text-text-light">
+            It's simple incremental reading: Read in small, repeated doses to build lasting memory. No decks to manage. Just effortless retention that fits your day.
+          </p>
         </div>
       </section>
 
       {/* Trust Signals/Proof Section */}
       <section className="max-w-4xl mx-auto mb-24 px-6">
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="relative bg-surface border border-border rounded-2xl p-8 shadow-xl overflow-hidden group">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-            <div className="relative flex flex-col items-center text-center gap-2">
-              <div className="text-xs uppercase tracking-widest font-bold text-primary mb-2">Fewer tools</div>
-              <div className="font-header text-6xl font-extrabold text-text tracking-tighter">-60%</div>
-              <p className="text-base text-text-light max-w-[240px] mx-auto">Replace reader + highlights + SRS juggling</p>
-            </div>
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="order-2 md:order-1">
+            <img 
+              src="/mockup3.jpg" 
+              alt="Quail app mobile interface showing learning screen" 
+              className="w-full max-w-md mx-auto rounded-3xl shadow-2xl transform -rotate-12 origin-center"
+              style={{ boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}
+            />
           </div>
           
-          <div className="relative bg-surface border border-border rounded-2xl p-8 shadow-xl overflow-hidden group">
-            <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-            <div className="relative flex flex-col items-center text-center gap-2">
-              <div className="text-xs uppercase tracking-widest font-bold text-accent mb-2">Memory retention</div>
-              <div className="font-header text-6xl font-extrabold text-text tracking-tighter">+3x</div>
-              <p className="text-base text-text-light max-w-[240px] mx-auto">Better recall after two weeks in early testing</p>
+          <div className="order-1 md:order-2 flex flex-col gap-8">
+            <div className="relative bg-surface border border-border rounded-2xl p-6 shadow-lg overflow-hidden group">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="relative flex flex-col items-center text-center gap-1">
+                <div className="text-xs uppercase tracking-widest font-bold text-primary mb-1">Fewer tools</div>
+                <div className="font-header text-5xl font-extrabold text-text tracking-tighter">-60%</div>
+               <p className="text-sm text-text-light mt-1">Replaces e-readers + highlight tools + spaced repetition apps—even if separate tools overwhelmed you before.</p>
+              </div>
+            </div>
+            
+            <div className="relative bg-surface border border-border rounded-2xl p-6 shadow-lg overflow-hidden group">
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="relative flex flex-col items-center text-center gap-1">
+                <div className="text-xs uppercase tracking-widest font-bold text-accent mb-1">Memory retention</div>
+                <div className="font-header text-5xl font-extrabold text-text tracking-tighter">+3x</div>
+               <p className="text-sm text-text-light mt-1">Achieve +3x better recall after two weeks in early testing. Real results, minimal effort.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -219,9 +232,7 @@ export default function Home() {
           </div>
 
           <p className="text-sm md:text-base text-text-light mt-6">
-            This simple loop builds lasting memory in minutes a day. Just a
-            reader that brings back your important ideas exactly when you need
-            them.
+            This simple loop builds lasting memory. In minutes a day. Even if you're short on time. Just a reader that revives your key ideas—exactly when you need them.
           </p>
         </div>
       </section>
