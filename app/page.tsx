@@ -1,9 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
-import Navbar from "./components/navbar";
-import FadingHighlight from "./components/fading-text";
+import Navbar from "../components/navbar";
+import FadingHighlight from "../components/fading-text";
 import FAQ from "./sections/faq";
-import ForgettingCurve from "./components/forgetting-curve";
+import ForgettingCurve from "../components/forgetting-curve";
+import Image from "next/image";
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
@@ -26,75 +27,82 @@ export default function Home() {
         id="home"
         className="relative overflow-hidden w-full -mt-[80px] pt-[80px]"
         style={{
-          minHeight: 'calc(100vh - 0px)',
+          minHeight: "calc(100vh - 0px)",
           background: `
             radial-gradient(1800px 900px at 18% -10%, color-mix(in oklab, var(--color-primary) 26%, transparent) 0%, transparent 65%),
             radial-gradient(1400px 750px at 82% 15%, color-mix(in oklab, var(--color-accent) 18%, transparent) 0%, transparent 70%),
             linear-gradient(180deg, color-mix(in oklab, var(--color-background) 92%, #000 8%), var(--color-background))
-          `
+          `,
         }}
       >
         {/* Subtle grain texture overlay */}
-        <div 
+        <div
           className="absolute inset-0 pointer-events-none opacity-[0.03]"
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-            mixBlendMode: 'overlay'
+            mixBlendMode: "overlay",
           }}
         />
-        
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl px-4 md:px-6 items-center justify-center min-h-[65vh] pt-[18vh] mx-auto">
-        <div className="text-left">
-          <h1
-            className="font-header font-medium leading-12 md:leading-20 text-left
-             text-4xl md:text-6xl text-text mb-6"
-          >
-            <FadingHighlight scrolled={scrolled} fontClass="px-1">
-              World’s First
-            </FadingHighlight>
-            <br />
-            Memory Optimized <FadingHighlight scrolled={scrolled} fontClass="px-1">Reader</FadingHighlight>
-          </h1>
-          <p className="text-md md:text-lg max-w-2xl mb-8">
-            <FadingHighlight scrolled={scrolled} fontClass="">
-              Ideal for busy readers who forget insights days after finishing a book or newsletter. 
-              You import any text. You
-            </FadingHighlight>{" "}
-            {" "}read normally.{" "}
-            <FadingHighlight scrolled={scrolled} fontClass="">
-              You mark what's important and remember it effortlessly with auto-built reviews that fit your life. 
-              We help you
-            </FadingHighlight>{" "}
-            <span className="font-bold">Remember what matters.</span>
-          </p>
 
-          {/* Always visible email signup */}
-          <div className="w-full max-w-lg mx-auto">
-            <form className="flex gap-3 flex-wrap justify-center items-center">
-              <input 
-                type="email" 
-                required 
-                placeholder="you@domain.com"
-                className="px-4 py-3 rounded-xl border border-border bg-surface text-text placeholder:text-text-light min-w-[280px] flex-1"
-              />
-              <button 
-                type="submit"
-                className="px-6 py-3 rounded-xl bg-primary hover:bg-primary-hover text-text-inverse font-semibold transition-all duration-200 hover:-translate-y-0.5 shadow-lg shadow-primary/25"
-              >
-                Request Invite
-              </button>
-            </form>
-            <div className="flex justify-center gap-3 mt-3 text-sm text-text-light">
-              <span className="px-3 py-1 rounded-full bg-surface/50 border border-border">No spam</span>
-              <span className="px-3 py-1 rounded-full bg-surface/50 border border-border">1-click opt-out</span>
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl px-4 md:px-6 items-center justify-center min-h-[65vh] pt-[14vh] mx-auto">
+          <div className="text-left">
+            <h1
+              className="font-header font-medium leading-12 md:leading-20 text-left
+             text-4xl md:text-6xl text-text mb-6"
+            >
+              <FadingHighlight scrolled={scrolled} fontClass="px-1">
+                World’s First
+              </FadingHighlight>
+              <br />
+              Memory Optimized{" "}
+              <FadingHighlight scrolled={scrolled} fontClass="px-1">
+                Reader
+              </FadingHighlight>
+            </h1>
+            <p className="text-md md:text-lg max-w-2xl mb-8">
+              <FadingHighlight scrolled={scrolled} fontClass="">
+                Ideal for busy readers who forget insights days after finishing
+                a book or newsletter. You import any text. You
+              </FadingHighlight>{" "}
+              read normally.{" "}
+              <FadingHighlight scrolled={scrolled} fontClass="">
+                You mark what&apos;s important and remember it effortlessly with
+                auto-built reviews that fit your life. We help you
+              </FadingHighlight>{" "}
+              <span className="font-bold">Remember what matters.</span>
+            </p>
+
+            {/* Always visible email signup */}
+            <div className="w-full max-w-lg mx-auto">
+              <form className="flex gap-3 flex-wrap justify-center items-center">
+                <input
+                  type="email"
+                  required
+                  placeholder="your@email.com"
+                  className="px-4 py-3 rounded-xl border border-border bg-surface text-text placeholder:text-text-light min-w-[280px] flex-1"
+                />
+                <button
+                  type="submit"
+                  className="px-6 py-3 rounded-xl bg-primary hover:bg-primary-hover text-text-inverse font-semibold transition-all duration-200 hover:-translate-y-0.5 shadow-lg shadow-primary/25"
+                >
+                  Request Invite
+                </button>
+              </form>
+              <div className="flex justify-center gap-3 mt-3 text-sm text-text-light">
+                <span className="px-3 py-1 rounded-md bg-surface/50 border border-border">
+                  No spam
+                </span>
+                <span className="px-3 py-1 rounded-md bg-surface/50 border border-border">
+                  1-click opt-out
+                </span>
+              </div>
             </div>
           </div>
-        </div>
-        <aside className="w-full flex justify-center md:justify-end">
-          <div className="relative w-full max-w-md">
-            <ForgettingCurve />
-          </div>
-        </aside>
+          <aside className="w-full flex justify-center md:justify-end">
+            <div className="relative w-full max-w-md">
+              <ForgettingCurve />
+            </div>
+          </aside>
         </div>
       </section>
 
@@ -127,29 +135,48 @@ export default function Home() {
 
         <div className="grid md:grid-cols-3 gap-6">
           <div className="bg-surface border border-border rounded-2xl p-6 shadow-lg">
-            <div className="text-lg font-bold text-text mb-2">1) You import anything</div>
-            <p className="text-text-light">PDFs, EPUBs, newsletters, web clips—seamlessly in one place.</p>
+            <div className="text-lg font-bold text-text mb-2">
+              1) You import anything
+            </div>
+            <p className="text-text-light">
+              PDFs, EPUBs, newsletters, web clips—seamlessly in one place.
+            </p>
           </div>
-          
+
           <div className="bg-surface border border-border rounded-2xl p-6 shadow-lg">
-            <div className="text-lg font-bold text-text mb-2">2) You clip what matters</div>
-            <p className="text-text-light">Highlight while reading. Context saves automatically—no extra steps.</p>
+            <div className="text-lg font-bold text-text mb-2">
+              2) You clip what matters
+            </div>
+            <p className="text-text-light">
+              Highlight while reading. Context saves automatically—no extra
+              steps.
+            </p>
           </div>
-          
+
           <div className="bg-surface border border-border rounded-2xl p-6 shadow-lg">
-            <div className="text-lg font-bold text-text mb-2">3) You review on time</div>
-            <p className="text-text-light">Short refreshers arrive just before you'd forget. Effortless retention.</p>
+            <div className="text-lg font-bold text-text mb-2">
+              3) You review on time
+            </div>
+            <p className="text-text-light">
+              Short refreshers arrive just before you&apos;d forget. Effortless
+              retention.
+            </p>
           </div>
         </div>
 
         {/* Clip Clip Clip: Introducing Incremental Reading */}
         <div className="mt-12 bg-surface/50 border border-border rounded-2xl p-6 shadow-md">
-          <h3 className="font-header text-2xl mb-4 text-text">Clip, Clip, Clip: How it sticks</h3>
+          <h3 className="font-header text-2xl mb-4 text-text">
+            Clip, Clip, Clip: How it sticks
+          </h3>
           <p className="text-base text-text-light mb-4">
-            You clip a key insight. Quail turns it into short reviews so you keep it, even when life gets busy.
+            You clip a key insight. Quail turns it into short reviews so you
+            keep it, even when life gets busy.
           </p>
           <p className="text-base text-text-light">
-            This is incremental reading. Read in small, repeated passes to build lasting memory. No decks to manage. Just retention that fits your day.
+            This is incremental reading. Read in small, repeated passes to build
+            lasting memory. No decks to manage. Just retention that fits your
+            day.
           </p>
         </div>
       </section>
@@ -161,30 +188,46 @@ export default function Home() {
       <section className="max-w-4xl mx-auto mb-24 px-6">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="order-2 md:order-1">
-            <img 
-              src="/mockup3.jpg" 
-              alt="Quail app mobile interface showing learning screen" 
+            <Image
+              src="/mockup3.jpg"
+              alt="Quail app mobile interface showing learning screen"
               className="w-full max-w-md mx-auto rounded-3xl shadow-2xl transform -rotate-12 origin-center"
-              style={{ boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}
+              style={{ boxShadow: "0 20px 40px rgba(0,0,0,0.1)" }}
+              width={1431}
+              height={1200}
             />
           </div>
-          
+
           <div className="order-1 md:order-2 flex flex-col gap-8">
             <div className="relative bg-surface border border-border rounded-2xl p-6 shadow-lg overflow-hidden group">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="relative flex flex-col items-center text-center gap-1">
-                <div className="text-xs uppercase tracking-widest font-bold text-primary mb-1">Fewer tools</div>
-                <div className="font-header text-5xl font-extrabold text-text tracking-tighter">-60%</div>
-               <p className="text-sm text-text-light mt-1">Replaces e-readers + highlight tools + spaced repetition apps—even if separate tools overwhelmed you before.</p>
+                <div className="text-xs uppercase tracking-widest font-bold text-primary mb-1">
+                  Fewer tools
+                </div>
+                <div className="font-header text-5xl font-bold text-text ">
+                  -60%
+                </div>
+                <p className="text-sm text-text-light mt-1">
+                  Replaces e-readers + highlight tools + spaced repetition
+                  apps—even if separate tools overwhelmed you before.
+                </p>
               </div>
             </div>
-            
+
             <div className="relative bg-surface border border-border rounded-2xl p-6 shadow-lg overflow-hidden group">
               <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="relative flex flex-col items-center text-center gap-1">
-                <div className="text-xs uppercase tracking-widest font-bold text-accent mb-1">Memory retention</div>
-                <div className="font-header text-5xl font-extrabold text-text tracking-tighter">+3x</div>
-               <p className="text-sm text-text-light mt-1">Achieve +3x better recall after two weeks in early testing. Real results, minimal effort.</p>
+                <div className="text-xs uppercase tracking-widest font-bold text-accent mb-1">
+                  Memory retention
+                </div>
+                <div className="font-header text-5xl font-bold text-text">
+                  +3x
+                </div>
+                <p className="text-sm text-text-light mt-1">
+                  Achieve +3x better recall after two weeks in early testing.
+                  Real results, minimal effort.
+                </p>
               </div>
             </div>
           </div>
@@ -200,7 +243,7 @@ export default function Home() {
           <div className="text-xs uppercase tracking-[.18em] font-bold text-primary">
             One simple loop
           </div>
-          <h3 className="font-header text-2xl md:text-3xl mt-1 mb-4">
+          <h3 className="font-header font-semibold text-2xl md:text-3xl mt-1 mb-4">
             Read · Clip · Review
           </h3>
 
@@ -244,7 +287,9 @@ export default function Home() {
           </div>
 
           <p className="text-sm md:text-base text-text-light mt-6">
-            This simple loop builds lasting memory. In minutes a day. Even if you're short on time. Just a reader that revives your key ideas—exactly when you need them.
+            This simple loop builds lasting memory. In minutes a day. Even if
+            you&apos;re short on time. Just a reader that revives your key
+            ideas—exactly when you need them.
           </p>
         </div>
       </section>
@@ -271,25 +316,29 @@ export default function Home() {
           <h2 className="font-header text-2xl md:text-3xl font-bold text-text mb-6">
             Get early access
           </h2>
-          
+
           <form className="flex gap-3 flex-wrap justify-center items-center mb-4">
-            <input 
-              type="email" 
-              required 
-              placeholder="you@domain.com"
+            <input
+              type="email"
+              required
+              placeholder="your@email.com"
               className="px-4 py-3 rounded-xl border border-border bg-background text-text placeholder:text-text-light min-w-[280px] flex-1"
             />
-            <button 
+            <button
               type="submit"
               className="px-6 py-3 rounded-xl bg-primary hover:bg-primary-hover text-text-inverse font-semibold transition-all duration-200 hover:-translate-y-0.5 shadow-lg shadow-primary/25"
             >
               Request Invite
             </button>
           </form>
-          
+
           <div className="flex justify-center gap-3 text-sm text-text-light">
-            <span className="px-3 py-1 rounded-full bg-background border border-border">No spam</span>
-            <span className="px-3 py-1 rounded-full bg-background border border-border">1-click opt-out</span>
+            <span className="px-3 py-1 rounded-md bg-background border border-border">
+              No spam
+            </span>
+            <span className="px-3 py-1 rounded-md bg-background border border-border">
+              1-click opt-out
+            </span>
           </div>
         </div>
       </section>

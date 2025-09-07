@@ -1,20 +1,20 @@
 import React from "react";
 import Image from "next/image";
 
-export default function Navbar({
-  scrolled,
-}: {
-  scrolled: boolean;
-}) {
+export default function Navbar({ scrolled }: { scrolled: boolean }) {
   return (
     <div
       //   className={`sticky top-0 z-50 w-full bg-background  transition-all duration-700
       //     ${scrolled ? "bg-surface text-secondary shadow-sm" : "shadow-none"}`}
-      className={`sticky top-0 z-50 w-full bg-transparent transition-all duration-700`}
+      className={`sticky top-0 z-50 w-full transition-all duration-700 ${
+        scrolled
+          ? "bg-surface text-secondary shadow-sm"
+          : "shadow-none bg-transparent "
+      }`}
     >
       <div
-        className="flex flex-row justify-between items-center py-2 md:py-3 px-2 md:px-4 max-w-5xl mx-auto
-        rounded-full bg-secondary-bg shadow-md gap-2"
+        className="flex flex-row justify-between items-center py-2 md:py-3 px-2 md:px-4 mx-auto
+          gap-2"
       >
         <a
           href="#home"
@@ -36,7 +36,7 @@ export default function Navbar({
           <h6 className="text-lg md:text-2xl font-header text-text">Quail</h6>
         </a>
 
-        <nav className="flex flex-row items-center gap-3 md:gap-6 text-xs md:text-base font-header whitespace-nowrap">
+        <nav className="flex-row items-center gap-3 hidden md:flex md:gap-6 text-lg md:text-xl font-header whitespace-nowrap">
           <a
             href="#how"
             onClick={(e) => {
@@ -65,11 +65,13 @@ export default function Navbar({
         <button
           type="button"
           onClick={() => {
-            document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth' });
+            document
+              .getElementById("cta")
+              ?.scrollIntoView({ behavior: "smooth" });
           }}
           title="Scroll to sign up sheet"
           aria-label="Scroll to sign up sheet"
-          className={`py-1 md:py-2 px-3 md:px-6 rounded-full font-body font-bold text-xs md:text-base
+          className={`py-1  px-3 md:px-6 rounded-full font-body font-bold text-xs md:text-base
             transition-all duration-700 cursor-pointer border-2 border-primary
             ${
               scrolled
