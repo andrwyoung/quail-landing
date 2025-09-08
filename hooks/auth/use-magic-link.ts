@@ -6,20 +6,12 @@
 import { useState } from "react";
 import { supabase } from "@/lib/supabase/supabase-client";
 import { isValidEmail } from "@/utils/is-valid-email";
-import {
-  OTP_CALLBACK_REDIRECT,
-  SUCCESSFUL_LOGIN_REDIRECT,
-} from "@/types/constants/constants";
+import { SUCCESSFUL_LOGIN_REDIRECT } from "@/types/constants/constants";
 
 export function useMagicLogin() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
-
-  const otpRedirectTo =
-    typeof window !== "undefined"
-      ? `${window.location.origin}${OTP_CALLBACK_REDIRECT}`
-      : undefined;
 
   const magicLinkRedirectTo =
     typeof window !== "undefined"
@@ -57,51 +49,11 @@ export function useMagicLogin() {
     setLoading(false);
   };
 
-  // SECTION: google and apple
-
-  const signInWithGoogle = async () => {
-    setLoading(true);
-    setMessage("");
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo: otpRedirectTo,
-        scopes: "openid email profile",
-        // (optional) keep refresh tokens fresh when used as a “login”:
-        queryParams: { access_type: "offline", prompt: "consent" },
-      },
-    });
-    if (error) {
-      console.error(error);
-      setMessage("Google sign-in failed. Try again.");
-      setLoading(false);
-    }
-  };
-
-  const signInWithApple = async () => {
-    setLoading(true);
-    setMessage("");
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "apple",
-      options: {
-        redirectTo: otpRedirectTo,
-        scopes: "name email", // Apple only supports these
-      },
-    });
-    if (error) {
-      console.error(error);
-      setMessage("Apple sign-in failed. Try again.");
-      setLoading(false);
-    }
-  };
-
   return {
     email,
     setEmail,
     loading,
     message,
     sendMagicLink,
-    signInWithGoogle,
-    signInWithApple,
   };
 }

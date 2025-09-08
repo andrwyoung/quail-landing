@@ -3,11 +3,13 @@
 
 "use client";
 
-import { useMagicLogin } from "@/hooks/auth/use-magic-link";
 import { Dialog, DialogContent, DialogTitle } from "./ui/dialog";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { FaApple, FaGoogle } from "react-icons/fa6";
+import { useOtpLogin } from "@/hooks/auth/use-otp";
+import { useOAuthLogin } from "@/hooks/auth/use-oauth";
+import { useState } from "react";
 
 export default function LoginModal({
   open,
@@ -16,20 +18,37 @@ export default function LoginModal({
   open: boolean;
   setOpen: (val: boolean) => void;
 }) {
+  const [step, setStep] = useState<"email" | "otp">("email");
+
   const {
     email,
     setEmail,
-    loading,
-    message,
-    sendMagicLink,
+    loading: otpLoading,
+    message: otpMessage,
+    otpCode,
+    setOtpCode,
+    verifyOtp,
+    sendOtp,
+  } = useOtpLogin({ onSuccess: () => setOpen(false) });
+
+  const {
+    loading: oAuthLoading,
+    message: oAuthMessage,
     signInWithGoogle,
     signInWithApple,
-  } = useMagicLogin();
+  } = useOAuthLogin();
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    sendMagicLink();
+    if (step === "email") {
+      await sendOtp();
+      setStep("otp");
+    } else if (step === "otp") {
+      await verifyOtp();
+    }
   };
+
+  const loading = oAuthLoading || otpLoading;
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -40,35 +59,52 @@ export default function LoginModal({
           </span>
 
           <div className="flex flex-row gap-1 text-sm items-center font-body pt-2">
-            We&apos;ll email you a magic link.
+            We&apos;ll email you a login password.
             {/* <InfoTooltip text="We use password-free signups! Just enter your email and we'll send you a magic link. Clicking that link will sign you in instantly — no password needed." /> */}
           </div>
         </DialogTitle>
 
         <form onSubmit={handleLogin} className="flex flex-col pt-6">
+          {step === "otp" && (
+            <button
+              type="button"
+              onClick={() => setStep("email")}
+              className="text-sm self-center text-text cursor-pointer hover:underline  mb-2"
+            >
+              ← Back
+            </button>
+          )}
           <div>
-            {/* <h3 className="select-none px-2 text-primary pb-1">
-              Email Address:
-            </h3> */}
-            <Input
-              value={email}
-              type="email"
-              inputMode="email"
-              autoComplete="email"
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter Email"
-              className="mb-6"
-            />
-          </div>
-          <div className="flex flex-col gap-2">
-            <Button type="submit" disabled={loading} className="">
-              Send Magic Link
-            </Button>
-            {message && (
-              <p className="text-sm text-primary self-center">{message}</p>
+            {step === "email" ? (
+              <Input
+                value={email}
+                autoComplete="email"
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter Email"
+                className="mb-6"
+              />
+            ) : (
+              <Input
+                value={otpCode}
+                onChange={(e) => setOtpCode(e.target.value)}
+                placeholder="Enter 6-digit Code"
+                className="mb-6"
+              />
             )}
-            {loading && (
-              <p className="text-sm text-primary self-center">Loading...</p>
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <Button type="submit" disabled={loading}>
+              {loading
+                ? "Loading..."
+                : step === "email"
+                ? "Send Email Code"
+                : "Verify Code"}
+            </Button>
+            {otpMessage && (
+              <p className="text-sm text-text-light self-center">
+                {otpMessage}
+              </p>
             )}
           </div>
         </form>
@@ -98,6 +134,11 @@ export default function LoginModal({
           >
             <FaGoogle /> Continue with Google
           </Button>
+          {oAuthMessage && (
+            <p className="text-sm text-text-light self-center">
+              {oAuthMessage}
+            </p>
+          )}
         </div>
       </DialogContent>
     </Dialog>
