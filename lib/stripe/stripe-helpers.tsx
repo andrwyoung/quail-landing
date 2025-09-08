@@ -1,11 +1,11 @@
 import Stripe from "stripe";
 import {
-  STRIPE_IS_PROD,
+  STRIPE_USE_LIVE,
   StripeProduct,
 } from "../../types/constants/stripe-constants";
 import { SubscriptionTier } from "@/types/user-types";
 
-const key = STRIPE_IS_PROD
+const key = STRIPE_USE_LIVE
   ? process.env.STRIPE_SECRET_KEY!
   : process.env.STRIPE_SANDBOX_SECRET_KEY!;
 

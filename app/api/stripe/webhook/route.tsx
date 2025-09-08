@@ -4,14 +4,14 @@ import { createClientSudo } from "@/lib/supabase/supabase-server";
 import { headers } from "next/headers";
 import { getTierLevel, stripeClient } from "@/lib/stripe/stripe-helpers";
 import {
-  STRIPE_IS_PROD,
+  STRIPE_USE_LIVE,
   StripeProduct,
 } from "@/types/constants/stripe-constants";
 
-const endpointSecret = STRIPE_IS_PROD
+const endpointSecret = STRIPE_USE_LIVE
   ? process.env.STRIPE_WEBHOOK_SECRET!
   : // $ stripe listen --forward-to localhost:3000/api/stripe/webhook
-    "whsec_ec3d199a94d0a6cbf0088bc4d4b237ac6621f023984c34b3190309e9ba7217b5";
+    "whsec_Dx47GWKkneaQiyLQFYEqFqXB6l87dQ98";
 
 export const config = {
   api: {

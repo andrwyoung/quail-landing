@@ -3,9 +3,9 @@ import { NextRequest, NextResponse } from "next/server";
 import {
   STRIPE_CANCEL_PATH,
   STRIPE_DISABLED,
-  STRIPE_IS_PROD,
   STRIPE_PRICE_IDS,
   STRIPE_SUCCESS_PATH,
+  STRIPE_USE_LIVE,
   StripeProduct,
   VALID_STRIPE_PRODUCTS,
 } from "@/types/constants/stripe-constants";
@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
       payment_method_types: ["card"],
       line_items: [
         {
-          price: STRIPE_IS_PROD
+          price: STRIPE_USE_LIVE
             ? STRIPE_PRICE_IDS[productType].live
             : STRIPE_PRICE_IDS[productType].sandbox,
           quantity: 1,

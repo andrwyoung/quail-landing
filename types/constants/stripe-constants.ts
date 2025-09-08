@@ -1,6 +1,5 @@
-export const STRIPE_IS_PROD = process.env.NODE_ENV === "production";
-export const STRIPE_DISABLED =
-  process.env.FORCE_DISABLE_STRIPE === "true" && STRIPE_IS_PROD;
+export const STRIPE_USE_LIVE = false && process.env.NODE_ENV === "production";
+export const STRIPE_DISABLED = process.env.FORCE_DISABLE_STRIPE === "true";
 
 export type StripeProduct =
   | "monthly_price_1"
