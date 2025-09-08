@@ -15,7 +15,15 @@ export default function LoginModal({
   open: boolean;
   setOpen: (val: boolean) => void;
 }) {
-  const { email, setEmail, loading, message, sendMagicLink } = useMagicLogin();
+  const {
+    email,
+    setEmail,
+    loading,
+    message,
+    sendMagicLink,
+    signInWithGoogle,
+    signInWithApple,
+  } = useMagicLogin();
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,6 +44,34 @@ export default function LoginModal({
             {/* <InfoTooltip text="We use password-free signups! Just enter your email and we'll send you a magic link. Clicking that link will sign you in instantly — no password needed." /> */}
           </div>
         </DialogTitle>
+
+        <div className="flex flex-col gap-2 pt-4">
+          <Button
+            type="button"
+            disabled={loading}
+            onClick={signInWithApple}
+            className="w-full"
+          >
+             Continue with Apple
+          </Button>
+          <Button
+            type="button"
+            disabled={loading}
+            onClick={signInWithGoogle}
+            variant="secondary"
+            className="w-full"
+          >
+            Continue with Google
+          </Button>
+        </div>
+
+        {/* Divider */}
+        <div className="flex items-center gap-3 my-6">
+          <div className="h-px flex-1 bg-border" />
+          <span className="text-xs text-muted-foreground">or</span>
+          <div className="h-px flex-1 bg-border" />
+        </div>
+
         <form onSubmit={handleLogin} className="flex flex-col pt-6">
           <div>
             {/* <h3 className="select-none px-2 text-primary pb-1">
@@ -43,6 +79,9 @@ export default function LoginModal({
             </h3> */}
             <Input
               value={email}
+              type="email"
+              inputMode="email"
+              autoComplete="email"
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter Email"
               className="mb-6"

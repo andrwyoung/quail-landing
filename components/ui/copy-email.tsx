@@ -1,5 +1,5 @@
 "use client";
-import { SUPPORT_EMAIL } from "@/constants/constants";
+import { SUPPORT_EMAIL } from "@/types/constants/constants";
 import { toast } from "sonner";
 
 export default function CopySupportEmail() {

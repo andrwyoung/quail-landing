@@ -1,0 +1,69 @@
+import { createClientSudo } from "@/lib/supabase/supabase-server";
+import { NextRequest, NextResponse } from "next/server";
+import {
+  STRIPE_CANCEL_PATH,
+  STRIPE_DISABLED,
+  STRIPE_IS_PROD,
+  STRIPE_PRICE_IDS,
+  STRIPE_SUCCESS_PATH,
+  StripeProduct,
+  VALID_STRIPE_PRODUCTS,
+} from "@/types/constants/stripe-constants";
+import { stripeClient } from "@/lib/stripe/stripe-helpers";
+
+export async function POST(req: NextRequest) {
+  if (STRIPE_DISABLED) {
+    return new NextResponse("Stripe is disabled", { status: 403 });
+  }
+
+  const supabase = await createClientSudo();
+  const {
+    data: { user },
+    error,
+  } = await supabase.auth.getUser();
+
+  if (error) {
+    throw new Error("Failed to get user");
+  }
+
+  if (!user?.id) {
+    return NextResponse.redirect(new URL("/login", req.url));
+  }
+
+  const body = await req.json();
+  const productType: StripeProduct = body.product;
+
+  if (!VALID_STRIPE_PRODUCTS.includes(productType)) {
+    return new NextResponse("Invalid product type", { status: 400 });
+  }
+
+  if (!productType) {
+    throw new Error("Failed to get product type");
+  }
+
+  try {
+    const session = await stripeClient.checkout.sessions.create({
+      mode: "payment",
+      payment_method_types: ["card"],
+      line_items: [
+        {
+          price: STRIPE_IS_PROD
+            ? STRIPE_PRICE_IDS[productType].live
+            : STRIPE_PRICE_IDS[productType].sandbox,
+          quantity: 1,
+        },
+      ],
+      success_url: `${req.nextUrl.origin}${STRIPE_SUCCESS_PATH}?product=${productType}`,
+      cancel_url: `${req.nextUrl.origin}${STRIPE_CANCEL_PATH}`,
+      metadata: {
+        user_id: user.id,
+        type: productType,
+      },
+    });
+
+    return NextResponse.json({ url: session.url });
+  } catch (err) {
+    console.error("Stripe checkout error:", err);
+    return new NextResponse("Failed to create Stripe session", { status: 500 });
+  }
+}

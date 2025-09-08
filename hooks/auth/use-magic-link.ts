@@ -12,6 +12,11 @@ export function useMagicLogin() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
+  const redirectTo =
+    typeof window !== "undefined"
+      ? `${window.location.origin}/auth/callback`
+      : undefined;
+
   const sendMagicLink = async () => {
     setLoading(true);
     setMessage("");
@@ -28,13 +33,9 @@ export function useMagicLogin() {
       return;
     }
 
-    const baseUrl = window.location.origin;
-    const redirectTo = `${baseUrl}/dashboard`;
     const { error } = await supabase.auth.signInWithOtp({
       email,
-      options: {
-        emailRedirectTo: redirectTo,
-      },
+      options: { emailRedirectTo: redirectTo },
     });
 
     if (error) {
@@ -47,11 +48,51 @@ export function useMagicLogin() {
     setLoading(false);
   };
 
+  // SECTION: google and apple
+
+  const signInWithGoogle = async () => {
+    setLoading(true);
+    setMessage("");
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo,
+        scopes: "openid email profile",
+        // (optional) keep refresh tokens fresh when used as a “login”:
+        queryParams: { access_type: "offline", prompt: "consent" },
+      },
+    });
+    if (error) {
+      console.error(error);
+      setMessage("Google sign-in failed. Try again.");
+      setLoading(false);
+    }
+  };
+
+  const signInWithApple = async () => {
+    setLoading(true);
+    setMessage("");
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "apple",
+      options: {
+        redirectTo,
+        scopes: "name email", // Apple only supports these
+      },
+    });
+    if (error) {
+      console.error(error);
+      setMessage("Apple sign-in failed. Try again.");
+      setLoading(false);
+    }
+  };
+
   return {
     email,
     setEmail,
     loading,
     message,
     sendMagicLink,
+    signInWithGoogle,
+    signInWithApple,
   };
 }

@@ -4,7 +4,7 @@ import { FaChevronLeft } from "react-icons/fa";
 import Image from "next/image";
 
 import { SupportEmailAddress } from "@/components/ui/copy-email";
-import { SHOW_GLOBAL_ANNOUNCEMENT } from "@/constants/constants";
+import { SHOW_GLOBAL_ANNOUNCEMENT } from "@/types/constants/constants";
 import { GlobalAnnouncement } from "@/components/ui/global-annoucement";
 
 export default function NotFoundComponent() {
