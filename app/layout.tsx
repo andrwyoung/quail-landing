@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Literata, Mulish } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
+import { Toaster } from "sonner";
+import UserHook from "@/components/user-hook";
 
 const mulish = Mulish({
   variable: "--font-mulish",
@@ -61,8 +63,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Analytics />
       <body className={`${mulish.variable} ${literata.variable} antialiased `}>
+        <Analytics />
+        <UserHook />
+        <Toaster />
         {children}
       </body>
     </html>

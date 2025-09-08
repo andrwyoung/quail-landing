@@ -27,7 +27,7 @@ export default function Navbar({ scrolled }: { scrolled: boolean }) {
           className="flex flex-row items-center transition-transform gap-1 hover:scale-105"
         >
           <Image
-            src="/logo-lighter.png"
+            src="/logo3.png"
             alt="Inquiryon Logo. Sparkle!"
             width={40}
             height={40}
