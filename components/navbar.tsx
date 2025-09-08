@@ -1,7 +1,8 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
-export default function Navbar({ scrolled }: { scrolled: boolean }) {
+export default function Navbar({ scrolled = true }: { scrolled?: boolean }) {
   return (
     <div
       //   className={`sticky top-0 z-50 w-full bg-background  transition-all duration-700
@@ -16,14 +17,14 @@ export default function Navbar({ scrolled }: { scrolled: boolean }) {
         className="flex flex-row justify-between items-center py-2 md:py-3 px-2 md:px-4 mx-auto
           gap-2"
       >
-        <a
-          href="#home"
-          onClick={(e) => {
-            e.preventDefault();
-            document
-              .getElementById("home")
-              ?.scrollIntoView({ behavior: "smooth" });
-          }}
+        <Link
+          href="/"
+          // onClick={(e) => {
+          //   e.preventDefault();
+          //   document
+          //     .getElementById("home")
+          //     ?.scrollIntoView({ behavior: "smooth" });
+          // }}
           className="flex flex-row items-center transition-transform gap-1 hover:scale-105"
         >
           <Image
@@ -34,7 +35,7 @@ export default function Navbar({ scrolled }: { scrolled: boolean }) {
             className="w-6 h-6 md:w-10 md:h-10"
           />
           <h6 className="text-lg md:text-2xl font-header text-text">Quail</h6>
-        </a>
+        </Link>
 
         <nav className="flex-row items-center gap-3 hidden md:flex md:gap-6 text-lg md:text-xl font-header whitespace-nowrap">
           <a
@@ -45,7 +46,7 @@ export default function Navbar({ scrolled }: { scrolled: boolean }) {
                 .getElementById("how")
                 ?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="hover:text-accent"
+            className="hover:text-primary"
           >
             How it Works
           </a>
@@ -57,12 +58,12 @@ export default function Navbar({ scrolled }: { scrolled: boolean }) {
                 .getElementById("faq")
                 ?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="hover:text-accent"
+            className="hover:text-primary"
           >
             FAQ
           </a>
           {/* [GPT-5] (Edit made) Move Pricing link to third position */}
-          <a href="/pricing" className="hover:text-accent">
+          <a href="/pricing" className="hover:text-primary">
             Pricing
           </a>
         </nav>

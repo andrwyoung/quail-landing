@@ -1,11 +1,11 @@
 "use client";
 import { useMetadataStore } from "@/store/metadata-store";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { startCheckout } from "@/lib/stripe/start-checkout";
 import { currentLocalUserHasLicense } from "@/lib/stripe/user-has-license";
 import { Button } from "./ui/button";
 import { STRIPE_DISABLED } from "@/types/constants/stripe-constants";
+import { useRouter } from "next/navigation";
 
 export default function BuyButton() {
   const user = useMetadataStore((s) => s.user);
@@ -22,7 +22,7 @@ export default function BuyButton() {
     }
 
     setLoading(true);
-    await startCheckout(user.id, "license");
+    await startCheckout(user.id, "monthly");
     setLoading(false);
   }
 

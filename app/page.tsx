@@ -1,23 +1,14 @@
 "use client";
-import { useEffect, useState } from "react";
 import Navbar from "../components/navbar";
 import FadingHighlight from "../components/fading-text";
 import FAQ from "./sections/faq";
 import ForgettingCurve from "../components/forgetting-curve";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
+import { usePageScroll } from "@/hooks/use-page-scroll";
 
 export default function Home() {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const { scrolled } = usePageScroll();
 
   return (
     <main className="relative flex flex-col items-center min-h-screen bg-background text-text font-body">

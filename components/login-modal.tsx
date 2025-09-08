@@ -7,6 +7,7 @@ import { useMagicLogin } from "@/hooks/auth/use-magic-link";
 import { Dialog, DialogContent, DialogTitle } from "./ui/dialog";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import { FaApple, FaGoogle } from "react-icons/fa6";
 
 export default function LoginModal({
   open,
@@ -35,7 +36,6 @@ export default function LoginModal({
       <DialogContent className="rounded-lg bg-background p-6 shadow-lg font-body max-w-md font-medium w-full">
         <DialogTitle>
           <span className="text-3xl font-medium font-header mb-2">
-            {" "}
             Sign in to Quail
           </span>
 
@@ -44,33 +44,6 @@ export default function LoginModal({
             {/* <InfoTooltip text="We use password-free signups! Just enter your email and we'll send you a magic link. Clicking that link will sign you in instantly — no password needed." /> */}
           </div>
         </DialogTitle>
-
-        <div className="flex flex-col gap-2 pt-4">
-          <Button
-            type="button"
-            disabled={loading}
-            onClick={signInWithApple}
-            className="w-full"
-          >
-             Continue with Apple
-          </Button>
-          <Button
-            type="button"
-            disabled={loading}
-            onClick={signInWithGoogle}
-            variant="secondary"
-            className="w-full"
-          >
-            Continue with Google
-          </Button>
-        </div>
-
-        {/* Divider */}
-        <div className="flex items-center gap-3 my-6">
-          <div className="h-px flex-1 bg-border" />
-          <span className="text-xs text-muted-foreground">or</span>
-          <div className="h-px flex-1 bg-border" />
-        </div>
 
         <form onSubmit={handleLogin} className="flex flex-col pt-6">
           <div>
@@ -89,13 +62,43 @@ export default function LoginModal({
           </div>
           <div className="flex flex-col gap-2">
             <Button type="submit" disabled={loading} className="">
-              {loading ? "Sending Magic Link..." : "Send Magic Link"}
+              Send Magic Link
             </Button>
             {message && (
               <p className="text-sm text-error self-center">{message}</p>
             )}
+            {loading && (
+              <p className="text-sm text-primary self-center">Loading...</p>
+            )}
           </div>
         </form>
+
+        {/* Divider */}
+        <div className="flex items-center gap-3 my-4">
+          <div className="h-px flex-1 bg-border" />
+          <span className="text-sm text-muted-foreground">or</span>
+          <div className="h-px flex-1 bg-border" />
+        </div>
+
+        <div className="flex flex-col gap-2 pt-2">
+          <Button
+            type="button"
+            disabled={loading}
+            onClick={signInWithApple}
+            className="w-full"
+          >
+            <FaApple className="size-6" /> Continue with Apple
+          </Button>
+          <Button
+            type="button"
+            disabled={loading}
+            onClick={signInWithGoogle}
+            variant="secondary"
+            className="w-full"
+          >
+            <FaGoogle /> Continue with Google
+          </Button>
+        </div>
       </DialogContent>
     </Dialog>
   );

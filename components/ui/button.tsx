@@ -5,14 +5,14 @@ import { cn } from "@/utils/cn";
 const buttonVariants = cva(
   "flex flex-row gap-1.5 items-center justify-center cursor-pointer rounded-full  transition-all" +
     "focus:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-50" +
-    "disabled:pointer-events-none px-6 py-2 duration-300 font-bold shadow-sm",
+    "disabled:pointer-events-none px-6 py-2 duration-300 font-bold shadow-sm border-2",
   {
     variants: {
       variant: {
         default:
-          "bg-primary border-primary text-white hover:text-primary-dark hover:bg-primary-hover",
+          "bg-primary border-primary/80 text-white hover:text-primary-dark hover:bg-primary-hover",
         secondary:
-          "bg-primary-foreground border-white text-primary hover:bg-accent hover:text-off-white",
+          "bg-white border-primary text-primary hover:bg-primary/80 hover:text-white",
       },
     },
     defaultVariants: {
