@@ -2,7 +2,6 @@ import { createClientSudo } from "@/lib/supabase/supabase-server";
 import { NextRequest, NextResponse } from "next/server";
 import {
   STRIPE_CANCEL_PATH,
-  STRIPE_DISABLED,
   STRIPE_PRICE_IDS,
   STRIPE_SUCCESS_PATH,
   STRIPE_USE_LIVE,
@@ -12,7 +11,7 @@ import {
 import { isSubscription, stripeClient } from "@/lib/stripe/stripe-helpers";
 
 export async function POST(req: NextRequest) {
-  if (STRIPE_DISABLED) {
+  if (process.env.FORCE_DISABLE_STRIPE === "true") {
     return new NextResponse("Stripe is disabled", { status: 403 });
   }
 

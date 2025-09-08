@@ -8,7 +8,11 @@ export async function startCheckout(userId: string, product: StripeProduct) {
       body: JSON.stringify({ userId, product }),
     });
 
-    if (!res.ok) throw new Error("Stripe checkout failed");
+    if (!res.ok) {
+      throw new Error(
+        `Stripe checkout failed (${res.status} ${res.statusText})`
+      );
+    }
 
     const { url } = await res.json();
     window.location.href = url;

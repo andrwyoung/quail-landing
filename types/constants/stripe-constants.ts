@@ -1,5 +1,4 @@
 export const STRIPE_USE_LIVE = false && process.env.NODE_ENV === "production";
-export const STRIPE_DISABLED = process.env.FORCE_DISABLE_STRIPE === "true";
 
 export type StripeProduct =
   | "monthly_price_1"
@@ -10,15 +9,15 @@ export const STRIPE_PRICE_IDS: Record<
   { live: string; sandbox: string }
 > = {
   monthly_price_1: {
-    live: "",
+    live: "price_1S5BOWF6snBfcz1DDc7xTh4k",
     sandbox: "price_1S4r54FEpOpwp9xeNza6fWLg",
   },
   annual_price_1: {
-    live: "",
+    live: "price_1S5BMzF6snBfcz1DmCIXRJnk",
     sandbox: "price_1S59d9FEpOpwp9xefHrOupxY",
   },
   lifetime_price_1: {
-    live: "",
+    live: "price_1S5BOyF6snBfcz1DM1QNJ97L",
     sandbox: "price_1S4r5sFEpOpwp9xewpj9C8ft",
   },
 };
