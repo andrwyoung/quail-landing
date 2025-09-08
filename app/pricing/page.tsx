@@ -76,7 +76,7 @@ export default function PricingPage() {
               </ul>
 
               <Button
-                onClick={() => handleCheckout("monthly")}
+                onClick={() => handleCheckout("monthly_price_1")}
                 type="button"
                 className="mt-auto inline-flex items-center justify-center rounded-full border-2 border-primary bg-primary text-text-inverse hover:bg-primary-hover transition-colors px-6 py-2 font-bold"
               >
@@ -119,7 +119,7 @@ export default function PricingPage() {
               </ul>
 
               <Button
-                onClick={() => handleCheckout("annual")}
+                onClick={() => handleCheckout("annual_price_1")}
                 type="button"
                 className="mt-auto inline-flex items-center justify-center rounded-full border-2 border-primary bg-primary text-text-inverse hover:bg-primary-hover transition-colors px-6 py-2 font-bold"
               >
@@ -139,7 +139,7 @@ export default function PricingPage() {
               </div>
               <div className="text-text-light mb-4">Price of a book</div>
               <Button
-                onClick={() => handleCheckout("lifetime")}
+                onClick={() => handleCheckout("lifetime_price_1")}
                 type="button"
                 className="inline-flex items-center justify-center rounded-full border-2 border-primary bg-primary text-text-inverse hover:bg-primary-hover transition-colors px-6 py-2 font-bold"
               >

@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import LoginModal from "./login-modal";
+import { useMetadataStore } from "@/store/metadata-store";
+import { useRouter } from "next/navigation";
 
 export default function Navbar({ scrolled = true }: { scrolled?: boolean }) {
+  const [openLogin, setOpenLogin] = useState(false);
+  const router = useRouter();
+
+  const user = useMetadataStore((s) => s.user);
+  const loggedIn = !!user;
+
   return (
     <div
       //   className={`sticky top-0 z-50 w-full bg-background  transition-all duration-700
@@ -13,6 +22,7 @@ export default function Navbar({ scrolled = true }: { scrolled?: boolean }) {
           : "shadow-none bg-transparent "
       }`}
     >
+      <LoginModal open={openLogin} setOpen={setOpenLogin} />
       <div
         className="flex flex-row justify-between items-center py-2 md:py-3 px-2 md:px-4 mx-auto
           gap-2"
@@ -67,25 +77,39 @@ export default function Navbar({ scrolled = true }: { scrolled?: boolean }) {
             Pricing
           </a>
         </nav>
-        <button
-          type="button"
-          onClick={() => {
-            document
-              .getElementById("cta")
-              ?.scrollIntoView({ behavior: "smooth" });
-          }}
-          title="Scroll to sign up sheet"
-          aria-label="Scroll to sign up sheet"
-          className={`py-1  px-3 md:px-6 rounded-full font-body font-bold text-xs md:text-base
+
+        <div className="flex flex-row items-center gap-4">
+          <button
+            className="font-body hover:underline hover:text-primary
+              transition-all duration-150 cursor-pointer"
+            onClick={() => {
+              if (loggedIn) router.replace("/dashboard");
+              else setOpenLogin(true);
+            }}
+          >
+            {loggedIn ? "Dashboard" : "Login"}
+          </button>
+
+          <button
+            type="button"
+            onClick={() => {
+              document
+                .getElementById("cta")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
+            title="Scroll to sign up sheet"
+            aria-label="Scroll to sign up sheet"
+            className={`py-1  px-3 md:px-6 rounded-full font-body font-bold text-xs md:text-base
             transition-all duration-700 cursor-pointer border-2 border-primary
             ${
               scrolled
                 ? "bg-primary hover:bg-primary-hover text-text-inverse"
                 : "bg-background hover:bg-primary text-primary hover:text-text-inverse"
             }`}
-        >
-          Apply for Early Access
-        </button>
+          >
+            Apply for Early Access
+          </button>
+        </div>
       </div>
     </div>
   );

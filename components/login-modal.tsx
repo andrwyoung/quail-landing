@@ -65,7 +65,7 @@ export default function LoginModal({
               Send Magic Link
             </Button>
             {message && (
-              <p className="text-sm text-error self-center">{message}</p>
+              <p className="text-sm text-primary self-center">{message}</p>
             )}
             {loading && (
               <p className="text-sm text-primary self-center">Loading...</p>

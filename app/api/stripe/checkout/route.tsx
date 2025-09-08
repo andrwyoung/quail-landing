@@ -9,7 +9,7 @@ import {
   StripeProduct,
   VALID_STRIPE_PRODUCTS,
 } from "@/types/constants/stripe-constants";
-import { stripeClient } from "@/lib/stripe/stripe-helpers";
+import { isSubscription, stripeClient } from "@/lib/stripe/stripe-helpers";
 
 export async function POST(req: NextRequest) {
   if (STRIPE_DISABLED) {
@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const session = await stripeClient.checkout.sessions.create({
-      mode: "payment",
+      mode: isSubscription(productType) ? "subscription" : "payment",
       payment_method_types: ["card"],
       line_items: [
         {
@@ -53,6 +53,7 @@ export async function POST(req: NextRequest) {
           quantity: 1,
         },
       ],
+      allow_promotion_codes: true,
       success_url: `${req.nextUrl.origin}${STRIPE_SUCCESS_PATH}?product=${productType}`,
       cancel_url: `${req.nextUrl.origin}${STRIPE_CANCEL_PATH}`,
       metadata: {

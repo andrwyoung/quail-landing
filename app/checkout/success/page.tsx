@@ -7,6 +7,7 @@ import Link from "next/link";
 import { supabase } from "@/lib/supabase/supabase-client";
 import { ProfileType, useMetadataStore } from "@/store/metadata-store";
 import { SupportEmailAddress } from "@/components/ui/copy-email";
+import { STRIPE_CHECKOUT_SUCCESS_PATH } from "@/types/constants/stripe-constants";
 
 export default function CheckoutSuccessPage() {
   const [status, setStatus] = useState<"pending" | "success" | "error">(
@@ -45,7 +46,7 @@ export default function CheckoutSuccessPage() {
         clearInterval(interval);
         setStatus("success");
         setTimeout(() => {
-          router.push("/dashboard");
+          router.push(STRIPE_CHECKOUT_SUCCESS_PATH);
         }, 1000);
       }
     }, 1500);
@@ -55,24 +56,33 @@ export default function CheckoutSuccessPage() {
 
   return (
     <>
-      <div className="min-h-screen flex items-center justify-center p-8 text-primary">
+      <div className="min-h-screen flex items-center justify-center p-8 font-body text-text">
         <div className="flex flex-col items-center">
           {status !== "error" && (
-            <Image
-              src={"/yay2.png"}
-              alt="Success illustration"
-              width={125}
-              height={125}
-              className="-translate-x-5 mb-4"
-            />
+            <div className="flex flex-row items-center mb-2 gap-4">
+              <Image
+                src={"/logo-lighter.png"}
+                alt="Success illustration"
+                width={400}
+                height={400}
+                className="size-16"
+              />
+              <Image
+                src={"/logo-lighter.png"}
+                alt="Success illustration kissing"
+                width={400}
+                height={400}
+                className="size-16 scale-x-[-1]"
+              />
+            </div>
           )}
-          <h1 className="text-4xl font-bold  mb-2">
+          <h1 className="text-5xl font-header font-medium mb-2">
             {status !== "error"
               ? "Checkout Success!"
               : "Uh Oh. Something went wrong"}
           </h1>
           <div
-            className="text-sm mb-4 text-center"
+            className=" mb-4  text-center text-sm"
             role="status"
             aria-live="polite"
           >
@@ -81,13 +91,13 @@ export default function CheckoutSuccessPage() {
                 Processing your license upgrade...
                 <br />
                 <Link
-                  href="/dashboard"
-                  className="text-xs hover:underline hover:text-accent transition-colors
-                  duration-200 mt-6 inline-block focus-visible:text-accent"
+                  href={STRIPE_CHECKOUT_SUCCESS_PATH}
+                  className="text-sm hover:underline hover:text-primary transition-colors
+                  duration-200 mt-6 inline-block focus-visible:text-primary"
                   aria-label="Go to your dashboard manually if you are not redirected automatically"
                   title="Go to dashboard"
                 >
-                  If not redirected soon, click here to go to your dashboard.
+                  If not redirected soon, click here to go to the dashboard.
                 </Link>
               </>
             )}

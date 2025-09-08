@@ -1,3 +1,5 @@
+// UNUSED
+
 "use client";
 import { useMetadataStore } from "@/store/metadata-store";
 import { useState } from "react";
@@ -22,7 +24,7 @@ export default function BuyButton() {
     }
 
     setLoading(true);
-    await startCheckout(user.id, "monthly");
+    await startCheckout(user.id, "annual_price_1");
     setLoading(false);
   }
 

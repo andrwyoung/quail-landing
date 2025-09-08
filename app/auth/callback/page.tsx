@@ -1,8 +1,11 @@
+// only for oauth. magic link doesn't need this
+
 "use client";
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase/supabase-client";
+import { SUCCESSFUL_LOGIN_REDIRECT } from "@/types/constants/constants";
 
 export default function AuthCallback() {
   const router = useRouter();
@@ -14,10 +17,9 @@ export default function AuthCallback() {
       );
       if (error) {
         console.error(error);
-        // optionally show a toast/error UI here
         return;
       }
-      router.replace("/dashboard");
+      router.replace(SUCCESSFUL_LOGIN_REDIRECT);
     };
     run();
   }, [router]);

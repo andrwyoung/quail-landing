@@ -10,7 +10,8 @@ import {
 
 const endpointSecret = STRIPE_IS_PROD
   ? process.env.STRIPE_WEBHOOK_SECRET!
-  : "whsec_ec3d199a94d0a6cbf0088bc4d4b237ac6621f023984c34b3190309e9ba7217b5";
+  : // $ stripe listen --forward-to localhost:3000/api/stripe/webhook
+    "whsec_ec3d199a94d0a6cbf0088bc4d4b237ac6621f023984c34b3190309e9ba7217b5";
 
 export const config = {
   api: {
@@ -37,7 +38,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
   }
 
-  // Handle the event
+  // OPTION 1: handle 1 time payments
   if (event.type === "checkout.session.completed") {
     const session = event.data.object as Stripe.Checkout.Session;
     const userId = session.metadata?.user_id;
@@ -52,8 +53,8 @@ export async function POST(req: Request) {
     const supabase = await createClientSudo();
 
     const { error } = await supabase
-      .from("users")
-      .update({ tier: getTierLevel(tier) })
+      .from("profile")
+      .update({ subscription_tier: getTierLevel(tier) })
       .eq("user_id", userId);
 
     if (error) {
