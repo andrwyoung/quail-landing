@@ -6,9 +6,7 @@
 import { Dialog, DialogContent, DialogTitle } from "./ui/dialog";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { FaApple, FaGoogle } from "react-icons/fa6";
 import { useOtpLogin } from "@/hooks/auth/use-otp";
-import { useOAuthLogin } from "@/hooks/auth/use-oauth";
 import { useState } from "react";
 
 export default function LoginModal({
@@ -31,12 +29,12 @@ export default function LoginModal({
     sendOtp,
   } = useOtpLogin({ onSuccess: () => setOpen(false) });
 
-  const {
-    loading: oAuthLoading,
-    message: oAuthMessage,
-    signInWithGoogle,
-    signInWithApple,
-  } = useOAuthLogin();
+  // const {
+  //   loading: oAuthLoading,
+  //   message: oAuthMessage,
+  //   signInWithGoogle,
+  //   signInWithApple,
+  // } = useOAuthLogin();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,7 +46,8 @@ export default function LoginModal({
     }
   };
 
-  const loading = oAuthLoading || otpLoading;
+  // const loading = oAuthLoading || otpLoading;
+  const loading = otpLoading;
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -110,7 +109,7 @@ export default function LoginModal({
         </form>
 
         {/* Divider */}
-        <div className="flex items-center gap-3 my-4">
+        {/* <div className="flex items-center gap-3 my-4">
           <div className="h-px flex-1 bg-border" />
           <span className="text-sm text-muted-foreground">or</span>
           <div className="h-px flex-1 bg-border" />
@@ -139,7 +138,7 @@ export default function LoginModal({
               {oAuthMessage}
             </p>
           )}
-        </div>
+        </div> */}
       </DialogContent>
     </Dialog>
   );
