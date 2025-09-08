@@ -140,8 +140,9 @@ export default function Home() {
             <div className="text-lg font-bold text-text mb-2">
               1) You import anything
             </div>
+            {/* [GPT-5] (Edit made) Replace em dashes with regular hyphens on landing page */}
             <p className="text-text-light">
-              PDFs, EPUBs, newsletters, web clips—seamlessly in one place.
+              PDFs, EPUBs, newsletters, web clips-seamlessly in one place.
             </p>
           </div>
 
@@ -150,7 +151,7 @@ export default function Home() {
               2) You clip what matters
             </div>
             <p className="text-text-light">
-              Highlight while reading. Context saves automatically—no extra
+              Highlight while reading. Context saves automatically-no extra
               steps.
             </p>
           </div>
@@ -212,7 +213,7 @@ export default function Home() {
                 </div>
                 <p className="text-sm text-text-light mt-1">
                   Replaces e-readers + highlight tools + spaced repetition
-                  apps—even if separate tools overwhelmed you before.
+                  apps-even if separate tools overwhelmed you before.
                 </p>
               </div>
             </div>
@@ -291,7 +292,7 @@ export default function Home() {
           <p className="text-sm md:text-base text-text-light mt-6">
             This simple loop builds lasting memory. In minutes a day. Even if
             you&apos;re short on time. Just a reader that revives your key
-            ideas—exactly when you need them.
+            ideas-exactly when you need them.
           </p>
         </div>
       </section>

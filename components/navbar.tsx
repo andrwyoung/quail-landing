@@ -61,6 +61,10 @@ export default function Navbar({ scrolled }: { scrolled: boolean }) {
           >
             FAQ
           </a>
+          {/* [GPT-5] (Edit made) Move Pricing link to third position */}
+          <a href="/pricing" className="hover:text-accent">
+            Pricing
+          </a>
         </nav>
         <button
           type="button"
