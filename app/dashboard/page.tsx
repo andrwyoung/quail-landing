@@ -1,10 +1,15 @@
 "use client";
 
 import LoginModal from "@/components/login-modal";
+import { supabase } from "@/lib/supabase/supabase-client";
 import { useState } from "react";
 
 export default function DashboardPage() {
   const [open, setOpen] = useState(false);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+  };
 
   return (
     <div className="flex flex-col gap-4 min-h-screen min-w-screen items-center justify-center">
@@ -16,6 +21,14 @@ export default function DashboardPage() {
        text-white rounded-full font-body font-semibold text-xl"
       >
         Buy button
+      </button>
+
+      <button
+        onClick={handleLogout}
+        className="px-6 py-1 bg-gray-500 cursor-pointer
+       text-white rounded-full font-body font-semibold text-xl"
+      >
+        Logout
       </button>
     </div>
   );

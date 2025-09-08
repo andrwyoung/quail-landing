@@ -5,6 +5,7 @@ import FadingHighlight from "../components/fading-text";
 import FAQ from "./sections/faq";
 import ForgettingCurve from "../components/forgetting-curve";
 import Image from "next/image";
+import { Input } from "@/components/ui/input";
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
@@ -75,15 +76,16 @@ export default function Home() {
             {/* Always visible email signup */}
             <div className="w-full max-w-lg mx-auto">
               <form className="flex gap-3 flex-wrap justify-center items-center">
-                <input
+                <Input
                   type="email"
                   required
                   placeholder="your@email.com"
-                  className="px-4 py-3 rounded-xl border border-border bg-surface text-text placeholder:text-text-light min-w-[280px] flex-1"
+                  className="bg-surface min-w-[280px] flex-1"
                 />
                 <button
                   type="submit"
-                  className="px-6 py-3 rounded-xl bg-primary hover:bg-primary-hover text-text-inverse font-semibold transition-all duration-200 hover:-translate-y-0.5 shadow-lg shadow-primary/25"
+                  className="px-6 py-3 rounded-xl bg-primary hover:bg-primary-hover 
+                  cursor-pointer font-bold text-text-inverse  transition-all duration-200 hover:-translate-y-0.5 shadow-lg shadow-primary/25"
                 >
                   Request Invite
                 </button>
@@ -111,10 +113,10 @@ export default function Home() {
 
       {/* Forgetting Statistic Section */}
       <section className="max-w-3xl mx-auto mt-16 mb-24 px-6 text-center">
-        <h2 className="font-header font-bold text-4xl md:text-5xl">
+        <h2 className="font-header font-bold text-4xl md:text-5xl leading-tight mb-4">
           You forget 70% in a day and 90% in a week
         </h2>
-        <p className="font-header font-semibold text-2xl md:text-3xl mt-2">
+        <p className="font-header font-semibold text-2xl md:text-2xl mt-2">
           Quail fixes that. Start retaining more today.
         </p>
       </section>
@@ -318,15 +320,10 @@ export default function Home() {
           </h2>
 
           <form className="flex gap-3 flex-wrap justify-center items-center mb-4">
-            <input
-              type="email"
-              required
-              placeholder="your@email.com"
-              className="px-4 py-3 rounded-xl border border-border bg-background text-text placeholder:text-text-light min-w-[280px] flex-1"
-            />
+            <Input type="email" required placeholder="your@email.com" />
             <button
               type="submit"
-              className="px-6 py-3 rounded-xl bg-primary hover:bg-primary-hover text-text-inverse font-semibold transition-all duration-200 hover:-translate-y-0.5 shadow-lg shadow-primary/25"
+              className="px-6 py-3 rounded-xl bg-primary hover:bg-primary-hover text-text-inverse cursor-pointer font-bold transition-all duration-200 hover:-translate-y-0.5 shadow-lg shadow-primary/25"
             >
               Request Invite
             </button>
