@@ -22,7 +22,8 @@ const annualPercentOff = Math.round(
 
 export default function PricingPage() {
   const user = useMetadataStore((s) => s.user);
-  // const [loading, setLoading] = useState(false);
+  const profile = useMetadataStore((s) => s.profile);
+  const [loading, setLoading] = useState(false);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
 
   async function handleCheckout(product: StripeProduct) {
@@ -31,10 +32,18 @@ export default function PricingPage() {
       return;
     }
 
-    // setLoading(true);
+    setLoading(true);
     await startCheckout(user.id, product);
-    // setLoading(false);
+    setLoading(false);
   }
+
+  const alreadyBought = profile?.subscription_tier !== "none";
+  const buyButtonsDisabled = loading || alreadyBought;
+  const ACTIVE_SUB_CTA = "Subscription Active";
+
+  const monthlyCta = alreadyBought ? ACTIVE_SUB_CTA : "Get Started";
+  const annualCta = alreadyBought ? ACTIVE_SUB_CTA : "Get Annual";
+  const lifetimeCta = alreadyBought ? ACTIVE_SUB_CTA : "Claim Offer";
 
   return (
     <>
@@ -78,9 +87,10 @@ export default function PricingPage() {
               <Button
                 onClick={() => handleCheckout("monthly_price_1")}
                 type="button"
+                disabled={buyButtonsDisabled}
                 className="mt-auto inline-flex items-center justify-center rounded-full border-2 border-primary bg-primary text-text-inverse hover:bg-primary-hover transition-colors px-6 py-2 font-bold"
               >
-                Get started
+                {monthlyCta}
               </Button>
             </div>
 
@@ -120,10 +130,11 @@ export default function PricingPage() {
 
               <Button
                 onClick={() => handleCheckout("annual_price_1")}
+                disabled={buyButtonsDisabled}
                 type="button"
                 className="mt-auto inline-flex items-center justify-center rounded-full border-2 border-primary bg-primary text-text-inverse hover:bg-primary-hover transition-colors px-6 py-2 font-bold"
               >
-                Get annual
+                {annualCta}
               </Button>
             </div>
           </div>
@@ -140,10 +151,12 @@ export default function PricingPage() {
               <div className="text-text-light mb-4">Price of a book</div>
               <Button
                 onClick={() => handleCheckout("lifetime_price_1")}
+                disabled={buyButtonsDisabled}
                 type="button"
-                className="inline-flex items-center justify-center rounded-full border-2 border-primary bg-primary text-text-inverse hover:bg-primary-hover transition-colors px-6 py-2 font-bold"
+                className="inline-flex items-center justify-center rounded-full border-2 border-primary bg-primary 
+                text-text-inverse hover:bg-primary-hover transition-colors px-8 min-w-48 py-2 font-bold"
               >
-                Claim offer
+                {lifetimeCta}
               </Button>
             </div>
           </div>

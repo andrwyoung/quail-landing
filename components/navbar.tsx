@@ -87,7 +87,7 @@ export default function Navbar({ scrolled = true }: { scrolled?: boolean }) {
               else setOpenLogin(true);
             }}
           >
-            {loggedIn ? "Dashboard" : "Login"}
+            {loggedIn ? "Account" : "Login"}
           </button>
 
           <button

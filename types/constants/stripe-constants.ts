@@ -1,4 +1,4 @@
-export const STRIPE_USE_LIVE = false && process.env.NODE_ENV === "production";
+export const STRIPE_USE_LIVE = process.env.NODE_ENV === "production";
 
 export type StripeProduct =
   | "monthly_price_1"

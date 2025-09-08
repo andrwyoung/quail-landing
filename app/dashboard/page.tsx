@@ -1,5 +1,6 @@
 "use client";
 
+import { SupportEmailAddress } from "@/components/ui/copy-email";
 import { supabase } from "@/lib/supabase/supabase-client";
 import { useMetadataStore } from "@/store/metadata-store";
 import { useRouter } from "next/navigation";
@@ -27,38 +28,65 @@ export default function DashboardPage() {
     }
   }, [user, router]);
 
-  if (loading || profile === null) {
+  if ((true && loading) || profile === null) {
     return (
-      <div className="flex items-center justify-center min-h-screen font-body">
+      <div className="flex items-center justify-center min-h-screen font-body font-semibold">
         <p className="text-lg">Loading...</p>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col gap-6 min-h-screen min-w-screen items-center justify-center font-body">
-      <h1 className="text-3xl font-bold">Dashboard</h1>
+    <div className="flex flex-col gap-6 min-h-screen min-w-screen bg-background items-center justify-center font-body">
+      <h1 className="text-4xl font-medium font-header">Account Info</h1>
 
-      <div className="flex flex-col gap-2 items-start bg-gray-100 rounded-lg p-6 shadow-md">
-        <p>
-          <span className="font-semibold">Email:</span> {profile?.email}
+      <div className="flex flex-col items-start bg-surface/70 border border-border rounded-2xl p-6 shadow-lg w-full max-w-md">
+        <p className="mb-2">
+          <span className="text-text-light font-medium">Email:</span>{" "}
+          <span className="text-text font-semibold">{profile?.email}</span>
+        </p>
+        <p className="mb-8">
+          <span className="text-text-light font-medium">User ID:</span>{" "}
+          <span className="text-text font-semibold">{profile?.user_id}</span>
         </p>
         <p>
-          <span className="font-semibold">User ID:</span> {profile?.user_id}
+          <span className="text-text-light font-medium mr-2">
+            Subscription Tier:
+          </span>{" "}
+          <span className="px-3 py-1 rounded-md bg-primary/10 text-primary font-semibold">
+            {profile?.subscription_tier || "Free"}
+          </span>
         </p>
-        <p>
-          <span className="font-semibold">Subscription Tier:</span>{" "}
-          {profile?.subscription_tier || "Free"}
+
+        <p className="text-xs self-center text-text-light/80 mt-8">
+          Need help? Reach out: <SupportEmailAddress />
         </p>
       </div>
 
-      <button
-        onClick={handleLogout}
-        disabled={loading}
-        className="px-6 py-2 bg-red-500 text-white rounded-md font-medium hover:bg-red-600"
-      >
-        {loading ? "Logging out..." : "Logout"}
-      </button>
+      <div className="flex gap-4 mt-4">
+        {/* Logout button */}
+        <button
+          onClick={handleLogout}
+          disabled={loading}
+          aria-label="Log out of your account"
+          aria-disabled={loading}
+          className="px-6 py-2 bg-accent text-text cursor-pointer rounded-md font-medium 
+               hover:bg-accent-active focus:outline-none focus:ring-2 focus:ring-accent 
+               disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {loading ? "Logging out..." : "Logout"}
+        </button>
+
+        {/* Back to home button */}
+        <button
+          onClick={() => router.push("/")}
+          aria-label="Go back to the home page"
+          className="px-6 py-2 bg-primary text-white cursor-pointer rounded-md font-medium 
+               hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-border"
+        >
+          Home
+        </button>
+      </div>
     </div>
   );
 }
