@@ -12,7 +12,7 @@ type MetadataStore = {
   setProfile: (profile: ProfileType | null) => void;
 };
 
-export const useMetadataStore = create<MetadataStore>((set, get) => ({
+export const useMetadataStore = create<MetadataStore>((set) => ({
   user: undefined,
   setUser: (user) => set({ user }),
   profile: null,
