@@ -53,7 +53,7 @@ export async function POST(req: Request) {
     const supabase = await createClientSudo();
 
     const { error } = await supabase
-      .from("profile")
+      .from("profiles")
       .update({ subscription_tier: getTierLevel(tier) })
       .eq("user_id", userId);
 
