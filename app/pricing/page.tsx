@@ -4,8 +4,10 @@ import Navbar from "@/components/navbar";
 import { Button } from "@/components/ui/button";
 import { useMetadataStore } from "@/store/metadata-store";
 import { startCheckout } from "@/lib/stripe/start-checkout";
+import { getHasLicense } from "@/lib/stripe/user-has-license";
 import LoginModal from "@/components/login-modal";
 import { StripeProduct } from "@/types/constants/stripe-constants";
+import { SubscriptionTier } from "@/types/user-types";
 
 const MONTHLY_ORIGINAL = 14.99;
 const MONTHLY_DISCOUNT = 8.97;
@@ -37,7 +39,7 @@ export default function PricingPage() {
     setLoading(false);
   }
 
-  const alreadyBought = profile?.subscription_tier !== "none";
+  const alreadyBought = getHasLicense(profile?.subscription_tier as SubscriptionTier);
   const buyButtonsDisabled = loading || alreadyBought;
   const ACTIVE_SUB_CTA = "Subscription Active";
 

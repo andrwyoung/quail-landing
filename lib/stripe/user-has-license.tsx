@@ -2,6 +2,9 @@ import { useMetadataStore } from "@/store/metadata-store";
 import { SubscriptionTier } from "@/types/user-types";
 
 export function getHasLicense(tier: SubscriptionTier | undefined): boolean {
+  if (tier === undefined) {
+    return false;
+  }
   return tier !== "none";
 }
 
