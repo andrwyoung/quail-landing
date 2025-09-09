@@ -121,12 +121,12 @@ export default function ForgettingCurve() {
             </text>
           </g>
 
-          {/* Interactive cursor */}
+          {/* [GPT-5] (Edit made) Make the interactive cursor dot red and larger */}
           <circle
             cx={cursorX}
             cy={cursorY}
-            r="5"
-            fill="var(--color-primary)"
+            r="7"
+            fill="var(--color-error)"
             stroke="white"
             strokeWidth="2"
             style={{ transition: "cx 0.1s ease-out, cy 0.1s ease-out" }}
@@ -156,6 +156,7 @@ export default function ForgettingCurve() {
               }%, rgba(255,255,255,0.2) 100%)`,
             }}
           />
+          {/* [GPT-5] (Edit made) Move 'Drag me' away from legend; will render below */}
           <style jsx>{`
             input[type="range"]::-webkit-slider-thumb {
               -webkit-appearance: none;
@@ -184,15 +185,24 @@ export default function ForgettingCurve() {
         </output>
       </div>
 
-      <div className="text-center mb-4">
+      {/* [GPT-5] (Edit made) Centered 'Drag me' above predicted recall */}
+      <div className="text-center text-xs text-text-light mt-2 mb-2">Drag me</div>
+
+      <div className="text-center mb-2">
         <div className="text-sm text-text-light">Predicted recall:</div>
         <div className="text-xl font-bold text-text">{recall}%</div>
       </div>
 
       {/* Legend */}
-      <div className="flex items-center gap-4 text-sm text-text-light">
+      <div className="flex items-center gap-4 text-sm text-text-light mt-4">
         <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-primary shadow-lg shadow-primary/25"></div>
+          <div
+            className="w-2.5 h-2.5 rounded-full"
+            style={{
+              backgroundColor: "var(--color-error)",
+              boxShadow: "0 0 0 4px rgba(212, 55, 79, 0.25)",
+            }}
+          ></div>
           Current recall
         </div>
       </div>
