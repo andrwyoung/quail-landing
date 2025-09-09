@@ -3,11 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import LoginModal from "./login-modal";
 import { useMetadataStore } from "@/store/metadata-store";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Navbar({ scrolled = true }: { scrolled?: boolean }) {
   const [openLogin, setOpenLogin] = useState(false);
   const router = useRouter();
+  const pathname = usePathname();
 
   const user = useMetadataStore((s) => s.user);
   const loggedIn = !!user;
@@ -51,10 +52,13 @@ export default function Navbar({ scrolled = true }: { scrolled?: boolean }) {
           <a
             href="#how"
             onClick={(e) => {
+              // [GPT-5] (Edit made) Route to landing section from other pages
               e.preventDefault();
-              document
-                .getElementById("how")
-                ?.scrollIntoView({ behavior: "smooth" });
+              if (pathname === "/") {
+                document.getElementById("how")?.scrollIntoView({ behavior: "smooth" });
+              } else {
+                router.push("/#how");
+              }
             }}
             className="hover:text-primary"
           >
@@ -63,10 +67,13 @@ export default function Navbar({ scrolled = true }: { scrolled?: boolean }) {
           <a
             href="#faq"
             onClick={(e) => {
+              // [GPT-5] (Edit made) Route to landing section from other pages
               e.preventDefault();
-              document
-                .getElementById("faq")
-                ?.scrollIntoView({ behavior: "smooth" });
+              if (pathname === "/") {
+                document.getElementById("faq")?.scrollIntoView({ behavior: "smooth" });
+              } else {
+                router.push("/#faq");
+              }
             }}
             className="hover:text-primary"
           >
@@ -93,9 +100,12 @@ export default function Navbar({ scrolled = true }: { scrolled?: boolean }) {
           <button
             type="button"
             onClick={() => {
-              document
-                .getElementById("cta")
-                ?.scrollIntoView({ behavior: "smooth" });
+              // [GPT-5] (Edit made) Route to landing CTA from other pages
+              if (pathname === "/") {
+                document.getElementById("cta")?.scrollIntoView({ behavior: "smooth" });
+              } else {
+                router.push("/#cta");
+              }
             }}
             title="Scroll to sign up sheet"
             aria-label="Scroll to sign up sheet"
