@@ -86,8 +86,15 @@ export default function Navbar({ scrolled = true }: { scrolled?: boolean }) {
         </nav>
 
         <div className="flex flex-row items-center gap-4">
+          {/* [GPT-5] (Edit made) Show Pricing in mobile navbar */}
+          <Link
+            href="/pricing"
+            className="font-body text-sm md:hidden hover:underline hover:text-primary transition-all duration-150"
+          >
+            Pricing
+          </Link>
           <button
-            className="font-body hover:underline hover:text-primary
+            className="font-body text-sm md:text-base hover:underline hover:text-primary
               transition-all duration-150 cursor-pointer"
             onClick={() => {
               if (loggedIn) router.replace("/dashboard");
