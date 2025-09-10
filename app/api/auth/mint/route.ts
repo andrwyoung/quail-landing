@@ -24,8 +24,10 @@ export async function POST(req: NextRequest) {
     }
 
     // Create a short-lived URL (could add nonce/db entry for stricter security)
-    const url = `${req.nextUrl.origin}/pricing?authToken=${encodeURIComponent(
+    const url = `${req.nextUrl.origin}/pricing?accessToken=${encodeURIComponent(
       token
+    )}&refreshToken=${encodeURIComponent(
+      req.headers.get("x-refresh-token") ?? ""
     )}`;
 
     return NextResponse.json({ url });

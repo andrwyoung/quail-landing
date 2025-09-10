@@ -10,6 +10,7 @@ import { StripeProduct } from "@/types/constants/stripe-constants";
 import { SubscriptionTier } from "@/types/user-types";
 import { useSearchParams } from "next/navigation";
 import { supabase } from "@/lib/supabase/supabase-client";
+import { toast } from "sonner";
 
 const MONTHLY_ORIGINAL = 14.99;
 const MONTHLY_DISCOUNT = 8.97;
@@ -36,29 +37,41 @@ export default function PricingPage() {
   const [loginModalOpen, setLoginModalOpen] = useState(false);
 
   useEffect(() => {
-    const token = params.get("authToken");
-    if (!token) return;
+    const accessToken = params.get("accessToken");
+    const refreshToken = params.get("refreshToken");
+
+    if (!accessToken || !refreshToken) {
+      console.warn("no tokens in URL → likely not coming from mobile.");
+      return;
+    }
 
     (async () => {
       try {
-        const res = await fetch("/api/auth/redeem", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
+        // hydrate Supabase session
+        const { error } = await supabase.auth.setSession({
+          access_token: accessToken,
+          refresh_token: refreshToken,
         });
-        if (!res.ok) throw new Error("Token verification failed");
-        const { user, profile } = await res.json();
 
-        // hydrate subabase client session
-        await supabase.auth.setSession({
-          access_token: token,
-          refresh_token: "", // only if you have it, otherwise leave empty
-        });
+        if (error) throw error;
+        toast.success("Signed in via mobile session!");
+
+        // Get user + profile directly
+        const {
+          data: { user },
+        } = await supabase.auth.getUser(accessToken);
+
+        const { data: profile } = await supabase
+          .from("profiles")
+          .select("*")
+          .eq("user_id", user?.id)
+          .single();
 
         setUser(user);
         setProfile(profile);
+
+        // Remove tokens from URL
+        window.history.replaceState({}, "", "/pricing");
       } catch (e) {
         console.error("[pricing] auto-login failed", e);
       }
