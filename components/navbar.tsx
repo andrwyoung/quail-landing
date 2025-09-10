@@ -55,7 +55,9 @@ export default function Navbar({ scrolled = true }: { scrolled?: boolean }) {
               // [GPT-5] (Edit made) Route to landing section from other pages
               e.preventDefault();
               if (pathname === "/") {
-                document.getElementById("how")?.scrollIntoView({ behavior: "smooth" });
+                document
+                  .getElementById("how")
+                  ?.scrollIntoView({ behavior: "smooth" });
               } else {
                 router.push("/#how");
               }
@@ -70,7 +72,9 @@ export default function Navbar({ scrolled = true }: { scrolled?: boolean }) {
               // [GPT-5] (Edit made) Route to landing section from other pages
               e.preventDefault();
               if (pathname === "/") {
-                document.getElementById("faq")?.scrollIntoView({ behavior: "smooth" });
+                document
+                  .getElementById("faq")
+                  ?.scrollIntoView({ behavior: "smooth" });
               } else {
                 router.push("/#faq");
               }
@@ -89,13 +93,14 @@ export default function Navbar({ scrolled = true }: { scrolled?: boolean }) {
           {/* [GPT-5] (Edit made) Show Pricing in mobile navbar */}
           <Link
             href="/pricing"
-            className="font-body text-sm md:hidden hover:underline hover:text-primary transition-all duration-150"
+            className="font-body text-sm md:hidden hover:underline hover:text-primary transition-all 
+            font-semibold duration-150"
           >
             Pricing
           </Link>
           <button
             className="font-body text-sm md:text-base hover:underline hover:text-primary
-              transition-all duration-150 cursor-pointer"
+              transition-all duration-150 cursor-pointer font-semibold"
             onClick={() => {
               if (loggedIn) router.replace("/dashboard");
               else setOpenLogin(true);
@@ -109,14 +114,16 @@ export default function Navbar({ scrolled = true }: { scrolled?: boolean }) {
             onClick={() => {
               // [GPT-5] (Edit made) Route to landing CTA from other pages
               if (pathname === "/") {
-                document.getElementById("cta")?.scrollIntoView({ behavior: "smooth" });
+                document
+                  .getElementById("cta")
+                  ?.scrollIntoView({ behavior: "smooth" });
               } else {
                 router.push("/#cta");
               }
             }}
             title="Scroll to sign up sheet"
             aria-label="Scroll to sign up sheet"
-            className={`py-1  px-3 md:px-6 rounded-full font-body font-bold text-xs md:text-base
+            className={`hidden md:flex py-1  px-3 md:px-6 rounded-full font-body font-bold text-xs md:text-base
             transition-all duration-700 cursor-pointer border-2 border-primary
             ${
               scrolled

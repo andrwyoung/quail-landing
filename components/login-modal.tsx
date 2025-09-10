@@ -51,71 +51,15 @@ export default function LoginModal({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="rounded-lg bg-background p-6 shadow-lg font-body max-w-md font-medium w-full">
+      <DialogContent className="rounded-lg bg-background  shadow-lg font-body max-w-md font-medium w-full py-16 px-6 sm:p-6">
         <DialogTitle>
           <span className="text-3xl font-medium font-header mb-2">
             Sign in to Quail
           </span>
-
-          <div className="flex flex-row gap-1 text-sm items-center font-body pt-2">
-            We&apos;ll email you a login password.
-            {/* <InfoTooltip text="We use password-free signups! Just enter your email and we'll send you a magic link. Clicking that link will sign you in instantly — no password needed." /> */}
-          </div>
         </DialogTitle>
 
-        <form onSubmit={handleLogin} className="flex flex-col pt-6">
-          {step === "otp" && (
-            <button
-              type="button"
-              onClick={() => setStep("email")}
-              className="text-sm self-center text-text cursor-pointer hover:underline  mb-2"
-            >
-              ← Back
-            </button>
-          )}
-          <div>
-            {step === "email" ? (
-              <Input
-                value={email}
-                autoComplete="email"
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter Email"
-                className="mb-6"
-              />
-            ) : (
-              <Input
-                value={otpCode}
-                onChange={(e) => setOtpCode(e.target.value)}
-                placeholder="Enter 6-digit Code"
-                className="mb-6"
-              />
-            )}
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <Button type="submit" disabled={loading}>
-              {loading
-                ? "Loading..."
-                : step === "email"
-                ? "Send Email Code"
-                : "Verify Code"}
-            </Button>
-            {otpMessage && (
-              <p className="text-sm text-text-light self-center">
-                {otpMessage}
-              </p>
-            )}
-          </div>
-        </form>
-
-        {/* Divider */}
-        <div className="flex items-center gap-3 my-2">
-          <div className="h-px flex-1 bg-border" />
-          <span className="text-sm text-muted-foreground">or</span>
-          <div className="h-px flex-1 bg-border" />
-        </div>
-
-        <div className="flex flex-col gap-2 pt-2">
+        {/* Oauth signup */}
+        <div className="flex flex-col gap-2 pt-6">
           <Button
             type="button"
             disabled={loading}
@@ -139,6 +83,65 @@ export default function LoginModal({
             </p>
           )}
         </div>
+
+        {/* Divider */}
+        <div className="flex items-center gap-3 my-2">
+          <div className="h-px flex-1 bg-border" />
+          <span className="text-sm text-muted-foreground">
+            or sign in with email
+          </span>
+          <div className="h-px flex-1 bg-border" />
+        </div>
+
+        <form onSubmit={handleLogin} className="flex flex-col ">
+          {/* <div className="flex flex-row gap-1 text-sm items-center font-body pb-4">
+            Sign up with email
+          </div> */}
+          {step === "otp" && (
+            <button
+              type="button"
+              onClick={() => setStep("email")}
+              className="text-sm self-center text-text cursor-pointer hover:underline  mb-2"
+            >
+              ← Back
+            </button>
+          )}
+          <div>
+            {step === "email" ? (
+              <Input
+                value={email}
+                autoComplete="email"
+                type="email"
+                autoFocus={false}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter Email"
+                className="mb-6"
+              />
+            ) : (
+              <Input
+                value={otpCode}
+                onChange={(e) => setOtpCode(e.target.value)}
+                placeholder="Enter 6-digit Code"
+                className="mb-6"
+              />
+            )}
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <Button type="submit" variant="secondary" disabled={loading}>
+              {loading
+                ? "Loading..."
+                : step === "email"
+                ? "Send Email Code"
+                : "Verify Code"}
+            </Button>
+            {otpMessage && (
+              <p className="text-sm text-text-light self-center">
+                {otpMessage}
+              </p>
+            )}
+          </div>
+        </form>
       </DialogContent>
     </Dialog>
   );

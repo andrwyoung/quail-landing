@@ -85,7 +85,7 @@ export function useUser() {
 
         if (user) {
           if (event === "SIGNED_IN") onLogin(user);
-          if (event === "INITIAL_SESSION") toast.success("Logged in!");
+          // if (event === "INITIAL_SESSION") toast.success("Logged in!");
         } else {
           useMetadataStore.getState().reset();
 

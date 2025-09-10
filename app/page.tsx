@@ -103,7 +103,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <aside className="w-full flex justify-center md:justify-end">
+          <aside className="w-full flex justify-center md:justify-end mt-16 mb-12 md:my-0">
             <div className="relative w-full max-w-md">
               <ForgettingCurve />
             </div>

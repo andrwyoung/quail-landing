@@ -27,22 +27,23 @@ export default function ForgettingCurve() {
 
   const cursorX = px(day);
   const cursorY = py(Math.exp(-k * day));
+  const pct = (day / 14) * 100;
 
   const recall = Math.round(Math.exp(-k * day) * 100);
 
   return (
     // [Grok] Modernized the forgetting curve component by making it declarative, adding fill area, axis labels, and CSS transitions for smoother interactions.
     <div className="bg-surface border border-border rounded-2xl p-6 shadow-2xl">
-      <div className="text-xs uppercase tracking-wider font-bold text-text-light mb-2">
+      <div className="text-xs uppercase tracking-wider font-bold text-text-light/80 mb-2">
         Why it works
       </div>
-      <h3 className="font-header text-2xl font-bold mb-4 text-text">
+      <h3 className="font-header text-2xl md:text-3xl font-semibold mb-4 text-text">
         The forgetting curve
       </h3>
 
-      <div className="p-2 bg-background rounded-xl border border-border mb-4">
+      <div className="p-3 bg-background rounded-md border border-border mb-4">
         <svg
-          viewBox="0 0 560 280"
+          viewBox="0 0 570 280"
           width="100%"
           height="260"
           role="img"
@@ -105,7 +106,7 @@ export default function ForgettingCurve() {
           </defs>
 
           {/* Axis labels */}
-          <g fill="rgba(0,0,0,0.7)" fontSize="12">
+          <g fill="rgba(0,0,0,0.7)" fontSize="16">
             {/* X-axis */}
             {[0, 7, 14].map((d) => (
               <text key={d} x={px(d)} y="270" textAnchor="middle">
@@ -113,11 +114,35 @@ export default function ForgettingCurve() {
               </text>
             ))}
             {/* Y-axis */}
-            <text x={34} y={py(1) - 6} textAnchor="end">
+            <text x={42} y={py(1) - 6} textAnchor="end">
               100%
             </text>
-            <text x={36} y={py(0) + 4} textAnchor="end">
+            <text x={32} y={py(0)} textAnchor="end">
               0%
+            </text>
+          </g>
+
+          {/* Legend */}
+          <g transform="translate(420,10)" aria-label="Legend: current recall">
+            <rect
+              x="0"
+              y="0"
+              width="150" // wider
+              height="36" // taller
+              rx="14"
+              ry="14"
+              fill="rgba(255,255,255,0.85)" // slightly more opaque for contrast
+              stroke="rgba(0,0,0,0.08)"
+            />
+            <circle cx="18" cy="18" r="7" fill="var(--color-primary)" />
+            <text
+              x="36"
+              y="23" // adjust baseline
+              fontSize="15" // bigger text
+              fontWeight="500" // semi-bold for clarity
+              fill="rgba(0,0,0,0.8)"
+            >
+              Current recall
             </text>
           </g>
 
@@ -125,10 +150,10 @@ export default function ForgettingCurve() {
           <circle
             cx={cursorX}
             cy={cursorY}
-            r="7"
-            fill="var(--color-error)"
+            r="10"
+            fill="var(--color-primary)"
             stroke="white"
-            strokeWidth="2"
+            strokeWidth=""
             style={{ transition: "cx 0.1s ease-out, cy 0.1s ease-out" }}
           />
         </svg>
@@ -147,13 +172,21 @@ export default function ForgettingCurve() {
             max="14"
             value={day}
             onChange={(e) => setDay(Number(e.target.value))}
-            className="w-full h-2 appearance-none rounded-full outline-none"
+            className="w-full h-3 appearance-none rounded-full outline-none cursor-pointer"
+            aria-label="Days since you read"
+            aria-valuemin={0}
+            aria-valuemax={14}
+            aria-valuenow={day}
+            // strong fill + tinted remainder so the WHOLE bar is visible
             style={{
-              background: `linear-gradient(to right, var(--color-primary) 0%, var(--color-primary) ${
-                (day / 14) * 100
-              }%, rgba(255,255,255,0.2) ${
-                (day / 14) * 100
-              }%, rgba(255,255,255,0.2) 100%)`,
+              background: `linear-gradient(
+                to right,
+                var(--color-primary) 0%,
+                var(--color-primary) ${pct}%,
+                rgba(20, 184, 166, 0.20) ${pct}%,
+                rgba(20, 184, 166, 0.20) 100%
+              )`,
+              borderRadius: 9999,
             }}
           />
           {/* [GPT-5] (Edit made) Move 'Drag me' away from legend; will render below */}
@@ -185,27 +218,27 @@ export default function ForgettingCurve() {
         </output>
       </div>
 
-      {/* [GPT-5] (Edit made) Centered 'Drag me' above predicted recall */}
-      <div className="text-center text-xs text-text-light mt-2 mb-2">Drag me</div>
-
-      <div className="text-center mb-2">
-        <div className="text-sm text-text-light">Predicted recall:</div>
-        <div className="text-xl font-bold text-text">{recall}%</div>
+      <div className="text-center flex justify-center items-center gap-4 mb-2">
+        <div className="text-md text-text-light translate-y-1">
+          Predicted recall:
+        </div>
+        <div className="text-4xl font-header font-medium text-text">
+          {recall}%
+        </div>
       </div>
 
       {/* Legend */}
-      <div className="flex items-center gap-4 text-sm text-text-light mt-4">
+      {/* <div className="flex items-center gap-4 text-sm text-text-light mt-4">
         <div className="flex items-center gap-2">
           <div
-            className="w-2.5 h-2.5 rounded-full"
+            className="w-2.5 h-2.5 rounded-full bg-primary"
             style={{
-              backgroundColor: "var(--color-error)",
-              boxShadow: "0 0 0 4px rgba(212, 55, 79, 0.25)",
+              boxShadow: "0 0 0 4px rgba(101, 213, 151, 0.25)",
             }}
           ></div>
           Current recall
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
