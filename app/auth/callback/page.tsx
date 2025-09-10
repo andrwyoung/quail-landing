@@ -19,7 +19,6 @@ export default function AuthCallback() {
       );
       if (error) {
         console.error("[oauth] exchange failed", error);
-        return;
       }
 
       console.log("[oauth] exchange ok", data?.session?.user?.id);
@@ -33,12 +32,12 @@ export default function AuthCallback() {
   return (
     <div className="min-h-screen flex items-center justify-center p-8 font-body text-text">
       <div className="flex flex-col items-center">
-        <h1 className="text-5xl font-header text-center font-medium mb-6">
+        <h1 className="text-3xl md:text-5xl font-header text-center font-medium mb-6">
           Signing you in...
         </h1>
         <div className="text-center text-sm">
           <Link
-            href={"/"}
+            href={SUCCESSFUL_LOGIN_REDIRECT}
             className="text-sm hover:underline hover:text-primary transition-colors
             duration-200  inline-block focus-visible:text-primary"
             aria-label="Go to your dashboard manually if you are not redirected automatically"

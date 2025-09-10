@@ -83,7 +83,7 @@ export default function CheckoutSuccessPage() {
               />
             </div>
           )}
-          <h1 className="text-5xl font-header text-center font-medium mb-8">
+          <h1 className="text-3xl md:text-5xl font-header text-center font-medium mb-8">
             {status !== "error"
               ? "Checkout Success!"
               : "Uh Oh. Something went wrong"}
