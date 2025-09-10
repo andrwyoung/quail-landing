@@ -8,6 +8,8 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { useOtpLogin } from "@/hooks/auth/use-otp";
 import { useState } from "react";
+import { useOAuthLogin } from "@/hooks/auth/use-oauth";
+import { FaApple, FaGoogle } from "react-icons/fa6";
 
 export default function LoginModal({
   open,
@@ -29,12 +31,12 @@ export default function LoginModal({
     sendOtp,
   } = useOtpLogin({ onSuccess: () => setOpen(false) });
 
-  // const {
-  //   loading: oAuthLoading,
-  //   message: oAuthMessage,
-  //   signInWithGoogle,
-  //   signInWithApple,
-  // } = useOAuthLogin();
+  const {
+    loading: oAuthLoading,
+    message: oAuthMessage,
+    signInWithGoogle,
+    signInWithApple,
+  } = useOAuthLogin();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,8 +48,7 @@ export default function LoginModal({
     }
   };
 
-  // const loading = oAuthLoading || otpLoading;
-  const loading = otpLoading;
+  const loading = oAuthLoading || otpLoading;
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -109,7 +110,7 @@ export default function LoginModal({
         </form>
 
         {/* Divider */}
-        {/* <div className="flex items-center gap-3 my-4">
+        <div className="flex items-center gap-3 my-2">
           <div className="h-px flex-1 bg-border" />
           <span className="text-sm text-muted-foreground">or</span>
           <div className="h-px flex-1 bg-border" />
@@ -120,7 +121,7 @@ export default function LoginModal({
             type="button"
             disabled={loading}
             onClick={signInWithApple}
-            className="w-full"
+            className="w-full bg-text/80 border-text hover:border-primary"
           >
             <FaApple className="size-6" /> Continue with Apple
           </Button>
@@ -129,7 +130,7 @@ export default function LoginModal({
             disabled={loading}
             onClick={signInWithGoogle}
             variant="secondary"
-            className="w-full"
+            className="w-full text-text border-text hover:border-primary"
           >
             <FaGoogle /> Continue with Google
           </Button>
@@ -138,7 +139,7 @@ export default function LoginModal({
               {oAuthMessage}
             </p>
           )}
-        </div> */}
+        </div>
       </DialogContent>
     </Dialog>
   );

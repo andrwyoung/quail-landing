@@ -69,7 +69,7 @@ export default function PricingPage() {
         });
 
         if (error) throw error;
-        toast.success("Signed in via mobile session!");
+        // toast.success("Signed in via mobile session!");
 
         // Get user + profile directly
         const {

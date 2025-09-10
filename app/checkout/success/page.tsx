@@ -83,7 +83,7 @@ export default function CheckoutSuccessPage() {
               />
             </div>
           )}
-          <h1 className="text-5xl font-header font-medium mb-2">
+          <h1 className="text-5xl font-header text-center font-medium mb-8">
             {status !== "error"
               ? "Checkout Success!"
               : "Uh Oh. Something went wrong"}
@@ -109,7 +109,8 @@ export default function CheckoutSuccessPage() {
                 </Link>
               </>
             )}
-            {status === "success" && "Redirecting to dashboard..."}
+            {status === "success" &&
+              `Redirecting to ${redirectedFromApp ? "app" : "dashboard"}...`}
             {status === "error" && (
               <>
                 Please contact support: <SupportEmailAddress />
