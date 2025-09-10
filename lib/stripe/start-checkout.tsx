@@ -2,7 +2,10 @@ import { StripeProduct } from "@/types/constants/stripe-constants";
 import { toast } from "sonner";
 import { supabase } from "../supabase/supabase-client";
 
-export async function startCheckout(product: StripeProduct) {
+export async function startCheckout(
+  product: StripeProduct,
+  redirectedFromApp: boolean
+) {
   try {
     // Always pull the current access token
     const {
@@ -19,7 +22,7 @@ export async function startCheckout(product: StripeProduct) {
         "Content-Type": "application/json",
         Authorization: `Bearer ${session.access_token}`,
       },
-      body: JSON.stringify({ product }),
+      body: JSON.stringify({ product, redirectedFromApp }),
     });
 
     if (!res.ok) {

@@ -9,12 +9,15 @@ import { useEffect, useState } from "react";
 export default function DashboardPage() {
   const profile = useMetadataStore((s) => s.profile);
   const user = useMetadataStore((s) => s.user);
+  const redirectedFromApp = useMetadataStore((s) => s.redirectedFromApp);
+
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
   const handleLogout = async () => {
     setLoading(true);
     await supabase.auth.signOut();
+    useMetadataStore.getState().reset(); // reset local too
     setLoading(false);
   };
 
@@ -86,6 +89,19 @@ export default function DashboardPage() {
         >
           Home
         </button>
+
+        {redirectedFromApp && (
+          <button
+            onClick={() =>
+              (window.location.href = "quailreader://checkout/success")
+            }
+            aria-label="Return to the QuailReader app"
+            className="px-6 py-2 bg-green-600 text-white cursor-pointer rounded-md font-medium 
+                 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
+          >
+            Go back to app
+          </button>
+        )}
       </div>
     </div>
   );

@@ -37,6 +37,7 @@ export async function POST(req: NextRequest) {
 
   const body = await req.json();
   const productType: StripeProduct = body.product;
+  const redirectedFromApp = body.redirectedFromApp;
 
   if (!VALID_STRIPE_PRODUCTS.includes(productType)) {
     return new NextResponse("Invalid product type", { status: 400 });
@@ -59,8 +60,13 @@ export async function POST(req: NextRequest) {
         },
       ],
       allow_promotion_codes: true,
-      success_url: `${req.nextUrl.origin}${STRIPE_SUCCESS_PATH}?product=${productType}`,
-      cancel_url: `${req.nextUrl.origin}${STRIPE_CANCEL_PATH}`,
+      success_url: redirectedFromApp
+        ? `quailreader://checkout/success?product=${productType}`
+        : `${req.nextUrl.origin}${STRIPE_SUCCESS_PATH}?product=${productType}`,
+
+      cancel_url: redirectedFromApp
+        ? `quailreader://checkout/cancel`
+        : `${req.nextUrl.origin}${STRIPE_CANCEL_PATH}`,
       metadata: {
         user_id: user.id,
         type: productType,

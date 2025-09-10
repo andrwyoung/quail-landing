@@ -32,6 +32,8 @@ export default function PricingPage() {
   const profile = useMetadataStore((s) => s.profile);
   const setUser = useMetadataStore((s) => s.setUser);
   const setProfile = useMetadataStore((s) => s.setProfile);
+  const setRedirectedFromApp = useMetadataStore((s) => s.setRedirectedFromApp);
+  const redirectedFromApp = useMetadataStore((s) => s.redirectedFromApp);
 
   const [loading, setLoading] = useState(false);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
@@ -69,6 +71,7 @@ export default function PricingPage() {
 
         setUser(user);
         setProfile(profile);
+        setRedirectedFromApp(true);
 
         // Remove tokens from URL
         window.history.replaceState({}, "", "/pricing");
@@ -76,7 +79,7 @@ export default function PricingPage() {
         console.error("[pricing] auto-login failed", e);
       }
     })();
-  }, [params, setUser, setProfile]);
+  }, [params, setUser, setProfile, setRedirectedFromApp]);
 
   async function handleCheckout(product: StripeProduct) {
     if (!user?.id) {
@@ -85,7 +88,7 @@ export default function PricingPage() {
     }
 
     setLoading(true);
-    await startCheckout(product);
+    await startCheckout(product, redirectedFromApp);
     setLoading(false);
   }
 

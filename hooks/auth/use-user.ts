@@ -87,7 +87,7 @@ export function useUser() {
           if (event === "SIGNED_IN") onLogin(user);
           if (event === "INITIAL_SESSION") toast.success("Logged in!");
         } else {
-          setProfile(null);
+          useMetadataStore.getState().reset();
 
           // should only happen on log out
           if (event === "SIGNED_OUT") toast.success("Logged out successfully.");
