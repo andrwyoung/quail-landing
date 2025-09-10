@@ -67,11 +67,23 @@ export default function Home() {
             {/* Always visible email signup */}
             <div className="w-full max-w-lg mx-auto">
               <form className="flex gap-3 flex-wrap justify-center items-center">
+                {/* [GPT-5] (Edit made) Add required name input and optional phone input */}
+                <Input
+                  type="text"
+                  required
+                  placeholder="Your name"
+                  className="bg-surface min-w-[200px] flex-1"
+                />
                 <Input
                   type="email"
                   required
                   placeholder="your@email.com"
                   className="bg-surface min-w-[280px] flex-1"
+                />
+                <Input
+                  type="tel"
+                  placeholder="Phone number (optional)"
+                  className="bg-surface min-w-[200px] flex-1"
                 />
                 <button
                   type="submit"
@@ -312,7 +324,10 @@ export default function Home() {
           </h2>
 
           <form className="flex gap-3 flex-wrap justify-center items-center mb-4">
+            {/* [GPT-5] (Edit made) Add required name input and optional phone input */}
+            <Input type="text" required placeholder="Your name" />
             <Input type="email" required placeholder="your@email.com" />
+            <Input type="tel" placeholder="Phone number (optional)" />
             <button
               type="submit"
               className="px-6 py-3 rounded-xl bg-primary hover:bg-primary-hover text-text-inverse cursor-pointer font-bold transition-all duration-200 hover:-translate-y-0.5 shadow-lg shadow-primary/25"
