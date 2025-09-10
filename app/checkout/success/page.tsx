@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase/supabase-client";
@@ -13,7 +13,13 @@ export default function CheckoutSuccessPage() {
   const [status, setStatus] = useState<"pending" | "success" | "error">(
     "pending"
   );
+  const params = useSearchParams();
+  const redirectedFromApp = params.get("fromApp") === "1";
   const router = useRouter();
+
+  const redirectLink = redirectedFromApp
+    ? "quailreader://checkout/success"
+    : STRIPE_CHECKOUT_SUCCESS_PATH;
 
   useEffect(() => {
     const interval = setInterval(async () => {
@@ -45,14 +51,15 @@ export default function CheckoutSuccessPage() {
 
         clearInterval(interval);
         setStatus("success");
+
         setTimeout(() => {
-          router.push(STRIPE_CHECKOUT_SUCCESS_PATH);
+          router.push(redirectLink);
         }, 1000);
       }
     }, 1500);
 
     return () => clearInterval(interval);
-  }, [router]);
+  }, [router, redirectLink]);
 
   return (
     <>
@@ -91,13 +98,14 @@ export default function CheckoutSuccessPage() {
                 Processing your license upgrade...
                 <br />
                 <Link
-                  href={STRIPE_CHECKOUT_SUCCESS_PATH}
+                  href={redirectLink}
                   className="text-sm hover:underline hover:text-primary transition-colors
                   duration-200 mt-6 inline-block focus-visible:text-primary"
                   aria-label="Go to your dashboard manually if you are not redirected automatically"
                   title="Go to dashboard"
                 >
-                  If not redirected soon, click here to go to the dashboard.
+                  If not redirected soon, click here to go{" "}
+                  {redirectedFromApp ? "back to the app" : "to the dashboard."}
                 </Link>
               </>
             )}
