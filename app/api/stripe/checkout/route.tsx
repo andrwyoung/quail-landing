@@ -15,11 +15,17 @@ export async function POST(req: NextRequest) {
     return new NextResponse("Stripe is disabled", { status: 403 });
   }
 
+  const authHeader = req.headers.get("authorization");
+  if (!authHeader?.startsWith("Bearer ")) {
+    return NextResponse.json({ error: "Missing token" }, { status: 401 });
+  }
+  const token = authHeader.split(" ")[1];
+
   const supabase = await createClientSudo();
   const {
     data: { user },
     error,
-  } = await supabase.auth.getUser();
+  } = await supabase.auth.getUser(token);
 
   if (error) {
     throw new Error("Failed to get user");

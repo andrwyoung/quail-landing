@@ -9,6 +9,7 @@ import LoginModal from "@/components/login-modal";
 import { StripeProduct } from "@/types/constants/stripe-constants";
 import { SubscriptionTier } from "@/types/user-types";
 import { useSearchParams } from "next/navigation";
+import { supabase } from "@/lib/supabase/supabase-client";
 
 const MONTHLY_ORIGINAL = 14.99;
 const MONTHLY_DISCOUNT = 8.97;
@@ -50,6 +51,12 @@ export default function PricingPage() {
         if (!res.ok) throw new Error("Token verification failed");
         const { user, profile } = await res.json();
 
+        // hydrate subabase client session
+        await supabase.auth.setSession({
+          access_token: token,
+          refresh_token: "", // only if you have it, otherwise leave empty
+        });
+
         setUser(user);
         setProfile(profile);
       } catch (e) {
@@ -65,7 +72,7 @@ export default function PricingPage() {
     }
 
     setLoading(true);
-    await startCheckout(user.id, product);
+    await startCheckout(product);
     setLoading(false);
   }
 
