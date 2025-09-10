@@ -69,7 +69,9 @@ export async function POST(req: NextRequest) {
         redirectedFromApp ? "&fromApp=1" : ""
       }`,
 
-      cancel_url: `${req.nextUrl.origin}${STRIPE_CANCEL_PATH}`,
+      cancel_url: `${req.nextUrl.origin}${STRIPE_CANCEL_PATH}${
+        redirectedFromApp ? "&fromApp=1" : ""
+      }`,
       metadata: {
         user_id: user.id,
         type: productType,

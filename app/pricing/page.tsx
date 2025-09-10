@@ -42,6 +42,19 @@ export default function PricingPage() {
     const accessToken = params.get("accessToken");
     const refreshToken = params.get("refreshToken");
 
+    const checkout = params.get("checkout");
+    const fromApp = params.get("fromApp") === "1";
+
+    // edge case: came back from a cancelled checkout and originally from app
+    if (checkout === "cancelled" && fromApp) {
+      setRedirectedFromApp(true);
+      toast.info("Checkout was cancelled.");
+
+      // clean link
+      window.history.replaceState({}, "", "/pricing");
+      return;
+    }
+
     if (!accessToken || !refreshToken) {
       console.warn("no tokens in URL → likely not coming from mobile.");
       return;
