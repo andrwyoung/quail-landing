@@ -161,9 +161,15 @@ export default function ForgettingCurve() {
 
       {/* Controls */}
       <div className="flex justify-between items-center gap-3 mb-3">
-        <label htmlFor="daySlider" className="text-sm text-text-light">
+        {/* <label
+          htmlFor="daySlider"
+          className="text-sm hidden md:block text-text-light"
+        >
           Days since you read
-        </label>
+        </label> */}
+        <output className="text-sm font-semibold text-text min-w-[60px]">
+          {day === 1 ? "1 day" : `${day} days `} since read
+        </output>
         <div className="relative flex-1 mx-3">
           <input
             id="daySlider"
@@ -213,9 +219,6 @@ export default function ForgettingCurve() {
             }
           `}</style>
         </div>
-        <output className="text-sm font-semibold text-text min-w-[60px]">
-          {day === 1 ? "1 day" : `${day} days`}
-        </output>
       </div>
 
       <div className="text-center flex justify-center items-center gap-4 mb-2">

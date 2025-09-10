@@ -25,7 +25,7 @@ export default function Navbar({ scrolled = true }: { scrolled?: boolean }) {
     >
       <LoginModal open={openLogin} setOpen={setOpenLogin} />
       <div
-        className="flex flex-row justify-between items-center py-2 md:py-3 px-2 md:px-4 mx-auto
+        className="flex flex-row justify-between items-center py-2 md:py-3 px-4 mx-auto
           gap-2"
       >
         <Link
