@@ -9,7 +9,7 @@ import { Button } from "./ui/button";
 import { useOtpLogin } from "@/hooks/auth/use-otp";
 import { useState } from "react";
 import { useOAuthLogin } from "@/hooks/auth/use-oauth";
-import { FaApple, FaGoogle } from "react-icons/fa6";
+import { FaApple } from "react-icons/fa6";
 
 export default function LoginModal({
   open,
@@ -34,7 +34,6 @@ export default function LoginModal({
   const {
     loading: oAuthLoading,
     message: oAuthMessage,
-    signInWithGoogle,
     signInWithApple,
   } = useOAuthLogin();
 
@@ -125,7 +124,7 @@ export default function LoginModal({
           >
             <FaApple className="size-6" /> Continue with Apple
           </Button>
-          <Button
+          {/* <Button
             type="button"
             disabled={loading}
             onClick={signInWithGoogle}
@@ -133,7 +132,7 @@ export default function LoginModal({
             className="w-full text-text border-text hover:border-primary"
           >
             <FaGoogle /> Continue with Google
-          </Button>
+          </Button> */}
           {oAuthMessage && (
             <p className="text-sm text-text-light self-center">
               {oAuthMessage}
