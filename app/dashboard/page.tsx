@@ -18,6 +18,7 @@ export default function DashboardPage() {
     setLoading(true);
     await supabase.auth.signOut();
     useMetadataStore.getState().reset(); // reset local too
+    window.location.replace("/");
     setLoading(false);
   };
 
