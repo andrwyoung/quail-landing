@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "@/components/navbar";
 import { Button } from "@/components/ui/button";
 import { useMetadataStore } from "@/store/metadata-store";
@@ -8,6 +8,7 @@ import { getHasLicense } from "@/lib/stripe/user-has-license";
 import LoginModal from "@/components/login-modal";
 import { StripeProduct } from "@/types/constants/stripe-constants";
 import { SubscriptionTier } from "@/types/user-types";
+import { useSearchParams } from "next/navigation";
 
 const MONTHLY_ORIGINAL = 14.99;
 const MONTHLY_DISCOUNT = 8.97;
@@ -23,10 +24,39 @@ const annualPercentOff = Math.round(
 );
 
 export default function PricingPage() {
+  const params = useSearchParams();
+
   const user = useMetadataStore((s) => s.user);
   const profile = useMetadataStore((s) => s.profile);
+  const setUser = useMetadataStore((s) => s.setUser);
+  const setProfile = useMetadataStore((s) => s.setProfile);
+
   const [loading, setLoading] = useState(false);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
+
+  useEffect(() => {
+    const token = params.get("authToken");
+    if (!token) return;
+
+    (async () => {
+      try {
+        const res = await fetch("/api/auth/redeem", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        if (!res.ok) throw new Error("Token verification failed");
+        const { user, profile } = await res.json();
+
+        setUser(user);
+        setProfile(profile);
+      } catch (e) {
+        console.error("[pricing] auto-login failed", e);
+      }
+    })();
+  }, [params, setUser, setProfile]);
 
   async function handleCheckout(product: StripeProduct) {
     if (!user?.id) {
@@ -39,7 +69,9 @@ export default function PricingPage() {
     setLoading(false);
   }
 
-  const alreadyBought = getHasLicense(profile?.subscription_tier as SubscriptionTier);
+  const alreadyBought = getHasLicense(
+    profile?.subscription_tier as SubscriptionTier
+  );
   const buyButtonsDisabled = loading || alreadyBought;
   const ACTIVE_SUB_CTA = "Subscription Active";
 
