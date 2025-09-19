@@ -7,26 +7,26 @@
 
 @theme {
   /* Brand / Accent - Updated to match landingpage2.html */
-  --color-primary: #67C6B8; /* quail-mint */
-  --color-primary-hover: #3FA796; /* primary-600 */
-  --color-primary-active: #3FA796; /* hover/mix */
+  --color-primary: #67c6b8; /* quail-mint */
+  --color-primary-hover: #3fa796; /* primary-600 */
+  --color-primary-active: #3fa796; /* hover/mix */
 
-  --color-accent: #EAD9BE; /* sand highlight (annotation) */
+  --color-accent: #ead9be; /* sand highlight (annotation) */
   --color-accent-hover: #f2e7da; /* lighter accent */
-  --color-accent-active: #EAD9BE;
+  --color-accent-active: rgb(154, 137, 114);
 
   /* Backgrounds - Updated to Calm-Play palette */
-  --color-background: #0F1417; /* charcoal with teal undertone */
-  --color-surface: #121A1E; /* card/nav surface */
+  --color-background: #0f1417; /* charcoal with teal undertone */
+  --color-surface: #121a1e; /* card/nav surface */
 
   /* Neutrals / Borders */
-  --color-secondary-bg: #121A1E; /* match surface */
+  --color-secondary-bg: #121a1e; /* match surface */
   --color-border: #223036; /* hairline/outline */
 
   /* Text - Updated to match landingpage2.html */
-  --color-text: #F3F6F5; /* ink - primary text */
-  --color-text-light: #9FB1AE; /* muted - secondary text */
-  --color-text-inverse: #0B1310; /* for light surfaces */
+  --color-text: #f3f6f5; /* ink - primary text */
+  --color-text-light: #9fb1ae; /* muted - secondary text */
+  --color-text-inverse: #0b1310; /* for light surfaces */
 
   /* Semantic */
   --color-success: #10b981; /* emerald-500 */
@@ -34,21 +34,21 @@
   --color-error: #d4374f; /* destructive red */
 
   /* Highlight */
-  --color-highlight: #EAD9BE; /* align with accent */
+  --color-highlight: #ead9be; /* align with accent */
 }
 
 /* Light mode support - matching landingpage2.html */
 @media (prefers-color-scheme: light) {
   @theme {
-    --color-background: #F6F7F6;
-    --color-surface: #FFFFFF;
-    --color-text: #0C1211;
-    --color-text-light: #556A66;
-    --color-primary: #3FA796;
-    --color-primary-hover: #2D887A;
-    --color-accent: #DCC39D;
-    --color-border: #E5EBE8;
-    --color-secondary-bg: #FFFFFF;
-    --color-text-inverse: #F3F6F5;
+    --color-background: #f6f7f6;
+    --color-surface: #ffffff;
+    --color-text: #0c1211;
+    --color-text-light: #556a66;
+    --color-primary: #3fa796;
+    --color-primary-hover: #2d887a;
+    --color-accent: #dcc39d;
+    --color-border: #e5ebe8;
+    --color-secondary-bg: #ffffff;
+    --color-text-inverse: #f3f6f5;
   }
 }

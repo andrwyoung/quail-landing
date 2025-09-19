@@ -8,6 +8,21 @@ import { Input } from "@/components/ui/input";
 import { usePageScroll } from "@/hooks/use-page-scroll";
 import Footer from "@/components/navigation/footer";
 
+const steps = [
+  {
+    title: "1) You import anything",
+    text: "PDFs, EPUBs, newsletters, web clips—seamlessly in one place.",
+  },
+  {
+    title: "2) You clip what matters",
+    text: "Highlight while reading. Context saves automatically—no extra steps.",
+  },
+  {
+    title: "3) You review on time",
+    text: "Short refreshers arrive just before you’d forget. Effortless retention.",
+  },
+];
+
 export default function Home() {
   const { scrolled } = usePageScroll();
 
@@ -37,11 +52,11 @@ export default function Home() {
           }}
         />
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl px-4 md:px-6 items-center justify-center min-h-[65vh] pt-[14vh] mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 max-w-6xl px-4 md:px-6 items-center justify-center min-h-[65vh] pt-[14vh] mx-auto">
           <div className="text-left">
             <h1
-              className="font-header font-medium leading-12 md:leading-20 text-left
-             text-4xl md:text-6xl text-text mb-6"
+              className="font-header font-medium leading-12 md:leading-16 lg:leading-20 text-left
+             text-4xl md:text-5xl lg:text-6xl text-text mb-6"
             >
               <FadingHighlight scrolled={scrolled} fontClass="px-1">
                 World’s First
@@ -117,10 +132,10 @@ export default function Home() {
 
       {/* Forgetting Statistic Section */}
       <section className="max-w-3xl mx-auto mt-16 mb-24 px-6 text-center">
-        <h2 className="font-header font-bold text-4xl md:text-5xl leading-tight mb-4">
+        <h2 className="font-header font-semibold text-4xl md:text-5xl leading-tight mb-4">
           You forget 70% in a day and 90% in a week
         </h2>
-        <p className="font-header font-semibold text-2xl md:text-2xl mt-2">
+        <p className="font-header font-medium text-2xl md:text-2xl mt-2">
           Quail fixes that. Start retaining more today.
         </p>
       </section>
@@ -134,41 +149,23 @@ export default function Home() {
           <div className="text-xs uppercase tracking-wider font-bold text-text-light mb-3">
             How Quail works
           </div>
-          <h2 className="font-header text-3xl md:text-4xl font-bold text-text">
+          <h2 className="font-header text-3xl md:text-4xl font-semibold text-text">
             Designed for retention
           </h2>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          <div className="bg-surface border border-border rounded-2xl p-6 shadow-lg">
-            <div className="text-lg font-bold text-text mb-2">
-              1) You import anything
+          {steps.map((step, idx) => (
+            <div
+              key={idx}
+              className="bg-surface border border-border rounded-xl px-6 py-6 shadow-md"
+            >
+              <div className="text-lg font-semibold text-text mb-2">
+                {step.title}
+              </div>
+              <p className="text-text-light">{step.text}</p>
             </div>
-            {/* [GPT-5] (Edit made) Replace em dashes with regular hyphens on landing page */}
-            <p className="text-text-light">
-              PDFs, EPUBs, newsletters, web clips-seamlessly in one place.
-            </p>
-          </div>
-
-          <div className="bg-surface border border-border rounded-2xl p-6 shadow-lg">
-            <div className="text-lg font-bold text-text mb-2">
-              2) You clip what matters
-            </div>
-            <p className="text-text-light">
-              Highlight while reading. Context saves automatically-no extra
-              steps.
-            </p>
-          </div>
-
-          <div className="bg-surface border border-border rounded-2xl p-6 shadow-lg">
-            <div className="text-lg font-bold text-text mb-2">
-              3) You review on time
-            </div>
-            <p className="text-text-light">
-              Short refreshers arrive just before you&apos;d forget. Effortless
-              retention.
-            </p>
-          </div>
+          ))}
         </div>
 
         {/* Clip Clip Clip: Introducing Incremental Reading */}
@@ -209,12 +206,13 @@ export default function Home() {
             <div className="relative bg-surface border border-border rounded-2xl p-6 shadow-lg overflow-hidden group">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="relative flex flex-col items-center text-center gap-1">
+                <div className="font-header text-5xl font-bold text-text mb-1">
+                  -60%
+                </div>
                 <div className="text-xs uppercase tracking-widest font-bold text-primary mb-1">
                   Fewer tools
                 </div>
-                <div className="font-header text-5xl font-bold text-text ">
-                  -60%
-                </div>
+
                 <p className="text-sm text-text-light mt-1">
                   Replaces e-readers + highlight tools + spaced repetition
                   apps-even if separate tools overwhelmed you before.
@@ -222,15 +220,16 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="relative bg-surface border border-border rounded-2xl p-6 shadow-lg overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="relative bg-surface border border-border rounded-2xl p-6 shadow-md overflow-hidden group">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="relative flex flex-col items-center text-center gap-1">
-                <div className="text-xs uppercase tracking-widest font-bold text-accent mb-1">
-                  Memory retention
-                </div>
-                <div className="font-header text-5xl font-bold text-text">
+                <div className="font-header text-5xl font-bold text-text mb-1">
                   +3x
                 </div>
+                <div className="text-xs uppercase tracking-widest font-bold text-accent-active mb-1">
+                  Memory retention
+                </div>
+
                 <p className="text-sm text-text-light mt-1">
                   Achieve +3x better recall after two weeks in early testing.
                   Real results, minimal effort.
@@ -310,7 +309,7 @@ export default function Home() {
         id="faq"
         className="max-w-3xl mx-auto mb-32 px-6 flex flex-col gap-8 items-center"
       >
-        <h1 className="text-3xl font-header">FAQ</h1>
+        <h1 className="text-3xl font-header font-semibold">FAQ</h1>
         <FAQ />
       </section>
 
