@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase/supabase-client";
 import { ProfileType, useMetadataStore } from "@/store/metadata-store";
-import { SupportEmailAddress } from "@/components/ui/copy-email";
+import CopySupportEmail from "@/components/ui/copy-email";
 import { STRIPE_CHECKOUT_SUCCESS_PATH } from "@/types/constants/stripe-constants";
 
 export default function CheckoutSuccessPage() {
@@ -113,7 +113,7 @@ export default function CheckoutSuccessPage() {
               `Redirecting to ${redirectedFromApp ? "app" : "dashboard"}...`}
             {status === "error" && (
               <>
-                Please contact support: <SupportEmailAddress />
+                Please contact support: <CopySupportEmail />
               </>
             )}
           </div>

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
-import LoginModal from "./login-modal";
+import LoginModal from "../login-modal";
 import { useMetadataStore } from "@/store/metadata-store";
 import { usePathname, useRouter } from "next/navigation";
+import Logo from "../ui/logo";
 
 export default function Navbar({ scrolled = true }: { scrolled?: boolean }) {
   const [openLogin, setOpenLogin] = useState(false);
@@ -38,13 +38,7 @@ export default function Navbar({ scrolled = true }: { scrolled?: boolean }) {
           // }}
           className="flex flex-row items-center transition-transform gap-1 hover:scale-105"
         >
-          <Image
-            src="/logo3.png"
-            alt="Inquiryon Logo. Sparkle!"
-            width={40}
-            height={40}
-            className="w-6 h-6 md:w-10 md:h-10"
-          />
+          <Logo />
           <h6 className="text-lg md:text-2xl font-header text-text">Quail</h6>
         </Link>
 

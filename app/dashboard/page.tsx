@@ -1,6 +1,6 @@
 "use client";
 
-import { SupportEmailAddress } from "@/components/ui/copy-email";
+import CopySupportEmail from "@/components/ui/copy-email";
 import { supabase } from "@/lib/supabase/supabase-client";
 import { useMetadataStore } from "@/store/metadata-store";
 import { useRouter } from "next/navigation";
@@ -63,7 +63,7 @@ export default function DashboardPage() {
         </p>
 
         <p className="text-xs self-center text-text-light/80 mt-8">
-          Need help? Reach out: <SupportEmailAddress />
+          Need help? Reach out: <CopySupportEmail />
         </p>
       </div>
 

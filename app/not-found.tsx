@@ -3,7 +3,7 @@ import Link from "next/link";
 import { FaChevronLeft } from "react-icons/fa";
 import Image from "next/image";
 
-import { SupportEmailAddress } from "@/components/ui/copy-email";
+import CopySupportEmail from "@/components/ui/copy-email";
 import { SHOW_GLOBAL_ANNOUNCEMENT } from "@/types/constants/constants";
 import { GlobalAnnouncement } from "@/components/ui/global-annoucement";
 
@@ -35,7 +35,7 @@ export default function NotFoundComponent() {
         </p>
 
         <p>
-          Mistake? Please reach out: <SupportEmailAddress />
+          Mistake? Please reach out: <CopySupportEmail />
         </p>
 
         {SHOW_GLOBAL_ANNOUNCEMENT && (

@@ -2,7 +2,11 @@
 import { SUPPORT_EMAIL } from "@/types/constants/constants";
 import { toast } from "sonner";
 
-export default function CopySupportEmail() {
+export default function CopySupportEmail({
+  text = "Click to copy email",
+}: {
+  text?: string;
+}) {
   return (
     <button
       type="button"
@@ -14,7 +18,7 @@ export default function CopySupportEmail() {
         toast.success("Email copied!");
       }}
     >
-      {"Click to copy email"}
+      {text}
     </button>
   );
 }

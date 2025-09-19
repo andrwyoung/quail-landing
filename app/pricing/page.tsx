@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import Navbar from "@/components/navbar";
+import Navbar from "@/components/navigation/navbar";
 import { Button } from "@/components/ui/button";
 import { useMetadataStore } from "@/store/metadata-store";
 import { startCheckout } from "@/lib/stripe/start-checkout";

@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from "framer-motion";
 import React, { useId, useState } from "react";
 import { FaCaretDown } from "react-icons/fa6";
 
@@ -88,7 +89,7 @@ function FAQItem({
   const panelId = useId();
 
   return (
-    <div className="border-b border-surface">
+    <div className="border-b border-text-light/30 sm:min-w-full md:min-w-3xl ">
       <h3 className="m-0">
         <button
           id={buttonId}
@@ -107,28 +108,36 @@ function FAQItem({
             }`}
           />
           <span
-            className="text-xl font-regular font-header px-2 py-0.5
-          transition-colors duration-150 group-hover:bg-primary group-hover:text-white rounded-md"
+            className={`text-xl font-regular font-header px-2 py-0.5
+          transition-colors duration-150 rounded-md group-hover:bg-primary group-hover:text-white
+          ${open ? "bg-primary/30" : ""}`}
           >
             {question}
           </span>
         </button>
       </h3>
 
-      <div
-        id={panelId}
-        role="region"
-        aria-labelledby={buttonId}
-        className={`px-4 text-[0.9375rem] leading-relaxed transition-[max-height,opacity,margin] duration-300
-          ${
-            open
-              ? "max-h-64 mb-2 mt-1 opacity-100"
-              : "max-h-0 opacity-0 overflow-hidden"
-          }
-        `}
-      >
-        {children}
-      </div>
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            id={panelId}
+            role="region"
+            aria-labelledby={buttonId}
+            initial={{ opacity: 0, height: 0, marginTop: 0, marginBottom: 0 }}
+            animate={{
+              opacity: 1,
+              height: "auto",
+              marginTop: 4,
+              marginBottom: 8,
+            }}
+            exit={{ opacity: 0, height: 0, marginTop: 0, marginBottom: 0 }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            className="px-4 text-[0.9375rem] leading-relaxed overflow-hidden"
+          >
+            <div className="pt-2 pb-4">{children}</div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

@@ -1,11 +1,12 @@
 "use client";
-import Navbar from "../components/navbar";
+import Navbar from "../components/navigation/navbar";
 import FadingHighlight from "../components/fading-text";
 import FAQ from "./sections/faq";
 import ForgettingCurve from "../components/forgetting-curve";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { usePageScroll } from "@/hooks/use-page-scroll";
+import Footer from "@/components/navigation/footer";
 
 export default function Home() {
   const { scrolled } = usePageScroll();
@@ -346,6 +347,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <Footer />
     </main>
   );
 }
