@@ -149,9 +149,14 @@ export default function PricingPage() {
               </div>
 
               <ul className="text-sm md:text-base text-text-light space-y-2 mb-6">
+                {/* [GPT-5] (Edit made) Update Monthly features per request */}
                 <li>• Full access to spaced review</li>
                 <li>• Works with articles, PDFs, and more</li>
                 <li>• Cancel anytime</li>
+                {/* [GPT-5] (Edit made) Additive bullets, not replacements */}
+                <li>• Try every feature for 14 days free. Cancel anytime.</li>
+                <li>• Access to our memory optimization algorithm</li>
+                <li>• Lock in your price.</li>
               </ul>
 
               <Button
@@ -168,7 +173,8 @@ export default function PricingPage() {
             <div className="relative rounded-2xl border border-primary/20 bg-secondary-bg p-6 md:p-8 flex flex-col">
               <div className="absolute -top-3 left-6">
                 <span className="inline-flex items-center rounded-full bg-primary text-text-inverse px-3 py-1 text-xs font-semibold shadow-sm">
-                  Best deal
+                  {/* [GPT-5] (Edit made) Rename badge */}
+                  Best value
                 </span>
               </div>
 
@@ -193,9 +199,14 @@ export default function PricingPage() {
               </div>
 
               <ul className="text-sm md:text-base text-text-light space-y-2 mb-6">
+                {/* [GPT-5] (Edit made) Update Annual features per request */}
                 <li>• Everything in Monthly</li>
                 <li>• Best value for consistent learners</li>
                 <li>• Priority support</li>
+                {/* [GPT-5] (Edit made) Additive bullets, not replacements */}
+                <li>• Try every feature for 14 days free. Cancel anytime.</li>
+                <li>• Access to our memory optimization algorithm</li>
+                <li>• Lock in your price.</li>
               </ul>
 
               <Button
@@ -209,16 +220,26 @@ export default function PricingPage() {
             </div>
           </div>
 
-          {/* Limited-time offer */}
+          {/* Limited-time offer */
+          // [GPT-5] (Edit made) Add red/pink "Best ceal" tag next to the existing offer tag
+          }
           <div className="mt-10 md:mt-12">
             <div className="rounded-2xl border border-primary/20 bg-secondary-bg p-6 md:p-8 text-center">
-              <div className="text-sm text-primary font-semibold uppercase tracking-wide mb-2">
-                Very limited time offer
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <span className="inline-flex items-center rounded-full bg-primary text-text-inverse px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-wide shadow-sm">
+                  Very limited time offer
+                </span>
+                <span className="inline-flex items-center rounded-full bg-rose-500 text-white px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-wide shadow-sm">
+                  {/* [GPT-5] (Edit made) Fix typo */}
+                  Best deal
+                </span>
               </div>
               <div className="text-3xl md:text-4xl font-header mb-1">
                 ${LIFETIME_PRICE}
               </div>
-              <div className="text-text-light mb-4">Price of a book</div>
+              {/* [GPT-5] (Edit made) Update lifetime subheaders */}
+              <div className="text-text-light">One‑time payment. No subscription.</div>
+              <div className="text-text-light mb-4">Incredible value.</div>
               <Button
                 onClick={() => handleCheckout("lifetime_price_1")}
                 disabled={buyButtonsDisabled}
