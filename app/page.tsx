@@ -24,6 +24,21 @@ const steps = [
   },
 ];
 
+const loopSteps = [
+  {
+    title: "Read normally",
+    text: "Open anything in your library and read as usual - no new workflow to learn.",
+  },
+  {
+    title: "Clip what matters",
+    text: "Highlight a sentence or block that's important. Each clip gets automatically scheduled to come back when you need to see it again - no setup required.",
+  },
+  {
+    title: "Review at the right time",
+    text: "Each day, a short review shows only what’s due - arriving right before you’d forget - so the important ideas stick while the noise falls away.",
+  },
+];
+
 export default function Home() {
   const { scrolled } = usePageScroll();
 
@@ -260,42 +275,20 @@ export default function Home() {
           </h3>
 
           <div className="grid gap-5">
-            <div className="grid grid-cols-[24px_1fr] gap-3 md:gap-4 items-center">
-              <FaFeatherPointed className="text-primary" />
-              <div>
-                <h4 className="font-header text-lg mb-1">Read normally</h4>
-                <p className="text-sm md:text-base text-text-light">
-                  Open anything in your library and read as usual - no new
-                  workflow to learn.
-                </p>
+            {loopSteps.map((step, idx) => (
+              <div
+                key={idx}
+                className="grid grid-cols-[24px_1fr] gap-3 md:gap-4 items-center"
+              >
+                <FaFeatherPointed className="text-primary text-xl scale-x-[-1]" />
+                <div>
+                  <h4 className="font-header text-lg mb-1">{step.title}</h4>
+                  <p className="text-sm md:text-base text-text-light">
+                    {step.text}
+                  </p>
+                </div>
               </div>
-            </div>
-
-            <div className="grid grid-cols-[24px_1fr] gap-3 md:gap-4 items-center">
-              <FaFeatherPointed className="text-primary" />
-              <div>
-                <h4 className="font-header text-lg mb-1">Clip what matters</h4>
-                <p className="text-sm md:text-base text-text-light">
-                  Highlight a sentence or block that&apos;s important. Each clip
-                  gets automatically scheduled to come back when you need to see
-                  it again - no setup required.
-                </p>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-[24px_1fr] gap-3 md:gap-4 items-center">
-              <FaFeatherPointed className="text-primary" />
-              <div>
-                <h4 className="font-header text-lg mb-1">
-                  Review at the right time
-                </h4>
-                <p className="text-sm md:text-base text-text-light">
-                  Each day, a short review shows only what’s due - arriving
-                  right before you’d forget - so the important ideas stick while
-                  the noise falls away.
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
 
           <p className="text-sm md:text-base text-text-light mt-6">

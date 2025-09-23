@@ -42,7 +42,10 @@ export default function Navbar({ scrolled = true }: { scrolled?: boolean }) {
           <h6 className="text-lg md:text-2xl font-header text-text">Quail</h6>
         </Link>
 
-        <nav className="flex-row items-center gap-3 hidden md:flex md:gap-6 text-lg md:text-xl font-header whitespace-nowrap">
+        <nav
+          className="flex-row items-center gap-3 hidden lg:flex md:gap-8 text-lg md:text-xl font-header 
+         translate-x-[20%] font-medium whitespace-nowrap"
+        >
           <a
             href="#how"
             onClick={(e) => {

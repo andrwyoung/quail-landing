@@ -103,13 +103,13 @@ function FAQItem({
         >
           <FaFeatherPointed
             aria-hidden="true"
-            className={`shrink-0 transition-transform duration-300 group-hover:text-primary ${
+            className={`shrink-0 text-lg transition-all duration-150 group-hover:-rotate-12 ${
               open ? " text-primary/80" : ""
             }`}
           />
           <span
             className={`text-xl font-regular font-header px-2 py-0.5
-          transition-colors duration-150 rounded-md group-hover:bg-primary group-hover:text-white
+          transition-colors duration-150 rounded-md group-hover:bg-primary/50
           ${open ? "bg-primary/30" : ""}`}
           >
             {question}
