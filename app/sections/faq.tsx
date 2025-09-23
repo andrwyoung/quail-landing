@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useId, useState } from "react";
-import { FaCaretDown } from "react-icons/fa6";
+import { FaFeatherPointed } from "react-icons/fa6";
 
 // [GPT-5] (Edit made)
 
@@ -101,10 +101,10 @@ function FAQItem({
                      focus:outline-none focus-visible:ring-2 focus-visible:ring-primary
                      transition-colors cursor-pointer"
         >
-          <FaCaretDown
+          <FaFeatherPointed
             aria-hidden="true"
-            className={`shrink-0 transition-transform duration-300 ${
-              open ? "rotate-180" : ""
+            className={`shrink-0 transition-transform duration-300 group-hover:text-primary ${
+              open ? " text-primary/80" : ""
             }`}
           />
           <span

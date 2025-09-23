@@ -7,18 +7,19 @@ import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { usePageScroll } from "@/hooks/use-page-scroll";
 import Footer from "@/components/navigation/footer";
+import { FaFeatherPointed } from "react-icons/fa6";
 
 const steps = [
   {
-    title: "1) You import anything",
+    title: "You import anything",
     text: "PDFs, EPUBs, newsletters, web clips—seamlessly in one place.",
   },
   {
-    title: "2) You clip what matters",
+    title: "You clip what matters",
     text: "Highlight while reading. Context saves automatically—no extra steps.",
   },
   {
-    title: "3) You review on time",
+    title: "You review on time",
     text: "Short refreshers arrive just before you’d forget. Effortless retention.",
   },
 ];
@@ -160,8 +161,13 @@ export default function Home() {
               key={idx}
               className="bg-surface border border-border rounded-xl px-6 py-6 shadow-md"
             >
-              <div className="text-lg font-semibold text-text mb-2">
-                {step.title}
+              <div className="flex flex-row items-center gap-4 mb-2">
+                <div className="flex text-lg items-center justify-center w-8 h-8 rounded-full bg-primary text-text-inverse font-bold ">
+                  {idx + 1}
+                </div>
+                <div className="text-lg font-semibold text-text">
+                  {step.title}
+                </div>
               </div>
               <p className="text-text-light">{step.text}</p>
             </div>
@@ -254,8 +260,8 @@ export default function Home() {
           </h3>
 
           <div className="grid gap-5">
-            <div className="grid grid-cols-[24px_1fr] gap-3 md:gap-4 items-start">
-              <div className="mt-2 h-2.5 w-2.5 rounded-full bg-gradient-to-br from-primary to-primary/70" />
+            <div className="grid grid-cols-[24px_1fr] gap-3 md:gap-4 items-center">
+              <FaFeatherPointed className="text-primary" />
               <div>
                 <h4 className="font-header text-lg mb-1">Read normally</h4>
                 <p className="text-sm md:text-base text-text-light">
@@ -265,8 +271,8 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="grid grid-cols-[24px_1fr] gap-3 md:gap-4 items-start">
-              <div className="mt-2 h-2.5 w-2.5 rounded-full bg-gradient-to-br from-primary to-primary/70" />
+            <div className="grid grid-cols-[24px_1fr] gap-3 md:gap-4 items-center">
+              <FaFeatherPointed className="text-primary" />
               <div>
                 <h4 className="font-header text-lg mb-1">Clip what matters</h4>
                 <p className="text-sm md:text-base text-text-light">
@@ -277,8 +283,8 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="grid grid-cols-[24px_1fr] gap-3 md:gap-4 items-start">
-              <div className="mt-2 h-2.5 w-2.5 rounded-full bg-gradient-to-br from-primary to-primary/70" />
+            <div className="grid grid-cols-[24px_1fr] gap-3 md:gap-4 items-center">
+              <FaFeatherPointed className="text-primary" />
               <div>
                 <h4 className="font-header text-lg mb-1">
                   Review at the right time

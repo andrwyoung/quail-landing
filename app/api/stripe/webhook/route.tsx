@@ -7,6 +7,7 @@ import {
   STRIPE_USE_LIVE,
   StripeProduct,
 } from "@/types/constants/stripe-constants";
+import { nowDate } from "@/utils/now-ms";
 
 const endpointSecret = STRIPE_USE_LIVE
   ? process.env.STRIPE_WEBHOOK_SECRET!
@@ -54,7 +55,7 @@ export async function POST(req: Request) {
 
     const { error } = await supabase
       .from("profiles")
-      .update({ subscription_tier: getTierLevel(tier) })
+      .update({ subscription_tier: getTierLevel(tier), updated_at: nowDate() })
       .eq("user_id", userId);
 
     if (error) {
