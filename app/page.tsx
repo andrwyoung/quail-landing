@@ -147,7 +147,7 @@ export default function Home() {
       <div aria-hidden="true" className="w-full border-t border-border my-12" />
 
       {/* Forgetting Statistic Section */}
-      <section className="max-w-3xl mx-auto mt-16 mb-24 px-6 text-center">
+      <section className="max-w-3xl mx-auto mt-16 mb-12 px-6 text-center">
         <h2 className="font-header font-semibold text-4xl md:text-5xl leading-tight mb-4">
           You forget 70% in a day and 90% in a week
         </h2>
@@ -160,7 +160,17 @@ export default function Home() {
       <div aria-hidden="true" className="w-full border-t border-border my-12" />
 
       {/* How It Works Section - Simplified */}
-      <section id="how" className="max-w-5xl mx-auto mt-8 mb-24 px-6">
+      <section
+        id="how"
+        className="max-w-5xl mx-auto mt-8 mb-24 px-6 flex flex-col items-center"
+      >
+        <Image
+          src={"/books4.png"}
+          alt={"kale reading books"}
+          width={1208}
+          height={864}
+          className="max-w-md mb-18 self-center"
+        />
         <div className="text-center mb-12">
           <div className="text-xs uppercase tracking-wider font-bold text-text-light mb-3">
             How Quail works
@@ -177,8 +187,19 @@ export default function Home() {
               className="bg-surface border border-border rounded-xl px-6 py-6 shadow-md"
             >
               <div className="flex flex-row items-center gap-4 mb-2">
-                <div className="flex text-lg items-center justify-center w-8 h-8 rounded-full bg-primary text-text-inverse font-bold ">
+                {/* <div className="flex text-lg items-center justify-center w-8 h-8 rounded-full bg-primary text-text-inverse font-bold ">
                   {idx + 1}
+                </div> */}
+                <div className="relative w-10 h-10 flex items-center justify-center select-none">
+                  <Image
+                    src="/bookicon.png"
+                    alt="Book icon"
+                    fill
+                    className="object-contain"
+                  />
+                  <span className="absolute text-md font-bold text-text-inverse translate-x-[1px] -translate-y-[4px] -rotate-16">
+                    {idx + 1}
+                  </span>
                 </div>
                 <div className="text-lg font-semibold text-text">
                   {step.title}
