@@ -4,6 +4,7 @@ import LoginModal from "../login-modal";
 import { useMetadataStore } from "@/store/metadata-store";
 import { usePathname, useRouter } from "next/navigation";
 import Logo from "../ui/logo";
+import { FaFeatherPointed } from "react-icons/fa6";
 
 export default function Navbar({ scrolled = true }: { scrolled?: boolean }) {
   const [openLogin, setOpenLogin] = useState(false);
@@ -97,12 +98,14 @@ export default function Navbar({ scrolled = true }: { scrolled?: boolean }) {
           </Link>
           <button
             className="font-body text-sm md:text-base hover:underline hover:text-primary
-              transition-all duration-150 cursor-pointer font-semibold"
+              transition-all duration-50 cursor-pointer font-semibold flex flex-row items-center 
+              group gap-1"
             onClick={() => {
               if (loggedIn) router.replace("/dashboard");
               else setOpenLogin(true);
             }}
           >
+            <FaFeatherPointed className="group-hover:-rotate-12 translate-y-[1px]" />
             {loggedIn ? "Account" : "Login"}
           </button>
 

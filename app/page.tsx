@@ -164,13 +164,24 @@ export default function Home() {
         id="how"
         className="max-w-5xl mx-auto mt-8 mb-24 px-6 flex flex-col items-center"
       >
-        <Image
-          src={"/books4.png"}
-          alt={"kale reading books"}
-          width={1208}
-          height={864}
-          className="max-w-md mb-18 self-center"
-        />
+        <div className="relative max-w-md mb-18 self-center group">
+          {/* default image */}
+          <Image
+            src="/books4.png"
+            alt="kale reading books"
+            width={1208}
+            height={864}
+            className="opacity-100 group-hover:opacity-0"
+          />
+          {/* hover image */}
+          <Image
+            src="/books4-smile.png"
+            alt="kale reading books hover"
+            width={1208}
+            height={864}
+            className="absolute inset-0 opacity-0 group-hover:opacity-100"
+          />
+        </div>
         <div className="text-center mb-12">
           <div className="text-xs uppercase tracking-wider font-bold text-text-light mb-3">
             How Quail works
@@ -197,7 +208,7 @@ export default function Home() {
                     fill
                     className="object-contain"
                   />
-                  <span className="absolute text-md font-bold text-text-inverse translate-x-[1px] -translate-y-[4px] -rotate-16">
+                  <span className="absolute text-lg font-header font-bold text-text-inverse translate-x-[1px] -translate-y-[5px] -rotate-20">
                     {idx + 1}
                   </span>
                 </div>
