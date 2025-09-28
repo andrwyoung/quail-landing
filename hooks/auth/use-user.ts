@@ -75,6 +75,7 @@ export function useUser() {
       const {
         data: { user },
       } = await supabase.auth.getUser();
+      setUser(user ?? null); // let store know that we are simply just not logged in
       if (user) onLogin(user); // if logged in then run the check
     };
 
