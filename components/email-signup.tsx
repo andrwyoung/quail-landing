@@ -1,6 +1,7 @@
-// UNSUED
-
 import * as React from "react";
+import { Input } from "./ui/input";
+import { FaCrow } from "react-icons/fa6";
+import { fireConfetti } from "@/utils/fire-confetti";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -21,6 +22,10 @@ export default function EmailSignup({
   const [status, setStatus] = React.useState<Status>("idle");
   const [errorMsg, setErrorMsg] = React.useState<string | null>(null);
   const [trap, setTrap] = React.useState(""); // honeypot to catch bots
+  const [clickPosition, setClickPosition] = React.useState<{
+    x: number;
+    y: number;
+  } | null>(null);
 
   const hasError = status === "error" && !!errorMsg;
   const errorId = hasError ? "email-signup-error" : undefined;
@@ -32,30 +37,33 @@ export default function EmailSignup({
       type: "text" as const,
       autoComplete: "name",
       inputMode: undefined,
-      placeholder: "Your name",
+      placeholder: "Name",
       value: name,
       set: setName,
       label: "Full name",
+      inputClass: "min-w-[200px]",
     },
     {
       id: "email-signup-input",
       type: "email" as const,
       autoComplete: "email",
       inputMode: "email" as const,
-      placeholder: "Email address",
+      placeholder: "Email Address",
       value: email,
       set: setEmail,
       label: "Email address",
+      inputClass: "min-w-[280px]",
     },
     {
       id: "phone-signup-input",
       type: "tel" as const,
       autoComplete: "tel",
       inputMode: "tel" as const,
-      placeholder: "Phone number (optional)",
+      placeholder: "Phone Number (Optional)",
       value: phone,
       set: setPhone,
       label: "Phone number",
+      inputClass: "min-w-[200px]",
     },
   ];
 
@@ -108,6 +116,10 @@ export default function EmailSignup({
       setName("");
       setEmail("");
       setPhone("");
+
+      // delight: add some confetti
+      fireConfetti(clickPosition?.x, clickPosition?.y);
+
       onSuccess?.();
     } catch (err: unknown) {
       const message =
@@ -140,12 +152,19 @@ export default function EmailSignup({
       <label htmlFor="phone-signup-input" className="sr-only">
         Phone number
       </label>
-
       <div className="w-full flex flex-col items-center">
-        <div className="w-full max-w-xl flex flex-col gap-2 md:gap-3 justify-center mb-4">
+        <div className="w-full max-w-xl flex flex-wrap gap-2 md:gap-3 justify-center mb-4">
           {fields.map(
-            ({ id, autoComplete, inputMode, placeholder, value, set }) => (
-              <input
+            ({
+              id,
+              autoComplete,
+              inputMode,
+              placeholder,
+              value,
+              set,
+              inputClass,
+            }) => (
+              <Input
                 key={id}
                 id={id}
                 value={value}
@@ -161,11 +180,8 @@ export default function EmailSignup({
                 aria-invalid={hasError ? true : undefined}
                 aria-describedby={errorId || statusId}
                 spellCheck={false}
-                className="w-full px-4 py-2 rounded-lg border-2 border-border
-                   focus:border-primary/20
-                   bg-background text-text placeholder:text-muted placeholder:font-semibold
-                   focus:outline-none focus:ring-2 focus:ring-primary"
-              ></input>
+                className={`${inputClass} bg-white flex-1`}
+              ></Input>
             )
           )}
         </div>
@@ -176,12 +192,16 @@ export default function EmailSignup({
             disabled={status === "loading"}
             title="Join the Waitlist!"
             aria-controls={statusId}
-            className={`px-8 py-2 text-lg font-bold rounded-lg transition-all duration-150
-                       bg-primary hover:bg-primary-hover text-background shadow-md hover:shadow-lg
+            onClick={(e) => {
+              setClickPosition({ x: e.clientX, y: e.clientY });
+            }}
+            className={`px-8 py-2 text-md  rounded-xl transition-all duration-150 font-bold
+                       bg-primary hover:bg-primary-hover text-background hover:shadow-lg
                        disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer
+                       shadow-lg shadow-primary/25 hover:-translate-y-0.5 
                        inline-flex items-center justify-center gap-2 active:scale-95`}
           >
-            {status === "loading" && (
+            {status === "loading" ? (
               <svg
                 className="animate-spin h-5 w-5"
                 viewBox="0 0 24 24"
@@ -198,17 +218,13 @@ export default function EmailSignup({
                 />
                 <path d="M22 12a10 10 0 0 1-10 10" fill="currentColor" />
               </svg>
+            ) : (
+              <FaCrow />
             )}
-            {status === "loading" ? "Submitting..." : "Join the Waitlist!"}
+            {status === "loading" ? "Submitting..." : "Request Invite!"}
           </button>
         </div>
-        <div className="w-full text-center mt-2">
-          <span className="text-sm text-text-light">
-            No spam. We’ll only contact you when your Quail invite is ready.
-          </span>
-        </div>
       </div>
-
       {/* Honeypot */}
       <div className="hidden" aria-hidden="true">
         <label>
@@ -222,25 +238,27 @@ export default function EmailSignup({
           />
         </label>
       </div>
-
       {/* Status / errors */}
       <div
         id={statusId}
-        className="mt-2 text-sm font-semibold ml-2 h-8"
+        className="mt-2 text-sm font-semibold  "
         role="status"
         aria-live="polite"
       >
         {status === "success" && (
-          <span className="text-emerald-600">
-            Thank you for your interest. We will let you know when your invite
+          <span className="text-emerald-600 pb-4">
+            Thanks for your interest! We&apos;ll let you know when your invite
             is ready.
           </span>
         )}
         {hasError && (
-          <span id={errorId} className="text-rose-600">
+          <span id={errorId} className="text-rose-600 pb-4">
             {errorMsg}
           </span>
         )}
+      </div>
+      <div className="w-full text-center text-xs text-text-light mt-1">
+        We only contact you about your Quail invite. Opt out anytime!
       </div>
     </form>
   );

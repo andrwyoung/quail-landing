@@ -19,3 +19,16 @@ export default function FadeInOnScroll({
     </motion.div>
   );
 }
+
+export function FadeIn({ children }: { children: React.ReactNode }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      viewport={{ once: true }}
+    >
+      {children}
+    </motion.div>
+  );
+}

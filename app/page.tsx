@@ -3,14 +3,14 @@ import Navbar from "../components/navigation/navbar";
 import FAQ from "./sections/faq";
 import ForgettingCurve from "../components/forgetting-curve";
 import Image from "next/image";
-import { Input } from "@/components/ui/input";
 import { usePageScroll } from "@/hooks/use-page-scroll";
 import Footer from "@/components/navigation/footer";
 import { FaFeatherPointed } from "react-icons/fa6";
 import Hero from "./sections/hero";
 import FadeInOnScroll from "@/components/ui/animations/fade-in-on-scroll";
 import { motion } from "framer-motion";
-import RequestInviteButton from "@/components/request-invite-button";
+import EmailSignup from "@/components/email-signup";
+import { fireConfetti } from "@/utils/fire-confetti";
 
 const steps = [
   {
@@ -42,8 +42,19 @@ const loopSteps = [
   },
 ];
 
+let lastConfettiTime = 0;
+const COOLDOWN_MS = 2000; // 2 seconds
+
 export default function Home() {
   const { scrolled } = usePageScroll();
+
+  const handleConfetti = (e: React.MouseEvent) => {
+    const now = Date.now();
+    if (now - lastConfettiTime < COOLDOWN_MS) return;
+    lastConfettiTime = now;
+
+    fireConfetti(e.clientX, e.clientY);
+  };
 
   return (
     <main className="relative flex flex-col items-center min-h-screen bg-background text-text font-body">
@@ -82,7 +93,9 @@ export default function Home() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
-            className="relative max-w-xs md:max-w-md xl:max-w-xl group"
+            className="relative max-w-xs md:max-w-md xl:max-w-xl group cursor-pointer select-none"
+            title="Hi!"
+            onClick={handleConfetti}
           >
             {/* default image */}
             <Image
@@ -90,14 +103,14 @@ export default function Home() {
               alt="Hero Image"
               width={1932}
               height={1382}
-              className="opacity-100 group-hover:opacity-0"
+              className="opacity-100 group-hover:opacity-0 select-none"
             />
             <Image
               src={"/books-trans3b.png"}
               alt="Hero Image"
               width={1932}
               height={1382}
-              className="absolute inset-0 opacity-0 group-hover:opacity-100"
+              className="absolute inset-0 opacity-0 group-hover:opacity-100 select-none"
             />
           </motion.div>
         </div>
@@ -321,26 +334,7 @@ export default function Home() {
             Get early access
           </h2>
 
-          <form className="flex gap-3 flex-wrap justify-center items-center mb-4">
-            {/* [GPT-5] (Edit made) Add required name input and optional phone input */}
-            <Input type="text" required placeholder="Name" />
-            <Input type="email" required placeholder="Email" />
-            <Input
-              type="tel"
-              placeholder="Phone Number (Optional)"
-              className="mb-4"
-            />
-            <RequestInviteButton label="Request Invite" />
-          </form>
-
-          <div className="flex justify-center gap-3 text-sm text-text-light">
-            <span className="px-3 py-1 rounded-md bg-background border border-border">
-              No spam
-            </span>
-            <span className="px-3 py-1 rounded-md bg-background border border-border">
-              1-click opt-out
-            </span>
-          </div>
+          <EmailSignup />
         </div>
       </section>
 
