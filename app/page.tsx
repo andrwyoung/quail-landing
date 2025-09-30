@@ -10,7 +10,6 @@ import Hero from "./sections/hero";
 import FadeInOnScroll from "@/components/ui/animations/fade-in-on-scroll";
 import { motion } from "framer-motion";
 import EmailSignup, { EmailSignupHandle } from "@/components/email-signup";
-import { fireConfetti } from "@/utils/fire-confetti";
 import { useRef } from "react";
 
 const steps = [
@@ -43,20 +42,20 @@ const loopSteps = [
   },
 ];
 
-let lastConfettiTime = 0;
-const COOLDOWN_MS = 2000; // 2 seconds
+// let lastConfettiTime = 0;
+// const COOLDOWN_MS = 2000; // 2 seconds
 
 export default function Home() {
   const { scrolled } = usePageScroll();
   const signupRef = useRef<EmailSignupHandle>(null);
 
-  const handleConfetti = (e: React.MouseEvent) => {
-    const now = Date.now();
-    if (now - lastConfettiTime < COOLDOWN_MS) return;
-    lastConfettiTime = now;
+  // const handleConfetti = (e: React.MouseEvent) => {
+  //   const now = Date.now();
+  //   if (now - lastConfettiTime < COOLDOWN_MS) return;
+  //   lastConfettiTime = now;
 
-    fireConfetti(e.clientX, e.clientY);
-  };
+  //   fireConfetti(e.clientX, e.clientY);
+  // };
 
   return (
     <main className="relative flex flex-col items-center min-h-screen bg-background text-text font-body">
@@ -69,8 +68,8 @@ export default function Home() {
         style={{
           minHeight: "calc(100vh - 0px)",
           background: `
-            radial-gradient(1800px 900px at 18% -10%, color-mix(in oklab, var(--color-primary) 26%, transparent) 0%, transparent 65%),
-            radial-gradient(1400px 750px at 82% 15%, color-mix(in oklab, var(--color-accent) 18%, transparent) 0%, transparent 70%),
+            radial-gradient(1800px 900px at 50% 0%, color-mix(in oklab, var(--color-primary) 20%, transparent) 0%, transparent 65%),
+            radial-gradient(1400px 750px at 20% 15%, color-mix(in oklab, var(--color-accent) 14%, transparent) 0%, transparent 30%),
             linear-gradient(180deg, color-mix(in oklab, var(--color-background) 92%, #000 8%), var(--color-background))
           `,
         }}
@@ -97,18 +96,18 @@ export default function Home() {
             viewport={{ once: true }}
             className="relative max-w-xs md:max-w-md xl:max-w-xl group cursor-pointer select-none"
             title="Hi!"
-            onClick={handleConfetti}
+            // onClick={handleConfetti}
           >
             {/* default image */}
             <Image
-              src={"/books-trans3.png"}
+              src={"/section_002.webp"}
               alt="Hero Image"
               width={1932}
               height={1382}
               className="opacity-100 group-hover:opacity-0 select-none"
             />
             <Image
-              src={"/books-trans3b.png"}
+              src={"/section_001.webp"}
               alt="Hero Image"
               width={1932}
               height={1382}
@@ -117,10 +116,6 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
-
-      {/* Section separator */}
-      {/* <div aria-hidden="true" className="w-full border-t border-border my-12" /> */}
-
       {/* Forgetting Statistic Section */}
       <section
         className="max-w-3xl mx-auto mt-48 md:mt-12 mb-32 px-2 flex flex-col items-center 
@@ -139,13 +134,10 @@ export default function Home() {
         </p> */}
       </section>
 
-      {/* Section separator */}
-      {/* <div aria-hidden="true" className="w-full border-t border-border my-12" /> */}
-
       {/* How It Works Section - Simplified */}
       <section
         id="how"
-        className="max-w-5xl mx-auto mt-8 mb-24 px-6 flex flex-col items-center"
+        className="max-w-5xl mx-auto mt-8 mb-64 px-6 flex flex-col items-center"
       >
         <div className="relative max-w-md mb-18 self-center group">
           {/* default image */}
@@ -220,11 +212,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section separator */}
-      <div aria-hidden="true" className="w-full border-t border-border my-12" />
-
       {/* Trust Signals/Proof Section */}
-      <section className="max-w-4xl mx-auto mb-24 px-6">
+      <section className="max-w-4xl mx-auto mb-64 px-6">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="order-2 md:order-1">
             <Image
@@ -276,41 +265,43 @@ export default function Home() {
       </section>
 
       {/* Section separator */}
-      <div aria-hidden="true" className="w-full border-t border-border my-12" />
+      {/* <div aria-hidden="true" className="w-full border-t border-border my-12" /> */}
 
       {/* Read → Mark → Review explainer */}
-      <section className="max-w-5xl mx-auto mb-24 px-6">
-        <div className="bg-surface/70 border border-white/10 rounded-2xl p-6 md:p-8">
-          <div className="text-xs uppercase tracking-[.18em] font-bold text-primary">
-            One simple loop
-          </div>
-          <h3 className="font-header font-semibold text-2xl md:text-3xl mt-1 mb-4">
-            Read · Clip · Review
-          </h3>
+      <section className="max-w-5xl mx-auto mb-48 px-6">
+        <FadeInOnScroll>
+          <div className="bg-surface/70 border border-white/10 rounded-2xl p-6 md:p-8">
+            <div className="text-xs uppercase tracking-[.18em] font-bold text-primary">
+              One simple loop
+            </div>
+            <h3 className="font-header font-semibold text-2xl md:text-3xl mt-1 mb-4">
+              Read · Clip · Review
+            </h3>
 
-          <div className="grid gap-5">
-            {loopSteps.map((step, idx) => (
-              <div
-                key={idx}
-                className="grid grid-cols-[24px_1fr] gap-3 md:gap-4 items-center"
-              >
-                <FaFeatherPointed className="text-primary text-xl scale-x-[-1]" />
-                <div>
-                  <h4 className="font-header text-lg mb-1">{step.title}</h4>
-                  <p className="text-sm md:text-base text-text-light">
-                    {step.text}
-                  </p>
+            <div className="grid gap-5">
+              {loopSteps.map((step, idx) => (
+                <div
+                  key={idx}
+                  className="grid grid-cols-[24px_1fr] gap-3 md:gap-4 items-center"
+                >
+                  <FaFeatherPointed className="text-primary text-xl scale-x-[-1]" />
+                  <div>
+                    <h4 className="font-header text-lg mb-1">{step.title}</h4>
+                    <p className="text-sm md:text-base text-text-light">
+                      {step.text}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
 
-          <p className="text-sm md:text-base text-text-light mt-6">
-            This simple loop builds lasting memory. In minutes a day. Even if
-            you&apos;re short on time. Just a reader that revives your key
-            ideas-exactly when you need them.
-          </p>
-        </div>
+            <p className="text-sm md:text-base text-text-light mt-6">
+              This simple loop builds lasting memory. In minutes a day. Even if
+              you&apos;re short on time. Just a reader that revives your key
+              ideas-exactly when you need them.
+            </p>
+          </div>
+        </FadeInOnScroll>
       </section>
 
       {/* Testimonials Section */}
@@ -328,16 +319,18 @@ export default function Home() {
 
       {/* Final Call to Action */}
       <section id="cta" className="max-w-2xl mx-auto mb-18 px-6">
-        <div className="bg-surface rounded-xl px-8 py-6 text-center shadow-xl ">
-          <div className="text-xs uppercase tracking-wider font-bold text-text-light mb-2">
-            Join the waitlist
-          </div>
-          <h2 className="font-header text-2xl md:text-3xl font-bold text-text mb-8">
-            Get early access
-          </h2>
+        <FadeInOnScroll>
+          <div className="bg-surface rounded-xl px-8 py-6 text-center shadow-xl ">
+            <div className="text-xs uppercase tracking-wider font-bold text-text-light mb-2">
+              Join the waitlist
+            </div>
+            <h2 className="font-header text-2xl md:text-3xl font-bold text-text mb-8">
+              Get early access
+            </h2>
 
-          <EmailSignup ref={signupRef} />
-        </div>
+            <EmailSignup ref={signupRef} />
+          </div>
+        </FadeInOnScroll>
       </section>
 
       <Footer />
