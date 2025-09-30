@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import React, { RefObject, useState } from "react";
 import Link from "next/link";
 import LoginModal from "../login-modal";
 import { useMetadataStore } from "@/store/metadata-store";
 import { usePathname, useRouter } from "next/navigation";
 import Logo from "../ui/logo";
 import { FaFeatherPointed } from "react-icons/fa6";
+import { EmailSignupHandle } from "../email-signup";
 
-export default function Navbar({ scrolled = true }: { scrolled?: boolean }) {
+export default function Navbar({
+  scrolled = true,
+  signupRef,
+}: {
+  scrolled?: boolean;
+  signupRef?: RefObject<EmailSignupHandle | null>;
+}) {
   const [openLogin, setOpenLogin] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
@@ -112,7 +119,6 @@ export default function Navbar({ scrolled = true }: { scrolled?: boolean }) {
           <button
             type="button"
             onClick={() => {
-              // [GPT-5] (Edit made) Route to landing CTA from other pages
               if (pathname === "/") {
                 document
                   .getElementById("cta")
@@ -120,6 +126,8 @@ export default function Navbar({ scrolled = true }: { scrolled?: boolean }) {
               } else {
                 router.push("/#cta");
               }
+
+              signupRef?.current?.focusFirstInput();
             }}
             title="Scroll to sign up sheet"
             aria-label="Scroll to sign up sheet"

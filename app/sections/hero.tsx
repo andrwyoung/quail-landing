@@ -26,7 +26,7 @@ export default function Hero({ scrolled }: HeroProps) {
             For busy readers who <strong>forget insights</strong> after reading
             books or newsletters. You import any text. We help you
           </FadingHighlight>{" "}
-          <strong>remember what matters.</strong>
+          <strong>remember what matters!</strong>
         </p>
 
         {/* Always visible email signup */}

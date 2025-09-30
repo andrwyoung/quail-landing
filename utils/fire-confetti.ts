@@ -12,6 +12,7 @@ export const fireConfetti = (xClick?: number, yClick?: number) => {
   confetti({
     particleCount: 100,
     spread: 360,
+    startVelocity: 40,
     colors: ["67c6b8", "3fa796", "10b981"],
     shapes: ["circle", "square"],
 

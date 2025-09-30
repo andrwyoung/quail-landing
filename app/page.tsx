@@ -9,8 +9,9 @@ import { FaFeatherPointed } from "react-icons/fa6";
 import Hero from "./sections/hero";
 import FadeInOnScroll from "@/components/ui/animations/fade-in-on-scroll";
 import { motion } from "framer-motion";
-import EmailSignup from "@/components/email-signup";
+import EmailSignup, { EmailSignupHandle } from "@/components/email-signup";
 import { fireConfetti } from "@/utils/fire-confetti";
+import { useRef } from "react";
 
 const steps = [
   {
@@ -47,6 +48,7 @@ const COOLDOWN_MS = 2000; // 2 seconds
 
 export default function Home() {
   const { scrolled } = usePageScroll();
+  const signupRef = useRef<EmailSignupHandle>(null);
 
   const handleConfetti = (e: React.MouseEvent) => {
     const now = Date.now();
@@ -58,7 +60,7 @@ export default function Home() {
 
   return (
     <main className="relative flex flex-col items-center min-h-screen bg-background text-text font-body">
-      <Navbar scrolled={scrolled} />
+      <Navbar scrolled={scrolled} signupRef={signupRef} />
 
       {/* Hero Section with full-width gradient - extended to cover navbar area */}
       <section
@@ -334,7 +336,7 @@ export default function Home() {
             Get early access
           </h2>
 
-          <EmailSignup />
+          <EmailSignup ref={signupRef} />
         </div>
       </section>
 
