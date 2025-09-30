@@ -1,6 +1,5 @@
 "use client";
 import Navbar from "../components/navigation/navbar";
-import FadingHighlight from "../components/fading-text";
 import FAQ from "./sections/faq";
 import ForgettingCurve from "../components/forgetting-curve";
 import Image from "next/image";
@@ -8,6 +7,10 @@ import { Input } from "@/components/ui/input";
 import { usePageScroll } from "@/hooks/use-page-scroll";
 import Footer from "@/components/navigation/footer";
 import { FaFeatherPointed } from "react-icons/fa6";
+import Hero from "./sections/hero";
+import FadeInOnScroll from "@/components/ui/animations/fade-in-on-scroll";
+import { motion } from "framer-motion";
+import RequestInviteButton from "@/components/request-invite-button";
 
 const steps = [
   {
@@ -68,96 +71,61 @@ export default function Home() {
           }}
         />
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-6xl px-4 md:px-6 items-center justify-center min-h-[65vh] pt-[14vh] mx-auto">
-          <div className="text-left">
-            <h1
-              className="font-header font-medium leading-12 md:leading-16 lg:leading-20 text-left
-             text-4xl md:text-5xl lg:text-6xl text-text mb-6"
-            >
-              <FadingHighlight scrolled={scrolled} fontClass="px-1">
-                World’s First
-              </FadingHighlight>
-              <br />
-              Memory Optimized{" "}
-              <FadingHighlight scrolled={scrolled} fontClass="px-1">
-                Reader
-              </FadingHighlight>
-            </h1>
-            <p className="text-md md:text-lg max-w-2xl mb-8">
-              <FadingHighlight scrolled={scrolled} fontClass="">
-                Ideal for busy readers who forget insights days after finishing
-                a book or newsletter. You import any text. You
-              </FadingHighlight>{" "}
-              read normally.{" "}
-              <FadingHighlight scrolled={scrolled} fontClass="">
-                You mark what&apos;s important and remember it effortlessly with
-                auto-built reviews that fit your life. We help you
-              </FadingHighlight>{" "}
-              <span className="font-bold">Remember what matters.</span>
-            </p>
+        <div
+          className="flex flex-col lg:flex-row gap-12 lg:gap-20 max-w-7xl px-4 
+        md:px-6 items-center justify-center min-h-[65vh] pt-[14vh] mx-auto"
+        >
+          <Hero scrolled={scrolled} />
 
-            {/* Always visible email signup */}
-            <div className="w-full max-w-lg mx-auto">
-              <form className="flex gap-3 flex-wrap justify-center items-center">
-                {/* [GPT-5] (Edit made) Add required name input and optional phone input */}
-                <Input
-                  type="text"
-                  required
-                  placeholder="Your name"
-                  className="bg-surface min-w-[200px] flex-1"
-                />
-                <Input
-                  type="email"
-                  required
-                  placeholder="your@email.com"
-                  className="bg-surface min-w-[280px] flex-1"
-                />
-                <Input
-                  type="tel"
-                  placeholder="Phone number (optional)"
-                  className="bg-surface min-w-[200px] flex-1"
-                />
-                <button
-                  type="submit"
-                  className="px-6 py-3 rounded-xl bg-primary hover:bg-primary-hover 
-                  cursor-pointer font-bold text-text-inverse  transition-all duration-200 hover:-translate-y-0.5 shadow-lg shadow-primary/25"
-                >
-                  Request Invite
-                </button>
-              </form>
-              <div className="flex justify-center gap-3 mt-3 text-sm text-text-light">
-                <span className="px-3 py-1 rounded-md bg-surface/50 border border-border">
-                  No spam
-                </span>
-                <span className="px-3 py-1 rounded-md bg-surface/50 border border-border">
-                  1-click opt-out
-                </span>
-              </div>
-            </div>
-          </div>
-          <aside className="w-full flex justify-center md:justify-end mt-16 mb-12 md:my-0">
-            <div className="relative w-full max-w-md">
-              <ForgettingCurve />
-            </div>
-          </aside>
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="relative max-w-xs md:max-w-md xl:max-w-xl group"
+          >
+            {/* default image */}
+            <Image
+              src={"/books-trans3.png"}
+              alt="Hero Image"
+              width={1932}
+              height={1382}
+              className="opacity-100 group-hover:opacity-0"
+            />
+            <Image
+              src={"/books-trans3b.png"}
+              alt="Hero Image"
+              width={1932}
+              height={1382}
+              className="absolute inset-0 opacity-0 group-hover:opacity-100"
+            />
+          </motion.div>
         </div>
       </section>
 
       {/* Section separator */}
-      <div aria-hidden="true" className="w-full border-t border-border my-12" />
+      {/* <div aria-hidden="true" className="w-full border-t border-border my-12" /> */}
 
       {/* Forgetting Statistic Section */}
-      <section className="max-w-3xl mx-auto mt-16 mb-12 px-6 text-center">
-        <h2 className="font-header font-semibold text-4xl md:text-5xl leading-tight mb-4">
+      <section
+        className="max-w-3xl mx-auto mt-48 md:mt-12 mb-32 px-2 flex flex-col items-center 
+      text-center rounded-2xl"
+      >
+        <h2 className="font-header font-semibold text-3xl sm:text-4xl md:text-5xl leading-tight px-4">
           You forget 70% in a day and 90% in a week
         </h2>
-        <p className="font-header font-medium text-2xl md:text-2xl mt-2">
+        {/* <aside className="w-full flex justify-center md:justify-end mt-16 mb-12 md:my-0"> */}
+        <FadeInOnScroll className="relative w-full max-w-xl px-6 py-6 ">
+          <ForgettingCurve />
+        </FadeInOnScroll>
+        {/* </aside> */}
+        {/* <p className="font-header font-medium text-2xl md:text-2xl mt-2">
           Quail fixes that. Start retaining more today.
-        </p>
+        </p> */}
       </section>
 
       {/* Section separator */}
-      <div aria-hidden="true" className="w-full border-t border-border my-12" />
+      {/* <div aria-hidden="true" className="w-full border-t border-border my-12" /> */}
 
       {/* How It Works Section - Simplified */}
       <section
@@ -166,21 +134,20 @@ export default function Home() {
       >
         <div className="relative max-w-md mb-18 self-center group">
           {/* default image */}
-          <Image
+          {/* <Image
             src="/books4.png"
             alt="kale reading books"
             width={1208}
             height={864}
             className="opacity-100 group-hover:opacity-0"
           />
-          {/* hover image */}
           <Image
             src="/books4-smile.png"
             alt="kale reading books hover"
             width={1208}
             height={864}
             className="absolute inset-0 opacity-0 group-hover:opacity-100"
-          />
+          /> */}
         </div>
         <div className="text-center mb-12">
           <div className="text-xs uppercase tracking-wider font-bold text-text-light mb-3">
@@ -346,7 +313,7 @@ export default function Home() {
 
       {/* Final Call to Action */}
       <section id="cta" className="max-w-2xl mx-auto mb-12 px-6">
-        <div className="bg-surface border border-border rounded-2xl p-8 text-center shadow-lg">
+        <div className="bg-surface border border-border rounded-2xl px-8 py-6 text-center shadow-lg">
           <div className="text-xs uppercase tracking-wider font-bold text-text-light mb-3">
             Join the waitlist
           </div>
@@ -356,15 +323,14 @@ export default function Home() {
 
           <form className="flex gap-3 flex-wrap justify-center items-center mb-4">
             {/* [GPT-5] (Edit made) Add required name input and optional phone input */}
-            <Input type="text" required placeholder="Your name" />
-            <Input type="email" required placeholder="your@email.com" />
-            <Input type="tel" placeholder="Phone number (optional)" />
-            <button
-              type="submit"
-              className="px-6 py-3 rounded-xl bg-primary hover:bg-primary-hover text-text-inverse cursor-pointer font-bold transition-all duration-200 hover:-translate-y-0.5 shadow-lg shadow-primary/25"
-            >
-              Request Invite
-            </button>
+            <Input type="text" required placeholder="Name" />
+            <Input type="email" required placeholder="Email" />
+            <Input
+              type="tel"
+              placeholder="Phone Number (Optional)"
+              className="mb-4"
+            />
+            <RequestInviteButton label="Request Invite" />
           </form>
 
           <div className="flex justify-center gap-3 text-sm text-text-light">

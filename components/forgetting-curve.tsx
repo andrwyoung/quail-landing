@@ -32,16 +32,12 @@ export default function ForgettingCurve() {
   const recall = Math.round(Math.exp(-k * day) * 100);
 
   return (
-    // [Grok] Modernized the forgetting curve component by making it declarative, adding fill area, axis labels, and CSS transitions for smoother interactions.
-    <div className="bg-surface border border-border rounded-2xl p-6 shadow-2xl">
-      <div className="text-xs uppercase tracking-wider font-bold text-text-light/80 mb-2">
-        Why it works
+    <div className="">
+      <div className="text-sm uppercase tracking-wider font-bold text-text-light/80 mb-4">
+        Test it out
       </div>
-      <h3 className="font-header text-2xl md:text-3xl font-semibold mb-4 text-text">
-        The forgetting curve
-      </h3>
 
-      <div className="p-3 bg-background rounded-md border border-border mb-4">
+      <div className="px-6 py-8 bg-white rounded-lg border-2 shadow-xl shadow-primary/25  border-primary/80 mb-8">
         <svg
           viewBox="0 0 570 280"
           width="100%"
@@ -67,8 +63,6 @@ export default function ForgettingCurve() {
             stroke="rgba(255,255,255,.22)"
             strokeWidth="1"
           />
-
-          {/* Guides removed per design: no suggested review points */}
 
           {/* Fill under curve */}
           <path d={fillD} fill="url(#fillGradient)" />
@@ -168,7 +162,7 @@ export default function ForgettingCurve() {
           Days since you read
         </label> */}
         <output className="text-sm font-semibold text-text min-w-[60px]">
-          {day === 1 ? "1 day" : `${day} days `} since read
+          {`${day} days `} since read
         </output>
         <div className="relative flex-1 mx-3">
           <input
