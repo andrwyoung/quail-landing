@@ -322,17 +322,17 @@ export default function Home() {
         id="faq"
         className="max-w-3xl mx-auto mb-32 px-6 flex flex-col gap-8 items-center"
       >
-        <h1 className="text-3xl font-header font-semibold">FAQ</h1>
+        <h1 className="text-4xl font-header font-semibold">FAQ</h1>
         <FAQ />
       </section>
 
       {/* Final Call to Action */}
-      <section id="cta" className="max-w-2xl mx-auto mb-12 px-6">
-        <div className="bg-surface border border-border rounded-2xl px-8 py-6 text-center shadow-lg">
-          <div className="text-xs uppercase tracking-wider font-bold text-text-light mb-3">
+      <section id="cta" className="max-w-2xl mx-auto mb-18 px-6">
+        <div className="bg-surface rounded-xl px-8 py-6 text-center shadow-xl ">
+          <div className="text-xs uppercase tracking-wider font-bold text-text-light mb-2">
             Join the waitlist
           </div>
-          <h2 className="font-header text-2xl md:text-3xl font-bold text-text mb-6">
+          <h2 className="font-header text-2xl md:text-3xl font-bold text-text mb-8">
             Get early access
           </h2>
 

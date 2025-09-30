@@ -2,8 +2,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import React, { useId, useState } from "react";
 import { FaFeatherPointed } from "react-icons/fa6";
 
-// [GPT-5] (Edit made)
-
 type faqItem = { question: string; answer: React.ReactNode };
 
 const faqText: faqItem[] = [
@@ -12,8 +10,13 @@ const faqText: faqItem[] = [
     answer: (
       <>
         Quail is a reader that helps you <strong>remember what you read</strong>
-        . You read normally, clip what matters, and Quail brings it back at the
+        . Just read normally, clip what matters, and Quail brings it back at the
         right time so ideas stick.
+        <br />
+        <br />
+        We use well researched algorithmns that medical students and researchers
+        <strong> already use</strong> to learn content extremely fast, and we
+        make it simple for you to use.
       </>
     ),
   },
@@ -21,36 +24,38 @@ const faqText: faqItem[] = [
     question: "Do I need new habits?",
     answer: (
       <>
-        No. <strong>You read as usual</strong>. When something matters, you clip
-        it. Reviews arrive automatically and take just minutes a day.
+        No, just <strong>read as usual</strong>! When something matters, you
+        clip it. Then our app helps resurface the clips at the best time so you
+        don&apos;t forget it.
       </>
     ),
   },
-  {
-    question: 'What is a "clip"?',
-    answer: (
-      <>
-        A clip is a <strong>highlight of a quote or short block</strong> you
-        want to remember. Quail keeps the context and schedules it for you.
-      </>
-    ),
-  },
-  {
-    question: "What is incremental reading?",
-    answer: (
-      <>
-        It is <strong>short, repeated refreshers</strong> that turn your clips
-        into long‑term memory. You do not build decks or manage schedules. Quail
-        handles timing for you.
-      </>
-    ),
-  },
+  // {
+  //   question: 'What is a "clip"?',
+  //   answer: (
+  //     <>
+  //       A clip is a <strong>highlight of a quote or short block</strong> you
+  //       want to remember. Quail keeps the context and schedules it for you.
+  //     </>
+  //   ),
+  // },
+  // {
+  //   question: "What is incremental reading?",
+  //   answer: (
+  //     <>
+  //       It is <strong>short, repeated refreshers</strong> that turn your clips
+  //       into long‑term memory. You do not build decks or manage schedules. Quail
+  //       handles timing for you.
+  //     </>
+  //   ),
+  // },
   {
     question: "How much time does this take?",
     answer: (
       <>
-        Most days take <strong>2–5 minutes</strong>. You only see what is due
-        today, so reviews stay quick and focused.
+        You actually <strong>save time</strong>. Instead of rereading entire
+        books or articles to refresh your memory, just review the clips that
+        matter in a few minutes!
       </>
     ),
   },

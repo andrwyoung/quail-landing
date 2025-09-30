@@ -1,7 +1,7 @@
-import * as React from "react";
 import { Input } from "./ui/input";
 import { FaCrow } from "react-icons/fa6";
 import { fireConfetti } from "@/utils/fire-confetti";
+import React from "react";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -278,4 +278,5 @@ const EmailSignup = React.forwardRef<EmailSignupHandle, EmailSignupProps>(
   }
 );
 
+EmailSignup.displayName = "EmailSignup";
 export default EmailSignup;
