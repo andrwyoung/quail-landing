@@ -1,4 +1,5 @@
 import React from "react";
+import { FaFeatherPointed } from "react-icons/fa6";
 
 const testimonials: {
   name: string;
@@ -31,16 +32,19 @@ const testimonials: {
 
 export default function Testimonials() {
   return (
-    <div className="grid md:grid-cols-2 gap-12">
+    <div className="grid md:grid-cols-2 gap-16 ">
       {testimonials.map((t) => (
         <div key={t.name} className="p-0">
           {" "}
           {/* no background, no padding */}
           <p className="text-md text-text-light mb-4 italic">“{t.quote}”</p>
-          <h4 className="font-header text-xl text-text font-medium">
+          <h4 className="font-header text-xl text-text-light font-medium mb-1">
             {t.name}
           </h4>
-          <p className="text-text-light text-sm">{t.role}</p>
+          <p className="text-text-light text-sm flex flex-row items-center gap-2">
+            <FaFeatherPointed />
+            {t.role}
+          </p>
         </div>
       ))}
     </div>

@@ -10,6 +10,7 @@
   --color-primary: #67c6b8; /* quail-mint */
   --color-primary-hover: #3fa796; /* primary-600 */
   --color-primary-active: #3fa796; /* hover/mix */
+  --color-primary-text: rgba(25, 98, 86, 0.95);
 
   --color-accent: #ead9be; /* sand highlight (annotation) */
   --color-accent-hover: #f2e7da; /* lighter accent */

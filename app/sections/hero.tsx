@@ -4,6 +4,7 @@ import EmailSignup from "@/components/email-signup";
 import FadeInOnScroll, {
   FadeIn,
 } from "@/components/ui/animations/fade-in-on-scroll";
+import Pop from "@/components/ui/animations/pop";
 
 interface HeroProps {
   scrolled: boolean;
@@ -14,10 +15,10 @@ export default function Hero({ scrolled }: HeroProps) {
     <div className="flex flex-col items-start">
       <FadeIn>
         <h1
-          className="font-header font-medium leading-12 md:leading-16 lg:leading-20 text-left
-           text-4xl md:text-5xl lg:text-6xl text-text mb-6"
+          className="font-header font-medium leading-15 md:leading-16 lg:leading-20 text-left
+           text-5xl md:text-5xl lg:text-6xl text-text mb-6"
         >
-          World&apos;s First Memory Optimized Reader
+          World&apos;s First <Pop>Memory Optimized Reader</Pop>
         </h1>
       </FadeIn>
       <FadeInOnScroll>

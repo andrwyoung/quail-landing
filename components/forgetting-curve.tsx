@@ -33,8 +33,8 @@ export default function ForgettingCurve() {
 
   return (
     <div className="">
-      <div className="text-sm uppercase tracking-wider font-bold text-text-light/80 mb-4">
-        Test it out
+      <div className="text-xs uppercase tracking-wider font-bold text-text-light/80 mb-4">
+        Try it out
       </div>
 
       <div className="px-6 py-8 bg-white rounded-lg border-4 shadow-xl shadow-primary/25  border-primary/80 mb-8">

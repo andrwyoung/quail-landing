@@ -14,16 +14,31 @@ import { useRef } from "react";
 
 const steps = [
   {
-    title: "You import anything",
-    text: "PDFs, EPUBs, newsletters, web clips—seamlessly in one place.",
+    title: "Import anything",
+    text: (
+      <>
+        PDFs, EPUBS, newsletters, web clips{" "}
+        <strong>seamlessly in one place</strong>.
+      </>
+    ),
   },
   {
-    title: "You clip what matters",
-    text: "Highlight while reading. Context saves automatically—no extra steps.",
+    title: "Clip what matters",
+    text: (
+      <>
+        Highlight while reading. <strong>Context saves automatically</strong>.
+        No extra steps.
+      </>
+    ),
   },
   {
-    title: "You review on time",
-    text: "Short refreshers arrive just before you’d forget. Effortless retention.",
+    title: "Review on time",
+    text: (
+      <>
+        Short refreshers arrive <strong>just before</strong> you’d forget.
+        Effortless retention.
+      </>
+    ),
   },
 ];
 
@@ -103,12 +118,13 @@ export default function Home() {
               src={"/section_002.webp"}
               alt="Hero Image"
               width={1932}
+              priority
               height={1382}
               className="opacity-100 group-hover:opacity-0 select-none"
             />
             <Image
               src={"/section_001.webp"}
-              alt="Hero Image"
+              alt="Hero Image Hover"
               width={1932}
               height={1382}
               className="absolute inset-0 opacity-0 group-hover:opacity-100 select-none"
@@ -116,150 +132,183 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      {/* <section className="max-w-2xl mb-28">
+        <Testimonials />
+      </section> */}
+
       {/* Forgetting Statistic Section */}
       <section
-        className="max-w-3xl mx-auto mt-48 md:mt-12 mb-32 px-2 flex flex-col items-center 
+        className="max-w-3xl mx-auto mt-48 md:mt-12 mb-28 px-2 flex flex-col items-center 
       text-center rounded-2xl"
       >
         <h2 className="font-header font-semibold text-3xl sm:text-4xl md:text-5xl leading-tight px-4">
           You forget 70% in a day and 90% in a week
         </h2>
-        {/* <aside className="w-full flex justify-center md:justify-end mt-16 mb-12 md:my-0"> */}
         <FadeInOnScroll className="relative w-full max-w-xl px-6 py-6 ">
           <ForgettingCurve />
         </FadeInOnScroll>
-        {/* </aside> */}
-        {/* <p className="font-header font-medium text-2xl md:text-2xl mt-2">
-          Quail fixes that. Start retaining more today.
-        </p> */}
       </section>
 
       {/* How It Works Section - Simplified */}
+
       <section
         id="how"
-        className="max-w-5xl mx-auto mt-8 mb-64 px-6 flex flex-col items-center"
+        className="max-w-7xl mx-auto mt-8 mb-32 px-6 flex flex-col items-center"
       >
-        <div className="relative max-w-md mb-18 self-center group">
-          {/* default image */}
-          {/* <Image
-            src="/books4.png"
-            alt="kale reading books"
-            width={1208}
-            height={864}
-            className="opacity-100 group-hover:opacity-0"
-          />
-          <Image
-            src="/books4-smile.png"
-            alt="kale reading books hover"
-            width={1208}
-            height={864}
-            className="absolute inset-0 opacity-0 group-hover:opacity-100"
-          /> */}
-        </div>
-        <div className="text-center mb-12">
-          <div className="text-xs uppercase tracking-wider font-bold text-text-light mb-3">
-            How Quail works
+        <FadeInOnScroll>
+          <div className="relative max-w-md mb-18 self-center group"></div>
+          <div className="text-center mb-18 ">
+            <div className="text-xs uppercase tracking-wider font-bold text-text-light mb-3">
+              How Quail works
+            </div>
+            <h2 className="font-header text-3xl md:text-4xl font-medium text-text">
+              Designed for retention
+            </h2>
           </div>
-          <h2 className="font-header text-3xl md:text-4xl font-semibold text-text">
-            Designed for retention
-          </h2>
-        </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {steps.map((step, idx) => (
-            <div
-              key={idx}
-              className="bg-surface border border-border rounded-xl px-6 py-6 shadow-md"
-            >
-              <div className="flex flex-row items-center gap-4 mb-2">
-                {/* <div className="flex text-lg items-center justify-center w-8 h-8 rounded-full bg-primary text-text-inverse font-bold ">
-                  {idx + 1}
-                </div> */}
-                <div className="relative w-10 h-10 flex items-center justify-center select-none">
-                  <Image
-                    src="/bookicon.png"
-                    alt="Book icon"
-                    fill
-                    className="object-contain"
+          <div className="grid md:grid-cols-3 gap-16 mb-32 md:mb-20">
+            {steps.map((step, idx) => (
+              <div key={idx} className="relative group">
+                {/* hanging book */}
+                <Image
+                  src={`/book_num${idx + 1}.png`}
+                  alt="Book icon"
+                  width={200}
+                  height={240}
+                  className="absolute -top-6 left-6 w-18 object-contain z-10 group-hover:-rotate-6"
+                />
+
+                <div
+                  className="flex flex-col gap-4 relative bg-surface border 
+              border-border rounded-xl px-4 py-4 shadow-md overflow-clip z-0"
+                >
+                  {/* gradient overlay */}
+                  <div
+                    className="absolute inset-0 bg-gradient-to-bl from-primary/1 hover:from-primary/5
+                to-transparent transition-all duration-300"
                   />
-                  <span className="absolute text-lg font-header font-bold text-text-inverse translate-x-[1px] -translate-y-[5px] -rotate-20">
-                    {idx + 1}
-                  </span>
-                </div>
-                <div className="text-lg font-semibold text-text">
-                  {step.title}
+
+                  {/* title */}
+                  <div className="flex items-center pl-24 ">
+                    <h3 className="text-xl xl:text-2xl font-header font-medium text-primary-text z-10">
+                      {step.title}
+                    </h3>
+                  </div>
+
+                  <div
+                    aria-hidden="true"
+                    className="w-full border-t border-border"
+                  />
+
+                  <div className="absolute left-0 right-0 top-0 bg-primary/15 z-5" />
+                  {/* body */}
+                  <p className="text-text-light px-4">{step.text}</p>
                 </div>
               </div>
-              <p className="text-text-light">{step.text}</p>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </FadeInOnScroll>
 
         {/* Clip Clip Clip: Introducing Incremental Reading */}
-        <div className="mt-12 bg-surface/50 border border-border rounded-2xl p-6 shadow-md">
-          <h3 className="font-header text-2xl mb-4 text-text">
-            Clip, Clip, Clip: How it sticks
-          </h3>
-          <p className="text-base text-text-light mb-4">
-            You clip a key insight. Quail turns it into short reviews so you
-            keep it, even when life gets busy.
-          </p>
-          <p className="text-base text-text-light">
-            This is incremental reading. Read in small, repeated passes to build
-            lasting memory. No decks to manage. Just retention that fits your
-            day.
-          </p>
-        </div>
+        <FadeInOnScroll>
+          <div className="flex flex-col md:flex-row justify-center  md:gap-8">
+            <div
+              className="relative max-w-md group cursor-pointer opacity-95 "
+              title="Look!"
+            >
+              <Image
+                src={"/paper2.png"}
+                alt="Clip Image"
+                width={1141}
+                height={1001}
+                className="opacity-100 group-hover:opacity-0 select-none"
+              />
+              <Image
+                src={"/paper2b.png"}
+                alt="Clip Image Hover"
+                width={1141}
+                height={1001}
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 select-none"
+              />
+            </div>
+            <div className="mt-12 rounded-2xl p-6 max-w-md">
+              <div className="text-xs uppercase tracking-wider font-bold text-text-light mb-3">
+                How it sticks
+              </div>
+              <h3 className="font-header text-3xl font-medium mb-4 text-text">
+                Clip, Clip, Clip!
+              </h3>
+              <p className="text-base text-text-light mb-4">
+                Clip a key insight, and Quail turns it into short reviews so you
+                remember even when life gets busy.
+              </p>
+              <p className="text-base text-text-light">
+                <strong>This is incremental reading</strong>: read in small,
+                repeated passes to build lasting memory. No decks to manage.
+                Just retention that fits your day!
+              </p>
+            </div>
+          </div>
+        </FadeInOnScroll>
       </section>
 
       {/* Trust Signals/Proof Section */}
-      <section className="max-w-4xl mx-auto mb-64 px-6">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="order-2 md:order-1">
-            <Image
-              src="/mockup3.jpg"
-              alt="Quail app mobile interface showing learning screen"
-              className="w-full max-w-md mx-auto rounded-3xl shadow-2xl transform -rotate-12 origin-center"
-              style={{ boxShadow: "0 20px 40px rgba(0,0,0,0.1)" }}
-              width={1431}
-              height={1200}
-            />
+      <section className="max-w-5xl mx-auto mb-48 px-6">
+        <div className="grid md:grid-cols-2 gap-18 items-center">
+          <div className="grid md:grid-cols-2 gap-12 text-center">
+            <div>
+              <div className="font-header text-6xl font-bold text-primary mb-2">
+                -60%
+              </div>
+              <div className="text-sm uppercase tracking-widest font-bold text-text-light">
+                Fewer tools
+              </div>
+              <p className="text-base text-text-light mt-2">
+                Replaces e-readers + highlight tools + spaced repetition apps.
+              </p>
+            </div>
+
+            <div>
+              <div className="font-header text-6xl font-bold text-accent mb-2">
+                +3x
+              </div>
+              <div className="text-sm uppercase tracking-widest font-bold text-text-light">
+                Memory retention
+              </div>
+              <p className="text-base text-text-light mt-2">
+                Achieve +3x better recall after two weeks. Real results, minimal
+                effort.
+              </p>
+            </div>
           </div>
 
-          <div className="order-1 md:order-2 flex flex-col gap-8">
-            <div className="relative bg-surface border border-border rounded-2xl p-6 shadow-lg overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="relative flex flex-col items-center text-center gap-1">
-                <div className="font-header text-5xl font-bold text-text mb-1">
-                  -60%
-                </div>
-                <div className="text-xs uppercase tracking-widest font-bold text-primary mb-1">
-                  Fewer tools
-                </div>
-
-                <p className="text-sm text-text-light mt-1">
-                  Replaces e-readers + highlight tools + spaced repetition
-                  apps-even if separate tools overwhelmed you before.
-                </p>
-              </div>
-            </div>
-
-            <div className="relative bg-surface border border-border rounded-2xl p-6 shadow-md overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="relative flex flex-col items-center text-center gap-1">
-                <div className="font-header text-5xl font-bold text-text mb-1">
-                  +3x
-                </div>
-                <div className="text-xs uppercase tracking-widest font-bold text-accent-active mb-1">
-                  Memory retention
-                </div>
-
-                <p className="text-sm text-text-light mt-1">
-                  Achieve +3x better recall after two weeks in early testing.
-                  Real results, minimal effort.
-                </p>
-              </div>
-            </div>
+          {/* <Image
+            src="/mockup3.jpg"
+            alt="Quail app mobile interface showing learning screen"
+            className="w-full max-w-md mx-auto rounded-3xl shadow-2xl transform -rotate-12 origin-center"
+            style={{ boxShadow: "0 20px 40px rgba(0,0,0,0.1)" }}
+            width={1431}
+            height={1200}
+          /> */}
+          <div
+            className="relative max-w-sm group cursor-pointer opacity-95 "
+            title="Look!"
+          >
+            <Image
+              src={"/phone2.png"}
+              alt="Clip Image"
+              width={1076}
+              height={1010}
+              className="opacity-100 group-hover:opacity-0 select-none"
+            />
+            <Image
+              src={"/phone2b.png"}
+              alt="Clip Image Hover"
+              width={1076}
+              height={1010}
+              className="absolute inset-0 opacity-0 group-hover:opacity-100 select-none"
+            />
           </div>
         </div>
       </section>
