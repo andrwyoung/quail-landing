@@ -293,7 +293,7 @@ export default function Home() {
           /> */}
           <div
             className="relative max-w-sm group cursor-pointer opacity-95 "
-            title="Look!"
+            title="Wow!"
           >
             <Image
               src={"/phone2.png"}
@@ -367,8 +367,31 @@ export default function Home() {
       </section>
 
       {/* Final Call to Action */}
-      <section id="cta" className="max-w-2xl mx-auto mb-18 px-6">
-        <FadeInOnScroll>
+      <FadeInOnScroll>
+        <section
+          id="cta"
+          className="max-w-2xl mx-auto mb-18 px-6 flex flex-col items-center"
+        >
+          <div
+            className="relative max-w-xs group cursor-pointer mb-4 "
+            title="Waiting..."
+          >
+            <Image
+              src={"/flower1.png"}
+              alt="Waitlist Image"
+              width={1479}
+              height={949}
+              className="opacity-100 group-hover:opacity-0 select-none"
+            />
+            <Image
+              src={"/flower1b.png"}
+              alt="Waitlist Image Hover"
+              width={1479}
+              height={949}
+              className="absolute inset-0 opacity-0 group-hover:opacity-100 select-none"
+            />
+          </div>
+
           <div className="bg-surface rounded-xl px-8 py-6 text-center shadow-xl ">
             <div className="text-xs uppercase tracking-wider font-bold text-text-light mb-2">
               Join the waitlist
@@ -379,8 +402,8 @@ export default function Home() {
 
             <EmailSignup ref={signupRef} />
           </div>
-        </FadeInOnScroll>
-      </section>
+        </section>
+      </FadeInOnScroll>
 
       <Footer />
     </main>

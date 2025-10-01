@@ -37,7 +37,7 @@ export default function ForgettingCurve() {
         Try it out
       </div>
 
-      <div className="px-6 py-8 bg-white rounded-lg border-4 shadow-xl shadow-primary/25  border-primary/80 mb-8">
+      <div className="px-2 md:px-6 py-4 md:py-8 bg-white rounded-lg sm:border-2 md:border-4 shadow-xl shadow-primary/25  border-primary/80 mb-8">
         <svg
           viewBox="0 0 570 280"
           width="100%"
@@ -161,7 +161,7 @@ export default function ForgettingCurve() {
         >
           Days since you read
         </label> */}
-        <output className="text-sm font-semibold text-text min-w-[60px]">
+        <output className="text-md font-medium text-text ">
           {`${day} days `} since read
         </output>
         <div className="relative flex-1 mx-3">
@@ -172,7 +172,7 @@ export default function ForgettingCurve() {
             max="14"
             value={day}
             onChange={(e) => setDay(Number(e.target.value))}
-            className="w-full h-3 appearance-none rounded-full outline-none cursor-pointer"
+            className="w-full h-5 appearance-none rounded-full outline-none cursor-pointer"
             aria-label="Days since you read"
             aria-valuemin={0}
             aria-valuemax={14}
@@ -194,20 +194,20 @@ export default function ForgettingCurve() {
             input[type="range"]::-webkit-slider-thumb {
               -webkit-appearance: none;
               appearance: none;
-              width: 16px;
-              height: 16px;
+              width: 24px; /* bigger */
+              height: 24px; /* bigger */
               background: white;
               border-radius: 50%;
-              border: 2px solid var(--color-primary);
+              border: 3px solid var(--color-primary); /* thicker border */
               cursor: pointer;
               box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
             }
             input[type="range"]::-moz-range-thumb {
-              width: 16px;
-              height: 16px;
+              width: 24px;
+              height: 24px;
               background: white;
               border-radius: 50%;
-              border: 2px solid var(--color-primary);
+              border: 3px solid var(--color-primary);
               cursor: pointer;
               box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
             }
