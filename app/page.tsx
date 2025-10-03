@@ -176,7 +176,7 @@ export default function Home() {
                   alt="Book icon"
                   width={200}
                   height={240}
-                  className="absolute -top-6 left-6 w-18 object-contain z-10 group-hover:-rotate-6"
+                  className="absolute -top-6 left-6 w-18 object-contain z-10 "
                 />
 
                 <div
@@ -255,42 +255,44 @@ export default function Home() {
 
       {/* Trust Signals/Proof Section */}
       <section className="max-w-5xl mx-auto mb-48 px-6">
-        <div className="grid md:grid-cols-2 gap-18 items-center">
-          <div className="grid md:grid-cols-2 gap-12 text-center">
+        <div className="grid md:grid-cols-2 gap-18 items-center justify-center">
+          <div className="grid md:grid-cols-2 gap-12 text-center ">
             <div>
               <div className="font-header text-6xl font-bold text-primary mb-2">
-                -60%
+                1
               </div>
               <div className="text-sm uppercase tracking-widest font-bold text-text-light">
-                Fewer tools
+                All-in-one tool
               </div>
               <p className="text-base text-text-light mt-2">
-                Replaces e-readers + highlight tools + spaced repetition apps.
+                The <strong>only</strong> tool combining distraction-free
+                reading with evidence-based learning.
               </p>
             </div>
 
             <div>
               <div className="font-header text-6xl font-bold text-accent mb-2">
-                +3x
+                +60%
               </div>
               <div className="text-sm uppercase tracking-widest font-bold text-text-light">
-                Memory retention
+                stronger recall
               </div>
               <p className="text-base text-text-light mt-2">
-                Achieve +3x better recall after two weeks. Real results, minimal
-                effort.
+                Achieve up to 60% better recall over five weeks. With minimal
+                effort for you [
+                <a
+                  href="https://pubmed.ncbi.nlm.nih.gov/19076480"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-primary"
+                >
+                  Cepeda et al. 2008
+                </a>
+                ]
               </p>
             </div>
           </div>
 
-          {/* <Image
-            src="/mockup3.jpg"
-            alt="Quail app mobile interface showing learning screen"
-            className="w-full max-w-md mx-auto rounded-3xl shadow-2xl transform -rotate-12 origin-center"
-            style={{ boxShadow: "0 20px 40px rgba(0,0,0,0.1)" }}
-            width={1431}
-            height={1200}
-          /> */}
           <div
             className="relative max-w-sm group cursor-pointer opacity-95 "
             title="Wow!"
@@ -373,7 +375,7 @@ export default function Home() {
           className="max-w-2xl mx-auto mb-18 px-6 flex flex-col items-center"
         >
           <div
-            className="relative max-w-xs group cursor-pointer mb-4 "
+            className="relative max-w-sm group cursor-pointer mb-4 opacity-80"
             title="Waiting..."
           >
             <Image
