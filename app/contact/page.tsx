@@ -112,7 +112,7 @@ export default function ContactPage() {
     <main className="relative flex flex-col items-center min-h-screen bg-background text-text font-body">
       <Navbar />
 
-      <section className="flex flex-col items-center justify-center mb-24 mt-12 max-w-4xl mx-auto px-6 text-center">
+      <section className="flex flex-col items-center justify-center mb-32 mt-24 max-w-4xl mx-auto px-6 text-center">
         <div
           className="relative max-w-sm group cursor-pointer mb-4 opacity-80"
           title="Waiting..."
@@ -155,7 +155,7 @@ export default function ContactPage() {
             href="https://discord.gg/uqjrgx8xQH"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-2 bg-[#5865F2] hover:bg-[#4752C4] text-white rounded-xl 
+            className="inline-flex items-center gap-2 px-6 py-2 bg-[#5865F2]/80 hover:bg-[#4752C4] text-white rounded-xl 
             font-bold transition-all duration-150 shadow-lg hover:-translate-y-0.5 active:scale-95"
           >
             <FaDiscord className="text-xl" />
