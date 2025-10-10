@@ -7,6 +7,7 @@ import { FaDiscord } from "react-icons/fa";
 import { useState } from "react";
 import CopySupportEmail from "@/components/ui/copy-email";
 import Image from "next/image";
+import { EDWARD_EMAIL } from "@/types/constants/constants";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -173,9 +174,18 @@ export default function ContactPage() {
               Send us a message
             </h2>
             <p className="text-text-light">
-              Fill out the form below or{" "}
-              <CopySupportEmail text="copy our email address" />, and Edward or
-              Andrew will get back to you very soon!
+              Fill out the form below,{" "}
+              <CopySupportEmail text="copy our email address" />, or reach out
+              to <CopySupportEmail text="Edward" email={EDWARD_EMAIL} /> or{" "}
+              <a
+                href="https://instagram.com/jonadrew_"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:text-accent hover:underline "
+              >
+                Andrew
+              </a>{" "}
+              directly, and we&apos;ll get back to you very soon!
             </p>
           </div>
 

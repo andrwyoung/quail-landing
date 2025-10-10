@@ -4,8 +4,10 @@ import { toast } from "sonner";
 
 export default function CopySupportEmail({
   text = "Click to copy email",
+  email = SUPPORT_EMAIL,
 }: {
   text?: string;
+  email?: string;
 }) {
   return (
     <button
@@ -14,7 +16,7 @@ export default function CopySupportEmail({
       className="w-fit cursor-pointer text-primary hover:text-accent hover:underline"
       title="Copy Support Email"
       onClick={() => {
-        navigator.clipboard.writeText(SUPPORT_EMAIL);
+        navigator.clipboard.writeText(email);
         toast.success("Email copied!");
       }}
     >
