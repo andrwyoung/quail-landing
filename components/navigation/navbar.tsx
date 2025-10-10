@@ -38,12 +38,6 @@ export default function Navbar({
       >
         <Link
           href="/"
-          // onClick={(e) => {
-          //   e.preventDefault();
-          //   document
-          //     .getElementById("home")
-          //     ?.scrollIntoView({ behavior: "smooth" });
-          // }}
           className="flex flex-row items-center transition-transform gap-1 hover:scale-105"
         >
           <Logo />
@@ -54,10 +48,9 @@ export default function Navbar({
           className="flex-row items-center gap-3 hidden lg:flex md:gap-8 text-lg md:text-xl font-header 
          translate-x-[20%] font-medium whitespace-nowrap"
         >
-          <a
+          {/* <a
             href="#how"
             onClick={(e) => {
-              // [GPT-5] (Edit made) Route to landing section from other pages
               e.preventDefault();
               if (pathname === "/") {
                 document
@@ -74,7 +67,6 @@ export default function Navbar({
           <a
             href="#faq"
             onClick={(e) => {
-              // [GPT-5] (Edit made) Route to landing section from other pages
               e.preventDefault();
               if (pathname === "/") {
                 document
@@ -87,10 +79,15 @@ export default function Navbar({
             className="hover:text-primary"
           >
             FAQ
-          </a>
-          {/* [GPT-5] (Edit made) Move Pricing link to third position */}
+          </a> */}
+          <Link href="/" className="hover:text-primary">
+            Home
+          </Link>
           <a href="/pricing" className="hover:text-primary">
             Pricing
+          </a>
+          <a href="/contact" className="hover:text-primary">
+            Contact
           </a>
         </nav>
 

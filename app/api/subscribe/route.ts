@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
-    const { name, email, phone } = await req.json();
+    const { name, email, phone, message } = await req.json();
 
     if (!process.env.NOTION_KEY || !process.env.NOTION_DATABASE_ID) {
       return NextResponse.json(
@@ -14,6 +14,7 @@ export async function POST(req: Request) {
     const cleanedEmail = typeof email === "string" ? email.trim() : "";
     const cleanedName = typeof name === "string" ? name.trim() : "";
     const cleanedPhone = typeof phone === "string" ? phone.trim() : "";
+    const cleanedMessage = typeof message === "string" ? message.trim() : "";
 
     if (!cleanedEmail || !/\S+@\S+\.\S+/.test(cleanedEmail)) {
       return NextResponse.json({ error: "Invalid email" }, { status: 400 });
@@ -37,6 +38,17 @@ export async function POST(req: Request) {
     // Optional: map Phone if provided
     if (cleanedPhone) {
       properties["Phone"] = { phone_number: cleanedPhone };
+    }
+
+    // Optional: map Message if provided
+    if (cleanedMessage) {
+      properties["Message"] = {
+        rich_text: [
+          {
+            text: { content: cleanedMessage },
+          },
+        ],
+      };
     }
 
     const res = await fetch("https://api.notion.com/v1/pages", {

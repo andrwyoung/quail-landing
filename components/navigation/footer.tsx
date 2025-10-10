@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import CopySupportEmail from "../ui/copy-email";
 import Image from "next/image";
 
 export default function Footer() {
@@ -60,7 +59,13 @@ export default function Footer() {
           <a href="/terms" className="hover:text-primary transition-colors">
             Terms of Service
           </a>
-          <CopySupportEmail text="Contact" />
+          <a
+            href="/contact"
+            className="text-primary hover:text-accent hover:underline transition-colors"
+          >
+            Contact Us
+          </a>
+          {/* <CopySupportEmail text="Contact" /> */}
         </nav>
 
         {/* Right: Copyright */}
