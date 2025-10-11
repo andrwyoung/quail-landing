@@ -116,10 +116,10 @@ export default function PricingPage() {
   const lifetimeCta = alreadyBought ? ACTIVE_SUB_CTA : "Claim Offer";
 
   return (
-    <>
+    <main className="text-text bg-background">
       <Navbar />
       <LoginModal open={loginModalOpen} setOpen={setLoginModalOpen} />
-      <main className="flex flex-col items-center min-h-screen bg-background text-text font-body px-6 py-16">
+      <div className="flex flex-col items-center min-h-screen font-body px-6 py-16">
         <div className="max-w-5xl w-full mx-auto">
           <div className="text-center mb-12">
             <h1 className="text-3xl md:text-4xl font-header mb-3">Pricing</h1>
@@ -130,7 +130,7 @@ export default function PricingPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {/* Monthly */}
-            <div className="rounded-2xl border border-primary/20 bg-secondary-bg p-6 md:p-8 flex flex-col">
+            <div className="rounded-2xl border border-primary/20 bg-background p-6 md:p-8 flex flex-col">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="font-header text-2xl">Monthly</h2>
                 <span className="inline-flex items-center rounded-full bg-primary/10 text-primary px-3 py-1 text-xs font-semibold">
@@ -170,7 +170,7 @@ export default function PricingPage() {
             </div>
 
             {/* Annual */}
-            <div className="relative rounded-2xl border border-primary/20 bg-secondary-bg p-6 md:p-8 flex flex-col">
+            <div className="relative rounded-2xl border border-primary/20 bg-background p-6 md:p-8 flex flex-col">
               <div className="absolute -top-3 left-6">
                 <span className="inline-flex items-center rounded-full bg-primary text-text-inverse px-3 py-1 text-xs font-semibold shadow-sm">
                   {/* [GPT-5] (Edit made) Rename badge */}
@@ -220,11 +220,12 @@ export default function PricingPage() {
             </div>
           </div>
 
-          {/* Limited-time offer */
-          // [GPT-5] (Edit made) Add red/pink "Best ceal" tag next to the existing offer tag
+          {
+            /* Limited-time offer */
+            // [GPT-5] (Edit made) Add red/pink "Best ceal" tag next to the existing offer tag
           }
           <div className="mt-10 md:mt-12">
-            <div className="rounded-2xl border border-primary/20 bg-secondary-bg p-6 md:p-8 text-center">
+            <div className="rounded-2xl border border-primary/20 bg-background p-6 md:p-8 text-center">
               <div className="flex items-center justify-center gap-2 mb-2">
                 <span className="inline-flex items-center rounded-full bg-primary text-text-inverse px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-wide shadow-sm">
                   Very limited time offer
@@ -238,7 +239,9 @@ export default function PricingPage() {
                 ${LIFETIME_PRICE}
               </div>
               {/* [GPT-5] (Edit made) Update lifetime subheaders */}
-              <div className="text-text-light">One‑time payment. No subscription.</div>
+              <div className="text-text-light">
+                One‑time payment. No subscription.
+              </div>
               <div className="text-text-light mb-4">Incredible value.</div>
               <Button
                 onClick={() => handleCheckout("lifetime_price_1")}
@@ -252,7 +255,7 @@ export default function PricingPage() {
             </div>
           </div>
         </div>
-      </main>
-    </>
+      </div>
+    </main>
   );
 }

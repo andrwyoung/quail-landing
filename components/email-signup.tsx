@@ -193,7 +193,7 @@ const EmailSignup = React.forwardRef<EmailSignupHandle, EmailSignupProps>(
                   aria-invalid={hasError ? true : undefined}
                   aria-describedby={errorId || statusId}
                   spellCheck={false}
-                  className={`${inputClass} bg-white flex-1`}
+                  className={`${inputClass}  flex-1`}
                 ></Input>
               )
             )}

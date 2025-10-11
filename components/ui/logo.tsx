@@ -1,9 +1,10 @@
-import Image from "next/image";
+import ThemeImage from "./theme-image";
 
 export default function Logo() {
   return (
-    <Image
-      src="/logo3.png"
+    <ThemeImage
+      lightSrc="/logo3.png"
+      darkSrc="/logo-lighter.png"
       alt="Quail Logo. Quack!"
       width={40}
       height={40}

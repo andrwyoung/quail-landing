@@ -37,7 +37,7 @@ export default function ForgettingCurve() {
         Try it out
       </div>
 
-      <div className="px-2 md:px-6 py-4 md:py-8 bg-white rounded-lg sm:border-2 md:border-4 shadow-xl shadow-primary/25  border-primary/80 mb-8">
+      <div className="px-2 md:px-6 py-4 md:py-8 bg-white/95 rounded-lg sm:border-2 md:border-4 shadow-xl shadow-primary/25  border-primary/80 mb-8">
         <svg
           viewBox="0 0 570 280"
           width="100%"
