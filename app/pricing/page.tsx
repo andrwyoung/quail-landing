@@ -117,7 +117,7 @@ export default function PricingPage() {
   const lifetimeCta = alreadyBought ? ACTIVE_SUB_CTA : "Claim Offer";
 
   return (
-    <main className="text-text bg-background">
+    <main className="text-text bg-background  overflow-x-clip">
       <Navbar />
       <LoginModal open={loginModalOpen} setOpen={setLoginModalOpen} />
       <div className="flex flex-col items-center min-h-screen font-body px-6 py-16">

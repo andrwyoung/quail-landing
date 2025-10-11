@@ -74,7 +74,7 @@ export default function Home() {
   // };
 
   return (
-    <main className="relative flex flex-col items-center min-h-screen bg-background text-text font-body">
+    <main className="relative flex flex-col items-center min-h-screen bg-background text-text font-body overflow-x-clip">
       <Navbar scrolled={scrolled} signupRef={signupRef} />
 
       {/* Hero Section with full-width gradient - extended to cover navbar area */}

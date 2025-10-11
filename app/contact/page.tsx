@@ -110,7 +110,7 @@ export default function ContactPage() {
   const statusId = "contact-status";
 
   return (
-    <main className="relative flex flex-col items-center min-h-screen bg-background text-text font-body">
+    <main className="relative flex flex-col items-center min-h-screen bg-background text-text font-body  overflow-x-clip">
       <Navbar />
 
       <section className="flex flex-col items-center justify-center mb-32 mt-24 max-w-4xl mx-auto px-6 text-center">
