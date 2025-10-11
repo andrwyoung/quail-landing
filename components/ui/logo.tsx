@@ -3,8 +3,7 @@ import ThemeImage from "./theme-image";
 export default function Logo() {
   return (
     <ThemeImage
-      lightSrc="/logo3.png"
-      darkSrc="/logo-lighter.png"
+      src="/logo.png"
       alt="Quail Logo. Quack!"
       width={40}
       height={40}

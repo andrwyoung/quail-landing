@@ -11,6 +11,7 @@ import FadeInOnScroll from "@/components/ui/animations/fade-in-on-scroll";
 import { motion } from "framer-motion";
 import EmailSignup, { EmailSignupHandle } from "@/components/email-signup";
 import { useRef } from "react";
+import ThemeImage from "@/components/ui/theme-image";
 
 const steps = [
   {
@@ -114,18 +115,19 @@ export default function Home() {
             // onClick={handleConfetti}
           >
             {/* default image */}
-            <Image
-              src={"/section_002.webp"}
+            <ThemeImage
+              src={"/landing-page/books1.png"}
               alt="Hero Image"
               width={1932}
-              priority
+              priority={true}
               height={1382}
               className="opacity-100 group-hover:opacity-0 select-none"
             />
-            <Image
-              src={"/section_001.webp"}
+            <ThemeImage
+              src={"/landing-page/books2.png"}
               alt="Hero Image Hover"
               width={1932}
+              priority={true}
               height={1382}
               className="absolute inset-0 opacity-0 group-hover:opacity-100 select-none"
             />
@@ -172,7 +174,7 @@ export default function Home() {
               <div key={idx} className="relative group">
                 {/* hanging book */}
                 <Image
-                  src={`/book_num${idx + 1}.png`}
+                  src={`/landing-page/number-books/book-num${idx + 1}.png`}
                   alt="Book icon"
                   width={200}
                   height={240}
@@ -217,15 +219,15 @@ export default function Home() {
               className="relative max-w-md group cursor-pointer opacity-95 "
               title="Look!"
             >
-              <Image
-                src={"/paper2.png"}
+              <ThemeImage
+                src={"/landing-page/paper1.png"}
                 alt="Clip Image"
                 width={1141}
                 height={1001}
                 className="opacity-100 group-hover:opacity-0 select-none"
               />
-              <Image
-                src={"/paper2b.png"}
+              <ThemeImage
+                src={"/landing-page/paper2.png"}
                 alt="Clip Image Hover"
                 width={1141}
                 height={1001}
@@ -297,15 +299,15 @@ export default function Home() {
             className="relative max-w-sm group cursor-pointer opacity-95 "
             title="Wow!"
           >
-            <Image
-              src={"/phone2.png"}
+            <ThemeImage
+              src={"/landing-page/phone1.png"}
               alt="Clip Image"
               width={1076}
               height={1010}
               className="opacity-100 group-hover:opacity-0 select-none"
             />
-            <Image
-              src={"/phone2b.png"}
+            <ThemeImage
+              src={"/landing-page/phone2.png"}
               alt="Clip Image Hover"
               width={1076}
               height={1010}
@@ -378,15 +380,15 @@ export default function Home() {
             className="relative max-w-sm group cursor-pointer mb-4 opacity-80"
             title="Waiting..."
           >
-            <Image
-              src={"/flower1.png"}
+            <ThemeImage
+              src={"/landing-page/flower1.png"}
               alt="Waitlist Image"
               width={1479}
               height={949}
               className="opacity-100 group-hover:opacity-0 select-none"
             />
-            <Image
-              src={"/flower1b.png"}
+            <ThemeImage
+              src={"/landing-page/flower2.png"}
               alt="Waitlist Image Hover"
               width={1479}
               height={949}

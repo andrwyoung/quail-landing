@@ -22,24 +22,21 @@ export default function Footer() {
             }`}
           >
             <ThemeImage
-              lightSrc="/logo3.png"
-              darkSrc="/logo-lighter.png"
+              src="/logo.png"
               alt="Quail Logo. Quack!"
               width={40}
               height={40}
               className="w-8 h-8 md:w-10 md:h-10"
             />
             <ThemeImage
-              lightSrc="/logo3.png"
-              darkSrc="/logo-lighter.png"
+              src="/logo.png"
               alt="Quail Logo. Quack!"
               width={40}
               height={40}
               className={`w-4 h-4 md:w-8 md:h-8 -translate-y-0.5 ml-1 `}
             />
             <ThemeImage
-              lightSrc="/logo3.png"
-              darkSrc="/logo-lighter.png"
+              src="/logo.png"
               alt="Quail Logo. Quack!"
               width={40}
               height={40}

@@ -1,29 +1,31 @@
 import Image from "next/image";
 
-interface ThemeImageProps {
-  lightSrc: string;
-  darkSrc: string;
-  alt: string;
-  width: number;
-  height: number;
-  className?: string;
-}
-
 export default function ThemeImage({
-  lightSrc,
-  darkSrc,
+  src,
   alt,
   width,
   height,
   className = "",
-}: ThemeImageProps) {
+  priority = false,
+}: {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  className?: string;
+  priority?: boolean;
+}) {
+  // darkSrc will ALWAYS be -lighter
+  const darkSrc = src.replace(".png", "-lighter.png");
+
   return (
-    <div className="relative">
+    <>
       {/* Light mode image */}
       <Image
-        src={lightSrc}
+        src={src}
         alt={alt}
         width={width}
+        priority={priority}
         height={height}
         className={`${className} dark:hidden`}
       />
@@ -32,9 +34,10 @@ export default function ThemeImage({
         src={darkSrc}
         alt={alt}
         width={width}
+        priority={priority}
         height={height}
         className={`${className} hidden dark:block`}
       />
-    </div>
+    </>
   );
 }

@@ -11,6 +11,7 @@ import { SubscriptionTier } from "@/types/user-types";
 import { useSearchParams } from "next/navigation";
 import { supabase } from "@/lib/supabase/supabase-client";
 import { toast } from "sonner";
+import Footer from "@/components/navigation/footer";
 
 const MONTHLY_ORIGINAL = 14.99;
 const MONTHLY_DISCOUNT = 8.97;
@@ -130,7 +131,7 @@ export default function PricingPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {/* Monthly */}
-            <div className="rounded-2xl border border-primary/20 bg-background p-6 md:p-8 flex flex-col">
+            <div className="rounded-2xl border border-primary/20 bg-surface p-6 md:p-8 flex flex-col">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="font-header text-2xl">Monthly</h2>
                 <span className="inline-flex items-center rounded-full bg-primary/10 text-primary px-3 py-1 text-xs font-semibold">
@@ -170,7 +171,7 @@ export default function PricingPage() {
             </div>
 
             {/* Annual */}
-            <div className="relative rounded-2xl border border-primary/20 bg-background p-6 md:p-8 flex flex-col">
+            <div className="relative rounded-2xl border border-primary/20 bg-surface p-6 md:p-8 flex flex-col">
               <div className="absolute -top-3 left-6">
                 <span className="inline-flex items-center rounded-full bg-primary text-text-inverse px-3 py-1 text-xs font-semibold shadow-sm">
                   {/* [GPT-5] (Edit made) Rename badge */}
@@ -224,8 +225,8 @@ export default function PricingPage() {
             /* Limited-time offer */
             // [GPT-5] (Edit made) Add red/pink "Best ceal" tag next to the existing offer tag
           }
-          <div className="mt-10 md:mt-12">
-            <div className="rounded-2xl border border-primary/20 bg-background p-6 md:p-8 text-center">
+          <div className="mt-10 md:mt-12 mb-24">
+            <div className="rounded-2xl border border-primary/20 bg-surface p-6 md:p-8 text-center">
               <div className="flex items-center justify-center gap-2 mb-2">
                 <span className="inline-flex items-center rounded-full bg-primary text-text-inverse px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-wide shadow-sm">
                   Very limited time offer
@@ -256,6 +257,7 @@ export default function PricingPage() {
           </div>
         </div>
       </div>
+      <Footer />
     </main>
   );
 }

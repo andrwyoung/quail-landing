@@ -4,8 +4,6 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { Toaster } from "sonner";
 import UserHook from "@/components/user-hook";
-import Navbar from "@/components/navigation/navbar";
-import Footer from "@/components/navigation/footer";
 
 const mulish = Mulish({
   variable: "--font-mulish",

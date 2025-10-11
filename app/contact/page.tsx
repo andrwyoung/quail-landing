@@ -6,8 +6,8 @@ import { FaEnvelope } from "react-icons/fa6";
 import { FaDiscord } from "react-icons/fa";
 import { useState } from "react";
 import CopySupportEmail from "@/components/ui/copy-email";
-import Image from "next/image";
 import { EDWARD_EMAIL } from "@/types/constants/constants";
+import ThemeImage from "@/components/ui/theme-image";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -118,15 +118,15 @@ export default function ContactPage() {
           className="relative max-w-sm group cursor-pointer mb-4 opacity-80"
           title="Waiting..."
         >
-          <Image
-            src={"/flower1.png"}
+          <ThemeImage
+            src={"/landing-page/flower1.png"}
             alt="Waitlist Image"
             width={1479}
             height={949}
             className="opacity-100 group-hover:opacity-0 select-none"
           />
-          <Image
-            src={"/flower1b.png"}
+          <ThemeImage
+            src={"/landing-page/flower2.png"}
             alt="Waitlist Image Hover"
             width={1479}
             height={949}
