@@ -120,6 +120,7 @@ export default function ContactPage() {
         >
           <Image
             src={"/splash/contact.png"}
+            priority
             alt="Waitlist Image"
             width={1479}
             height={949}

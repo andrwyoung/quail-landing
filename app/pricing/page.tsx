@@ -130,6 +130,7 @@ export default function PricingPage() {
             src={"/splash/pricing.png"}
             alt="Pricing Image"
             width={1505}
+            priority
             height={1068}
             className="opacity-100 select-none"
           />
