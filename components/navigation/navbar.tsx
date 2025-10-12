@@ -92,13 +92,19 @@ export default function Navbar({
         </nav>
 
         <div className="flex flex-row items-center gap-4">
-          {/* [GPT-5] (Edit made) Show Pricing in mobile navbar */}
           <Link
             href="/pricing"
             className="font-body text-sm md:hidden hover:underline hover:text-primary transition-all 
             font-semibold duration-150"
           >
             Pricing
+          </Link>
+          <Link
+            href="/contact"
+            className="font-body text-sm md:hidden hover:underline hover:text-primary transition-all 
+            font-semibold duration-150"
+          >
+            Contact
           </Link>
           <button
             className="font-body text-sm md:text-base hover:underline hover:text-primary

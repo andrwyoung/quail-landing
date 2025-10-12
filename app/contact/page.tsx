@@ -7,7 +7,7 @@ import { FaDiscord } from "react-icons/fa";
 import { useState } from "react";
 import CopySupportEmail from "@/components/ui/copy-email";
 import { EDWARD_EMAIL } from "@/types/constants/constants";
-import ThemeImage from "@/components/ui/theme-image";
+import Image from "next/image";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -113,24 +113,17 @@ export default function ContactPage() {
     <main className="relative flex flex-col items-center min-h-screen bg-background text-text font-body  overflow-x-clip">
       <Navbar />
 
-      <section className="flex flex-col items-center justify-center mb-32 mt-24 max-w-4xl mx-auto px-6 text-center">
+      <section className="flex flex-col items-center justify-center mb-32 mt-18 max-w-4xl mx-auto px-6 text-center">
         <div
           className="relative max-w-sm group cursor-pointer mb-4 opacity-80"
-          title="Waiting..."
+          title="Contact us?!!?!"
         >
-          <ThemeImage
-            src={"/landing-page/flower1.png"}
+          <Image
+            src={"/splash/contact.png"}
             alt="Waitlist Image"
             width={1479}
             height={949}
-            className="opacity-100 group-hover:opacity-0 select-none"
-          />
-          <ThemeImage
-            src={"/landing-page/flower2.png"}
-            alt="Waitlist Image Hover"
-            width={1479}
-            height={949}
-            className="absolute inset-0 opacity-0 group-hover:opacity-100 select-none"
+            className="opacity-100 select-none"
           />
         </div>
         <h1 className="font-header font-semibold text-3xl md:text-4xl lg:text-5xl leading-tight mb-4">
