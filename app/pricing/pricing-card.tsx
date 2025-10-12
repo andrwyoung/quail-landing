@@ -66,7 +66,7 @@ export function PricingCard({
         )}
       </div>
 
-      <div className="mb-6 h-24">
+      <div className="mb-6 h-20">
         <div className="h-5">
           {original && (
             <div className="text-text-light text-sm line-through">
@@ -75,6 +75,7 @@ export function PricingCard({
             </div>
           )}
         </div>
+
         <div className="text-4xl md:text-5xl font-header tracking-tight">
           ${price.toFixed(2)}
           {period && <span className="text-xl align-top ml-1">/{period}</span>}
@@ -83,6 +84,8 @@ export function PricingCard({
           <div className="text-xs text-text-light mt-2 ml-1">{subtext}</div>
         )}
       </div>
+
+      <div className="h-px bg-border my-4" />
 
       <ul className="text-sm md:text-base text-text-light space-y-2 mb-12">
         {features.map((f, i) => (

@@ -152,13 +152,15 @@ export default function PricingPage() {
               Edward and Andrew — October 12, 2025
             </p>
             <div
-              className="text-text-light  flex flex-col justify-between md:flex-row text-left
-            max-w-2xl md:text-center gap-4"
+              className="text-text-light  flex flex-col justify-between md:flex-row text-center
+            max-w-2xl md:text-center gap-4 "
             >
-              <div className="bg-surface rounded-md px-6 py-6 flex-1">
-                <h4 className="font-semibold text-text text-lg mb-2">
+              <div className="bg-surface rounded-md px-6 py-6 flex-1 ">
+                <h4 className="font-header font-medium text-text text-lg mb-4">
                   1. Lock-in price forever
                 </h4>
+                <div className="h-px bg-border mb-1 mx-12" />
+
                 <p>
                   Your price <strong>never changes</strong> as long as you stay
                   subscribed.
@@ -166,9 +168,10 @@ export default function PricingPage() {
               </div>
 
               <div className="bg-surface rounded-md px-6 py-6 flex-1">
-                <h4 className="font-semibold text-text text-lg mb-2">
+                <h4 className="font-header font-medium text-text text-lg mb-4">
                   2. Keep all your features
                 </h4>
+                <div className="h-px bg-border mb-1 mx-12" />
                 <p className="">
                   We will never remove or re-paywall any major features you
                   already have.
