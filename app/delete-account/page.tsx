@@ -107,8 +107,11 @@ export default function DeleteAccountPage() {
       <section className="max-w-2xl mx-auto mb-12 text-center px-6">
         <div className="bg-surface border border-border rounded-xl px-6 py-6 shadow-md">
           <p className="text-md text-text-light mb-4">
-            {profile ? "You are logged in." : ""} Submit your email to request
-            permanent deletion of your account and data.
+            {profile
+              ? "You are logged in."
+              : "Log in to expedite your account deletion."}{" "}
+            Submit your email to request permanent deletion of your account and
+            data.
           </p>
           <form
             onSubmit={handleSubmit}
@@ -186,13 +189,12 @@ export default function DeleteAccountPage() {
               role="status"
               aria-live="polite"
             >
-              {status === "success" ||
-                (true && (
-                  <span className="text-emerald-600">
-                    Your deletion request has been submitted! You’ll receive a
-                    confirmation email once we process it.
-                  </span>
-                ))}
+              {status === "success" && (
+                <span className="text-emerald-600">
+                  Your deletion request has been submitted! You’ll receive a
+                  confirmation email once we process it.
+                </span>
+              )}
               {hasError && (
                 <span id={errorId} className="text-rose-600">
                   {errorMsg}
