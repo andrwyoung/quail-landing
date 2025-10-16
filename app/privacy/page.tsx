@@ -9,8 +9,11 @@ export default function PrivacyPage() {
 
       <div className="prose mx-auto max-w-3xl font-body font-medium px-6 pt-16 pb-32">
         <h1 className="text-3xl font-bold mb-8">Privacy Policy</h1>
-        <p className="mb-10">
+        <p className="mb-2">
           <strong>Effective date:</strong> September 10, 2025
+        </p>
+        <p className="mb-10">
+          <strong>Last Edited:</strong> October 16, 2025
         </p>
 
         <p className="mb-12">
@@ -61,7 +64,21 @@ export default function PrivacyPage() {
           <li>Process subscriptions and prevent fraud.</li>
           <li>Communicate updates, security notices, and support.</li>
           <li>Comply with legal obligations.</li>
+          <li>
+            Analyze anonymized usage and crash data to improve performance and
+            reliability.
+          </li>
         </ul>
+
+        <h2 className="text-2xl font-semibold mt-12 mb-4">
+          Data Sharing &amp; Sale
+        </h2>
+        <p className="mb-12">
+          We do not sell, rent, or share your personal data for advertising or
+          marketing purposes. We share data only with trusted service providers
+          who process it on our behalf to operate core features of the Service,
+          such as authentication, subscriptions, and analytics.
+        </p>
 
         <h2 className="text-2xl font-semibold mt-12 mb-4">Cookies</h2>
         <p className="mb-12">
@@ -94,17 +111,12 @@ export default function PrivacyPage() {
             options, your sign-in is governed by Apple/Google’s terms and
             privacy policies.
           </li>
+          <li>
+            <strong>RevenueCat</strong> (subscription management and receipt
+            validation). RevenueCat processes purchase receipts and anonymized
+            identifiers to manage active subscriptions and verify eligibility.
+          </li>
         </ul>
-        <p>
-          Third parties process data under their own policies. Learn how to{" "}
-          <a
-            className="text-primary underline cursor-pointer"
-            href="http://www.google.com/privacy_ads.html"
-          >
-            opt out of Google’s cookie usage
-          </a>
-          .
-        </p>
 
         <h2 className="text-2xl font-semibold mt-12 mb-4">
           Links to Third Parties
@@ -128,42 +140,69 @@ export default function PrivacyPage() {
           Data Retention &amp; Your Rights
         </h2>
         <p className="mb-4">
-          We retain information for as long as needed to provide the Service and
-          meet legal obligations. You may request access, correction, or
-          deletion of your personal data by contacting us at{" "}
+          We retain personal information only as long as necessary to provide
+          the Service and meet legal, accounting, or security obligations. When
+          you delete your account, we delete associated personal data within 30
+          days, except limited records (such as subscription receipts or payment
+          confirmations) that we must retain for tax, accounting, or
+          fraud-prevention purposes.
+        </p>
+
+        <p className="mb-4">
+          You may request access, correction, or deletion of your personal data
+          at any time by contacting us at{" "}
           <a
             className="text-primary underline cursor-pointer"
             href="mailto:hello@readquail.com"
           >
             hello@readquail.com
           </a>
-          . We may need to keep certain records for legal or security reasons.
+          . We will verify your identity before processing such requests.
+        </p>
+
+        <p className="mb-4">
+          You can also request account deletion directly via our in-app “Request
+          Account Deletion” option or at{" "}
+          <a
+            className="text-primary underline cursor-pointer"
+            href="https://readquail.com/delete-account"
+          >
+            https://readquail.com/delete-account
+          </a>
+          .
         </p>
 
         <p className="mb-12">
-          If you are located in the European Union or California, you have
-          additional rights under GDPR/CCPA, including the rights to access,
-          correct, port, delete, or object to certain processing of your
-          personal data. To exercise these rights, contact us at{" "}
+          If you are located in the European Union, the United Kingdom, or
+          California, you have additional rights under GDPR and CCPA, including
+          the rights to access, correct, port, delete, or object to certain
+          processing of your personal data. To exercise these rights, contact us
+          at{" "}
           <a
             className="text-primary underline cursor-pointer"
             href="mailto:hello@readquail.com"
           >
             hello@readquail.com
           </a>
-          . We will verify your request and respond in accordance with
-          applicable law.
+          . We respond to verified requests in accordance with applicable law.
         </p>
 
         <h2 className="text-2xl font-semibold mt-12 mb-4">
           Children’s Privacy
         </h2>
         <p className="mb-12">
-          The Service is not directed to children under 13 (or under 16 where
-          required by local law), and we do not knowingly collect personal
-          information from them. If you believe a child has provided us personal
-          information, contact us and we will take appropriate steps to remove
-          it.
+          The Service is not directed to children under 13 years of age, and we
+          do not knowingly collect personal information from them. If we learn
+          that we have inadvertently collected data from a child under 13, we
+          will delete it promptly. Parents or guardians who believe their child
+          has provided personal information may contact us at{" "}
+          <a
+            className="text-primary underline cursor-pointer"
+            href="mailto:hello@readquail.com"
+          >
+            hello@readquail.com
+          </a>{" "}
+          so we can take appropriate action.
         </p>
 
         <h2 className="text-2xl font-semibold mt-12 mb-4">
@@ -175,9 +214,10 @@ export default function PrivacyPage() {
           changes via the Service or by email when appropriate.
         </p>
 
-        <h2 className="text-2xl font-semibold mt-12 mb-4">Contact</h2>
+        <h2 className="text-2xl font-semibold mt-12 mb-4">Operator</h2>
         <p className="mb-12">
-          Questions or concerns? Email us at{" "}
+          Quail Reader is operated by Quail. For any legal, privacy, or support
+          inquiries, contact{" "}
           <a
             className="text-primary underline cursor-pointer"
             href="mailto:hello@readquail.com"

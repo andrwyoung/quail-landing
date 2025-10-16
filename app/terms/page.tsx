@@ -9,8 +9,11 @@ export default function TermsPage() {
 
       <div className="prose mx-auto max-w-3xl font-body font-medium px-6 pt-16 pb-32">
         <h1 className="text-3xl font-bold mb-8">Terms of Service</h1>
+        <p className="mb-2">
+          <strong>Effective date:</strong> September 10, 2025
+        </p>
         <p className="mb-10">
-          <strong>Effective date:</strong> September 18, 2025
+          <strong>Last Edited:</strong> October 16, 2025
         </p>
 
         <p className="mb-12">
@@ -64,13 +67,42 @@ export default function TermsPage() {
         <h2 className="text-2xl font-semibold mt-12 mb-4">
           Subscriptions &amp; Payments
         </h2>
-        <p className="mb-12">
+        <p className="mb-8">
           If you purchase a subscription or paid feature, billing is handled by
-          Stripe. You agree to provide accurate payment information and
-          authorize us (through Stripe) to charge you according to your selected
-          plan. Fees are non-refundable except as required by law.
+          Apple, Google, or Stripe depending on the platform. You agree to
+          provide accurate payment information and authorize us (or our payment
+          providers) to charge you according to your selected plan. We do not
+          directly store your full payment details.
         </p>
 
+        <p className="mb-8">
+          Payments made through the Apple App Store or Google Play are processed
+          by Apple or Google respectively. Payments on our website are processed
+          by Stripe. We do not directly process or store your payment
+          information, and all refunds for App Store or Google Play purchases
+          must be requested through those platforms.
+        </p>
+
+        <p className="mb-8">
+          Subscriptions renew automatically unless canceled at least 24 hours
+          before the end of the current billing period. You can manage or cancel
+          your subscription at any time in your App Store or Google Play account
+          settings after purchase. Refund requests for App Store or Google Play
+          purchases are handled directly by Apple or Google, respectively.
+        </p>
+
+        <p className="mb-12">
+          Fees are non-refundable except as required by law. For users who
+          downloaded Quail from the Apple App Store, these Terms incorporate
+          Apple’s standard End User License Agreement (EULA), available at{" "}
+          <a
+            href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/"
+            className="text-primary underline cursor-pointer"
+          >
+            https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+          </a>
+          .
+        </p>
         <h2 className="text-2xl font-semibold mt-12 mb-4">
           Intellectual Property
         </h2>
@@ -89,9 +121,13 @@ export default function TermsPage() {
 
         <h2 className="text-2xl font-semibold mt-12 mb-4">Disclaimers</h2>
         <p className="mb-12">
-          The Service is provided “as is” without warranties of any kind. We do
-          not guarantee the Service will be uninterrupted, secure, or
-          error-free.
+          The Service is provided “as is” and “as available,” without warranties
+          of any kind, whether express or implied, including but not limited to
+          implied warranties of merchantability, fitness for a particular
+          purpose, or non-infringement. We do not guarantee that the Service
+          will be uninterrupted, secure, or error-free. This disclaimer does not
+          affect any rights you may have under applicable consumer-protection
+          laws.
         </p>
 
         <h2 className="text-2xl font-semibold mt-12 mb-4">
@@ -104,11 +140,28 @@ export default function TermsPage() {
           amount you paid us in the past 12 months.
         </p>
 
+        <h2 className="text-2xl font-semibold mt-12 mb-4">
+          Dispute Resolution &amp; Contact
+        </h2>
+        <p className="mb-12">
+          If you have a billing or service dispute, please contact us first at{" "}
+          <a
+            className="text-primary underline cursor-pointer"
+            href="mailto:hello@readquail.com"
+          >
+            hello@readquail.com
+          </a>
+          . We aim to resolve issues promptly and fairly before any formal
+          action is necessary. Nothing in this section limits your rights to
+          pursue remedies available under applicable law.
+        </p>
+
         <h2 className="text-2xl font-semibold mt-12 mb-4">Governing Law</h2>
         <p className="mb-12">
-          These Terms are governed by the laws of your jurisdiction without
-          regard to conflict-of-law provisions. Disputes shall be resolved in
-          the courts of that jurisdiction.
+          These Terms are governed by and construed in accordance with the laws
+          of the State of California, United States, without regard to its
+          conflict-of-law provisions. Nothing in these Terms limits any rights
+          you may have under applicable consumer-protection laws.
         </p>
 
         <h2 className="text-2xl font-semibold mt-12 mb-4">
@@ -120,9 +173,18 @@ export default function TermsPage() {
           the Service or email when appropriate.
         </p>
 
-        <h2 className="text-2xl font-semibold mt-12 mb-4">Contact</h2>
+        <h2 className="text-2xl font-semibold mt-12 mb-4">Entire Agreement</h2>
         <p className="mb-12">
-          Questions about these Terms? Email us at{" "}
+          These Terms constitute the entire agreement between you and Quail
+          regarding your use of the Service and supersede any prior agreements
+          or understandings, whether written or oral. If any provision is found
+          unenforceable, the remaining provisions remain in full effect.
+        </p>
+
+        <h2 className="text-2xl font-semibold mt-12 mb-4">Operator</h2>
+        <p className="mb-12">
+          Quail Reader is operated by Quail. For any legal, privacy, or support
+          inquiries, contact{" "}
           <a
             className="text-primary underline cursor-pointer"
             href="mailto:hello@readquail.com"
