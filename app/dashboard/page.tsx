@@ -65,6 +65,15 @@ export default function DashboardPage() {
         <p className="text-xs self-center text-text-light/80 mt-8">
           Need help? Reach out: <CopySupportEmail />
         </p>
+        <p className="text-xs self-center text-text-light/80 mt-1">
+          Want to delete your account?{" "}
+          <button
+            onClick={() => router.push("/delete-account")}
+            className="text-primary font-semibold cursor-pointer hover:underline hover:text-accent transition-colors"
+          >
+            Request account deletion
+          </button>
+        </p>
       </div>
 
       <div className="flex gap-4 mt-4">

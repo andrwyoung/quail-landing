@@ -6,7 +6,7 @@ import { FaEnvelope } from "react-icons/fa6";
 import { FaDiscord } from "react-icons/fa";
 import { useState } from "react";
 import CopySupportEmail from "@/components/ui/copy-email";
-import { EDWARD_EMAIL } from "@/types/constants/constants";
+import { EDWARD_EMAIL, NOTION_POST_URL } from "@/types/constants/constants";
 import Image from "next/image";
 
 type Status = "idle" | "loading" | "success" | "error";
@@ -63,7 +63,7 @@ export default function ContactPage() {
     try {
       setStatus("loading");
 
-      const res = await fetch("/api/subscribe", {
+      const res = await fetch(NOTION_POST_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

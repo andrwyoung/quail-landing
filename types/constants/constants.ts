@@ -6,3 +6,5 @@ export const OTP_CALLBACK_REDIRECT = "/auth/callback";
 export const SUCCESSFUL_LOGIN_REDIRECT = "/pricing";
 
 export const ELAE_URL = "https://www.readquail.com/login";
+
+export const NOTION_POST_URL = "/api/subscribe";

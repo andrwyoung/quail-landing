@@ -2,6 +2,7 @@ import { Input } from "./ui/input";
 import { FaCrow } from "react-icons/fa6";
 import { fireConfetti } from "@/utils/fire-confetti";
 import React from "react";
+import { NOTION_POST_URL } from "@/types/constants/constants";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -16,7 +17,7 @@ export type EmailSignupHandle = {
 };
 
 const EmailSignup = React.forwardRef<EmailSignupHandle, EmailSignupProps>(
-  ({ action = "/api/subscribe", className = "", onSuccess }, ref) => {
+  ({ action = NOTION_POST_URL, className = "", onSuccess }, ref) => {
     const [name, setName] = React.useState("");
     const [email, setEmail] = React.useState("");
     const [phone, setPhone] = React.useState("");

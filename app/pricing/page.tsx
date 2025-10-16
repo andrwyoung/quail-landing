@@ -8,11 +8,11 @@ import LoginModal from "@/components/login-modal";
 import { StripeProduct } from "@/types/constants/stripe-constants";
 import { SubscriptionTier } from "@/types/user-types";
 import { useSearchParams } from "next/navigation";
-import { supabase } from "@/lib/supabase/supabase-client";
 import { toast } from "sonner";
 import Footer from "@/components/navigation/footer";
 import Image from "next/image";
 import { PricingCard } from "./pricing-card";
+import { useAppLinkSession } from "@/hooks/auth/use-app-link-session";
 
 const MONTHLY_ORIGINAL = 14.99;
 const MONTHLY_DISCOUNT = 8.97;
@@ -32,22 +32,20 @@ export default function PricingPage() {
 
   const user = useMetadataStore((s) => s.user);
   const profile = useMetadataStore((s) => s.profile);
-  const setUser = useMetadataStore((s) => s.setUser);
-  const setProfile = useMetadataStore((s) => s.setProfile);
   const setRedirectedFromApp = useMetadataStore((s) => s.setRedirectedFromApp);
   const redirectedFromApp = useMetadataStore((s) => s.redirectedFromApp);
 
   const [loading, setLoading] = useState(false);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
 
-  useEffect(() => {
-    const accessToken = params.get("accessToken");
-    const refreshToken = params.get("refreshToken");
+  // log in if done correctly
+  useAppLinkSession();
 
+  useEffect(() => {
     const checkout = params.get("checkout");
     const fromApp = params.get("fromApp") === "1";
 
-    // edge case: came back from a cancelled checkout and originally from app
+    // handle checkout cancel case
     if (checkout === "cancelled" && fromApp) {
       setRedirectedFromApp(true);
       toast.info("Checkout was cancelled.");
@@ -56,45 +54,7 @@ export default function PricingPage() {
       window.history.replaceState({}, "", "/pricing");
       return;
     }
-
-    if (!accessToken || !refreshToken) {
-      console.warn("no tokens in URL → likely not coming from mobile.");
-      return;
-    }
-
-    (async () => {
-      try {
-        // hydrate Supabase session
-        const { error } = await supabase.auth.setSession({
-          access_token: accessToken,
-          refresh_token: refreshToken,
-        });
-
-        if (error) throw error;
-        // toast.success("Signed in via mobile session!");
-
-        // Get user + profile directly
-        const {
-          data: { user },
-        } = await supabase.auth.getUser(accessToken);
-
-        const { data: profile } = await supabase
-          .from("profiles")
-          .select("*")
-          .eq("user_id", user?.id)
-          .single();
-
-        setUser(user);
-        setProfile(profile);
-        setRedirectedFromApp(true);
-
-        // Remove tokens from URL
-        window.history.replaceState({}, "", "/pricing");
-      } catch (e) {
-        console.error("[pricing] auto-login failed", e);
-      }
-    })();
-  }, [params, setUser, setProfile, setRedirectedFromApp]);
+  }, [params, setRedirectedFromApp]);
 
   async function handleCheckout(product: StripeProduct) {
     if (!user?.id) {
