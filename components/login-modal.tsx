@@ -88,7 +88,7 @@ export default function LoginModal({
         {/* Divider */}
         <div className="flex items-center gap-3 my-2">
           <div className="h-px flex-1 bg-border" />
-          <span className="text-sm text-muted-foreground">
+          <span className="text-sm text-text-light font-mono">
             or sign in with email
           </span>
           <div className="h-px flex-1 bg-border" />

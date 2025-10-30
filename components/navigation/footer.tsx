@@ -8,7 +8,7 @@ export default function Footer() {
 
   return (
     <footer className="w-full border-t border-border bg-background text-text-light py-8 px-6">
-      <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+      <div className="max-w-5xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-2">
         {/* Left: Logo and brand */}
         <div
           onClick={() => setFlip((prev) => !prev)}
@@ -69,7 +69,7 @@ export default function Footer() {
         </nav>
 
         {/* Right: Copyright */}
-        <div className="text-xs text-text-muted text-center md:text-right">
+        <div className="text-xs text-text-muted text-center md:text-right font-mono">
           © {new Date().getFullYear()} Quail. All rights reserved.
         </div>
       </div>

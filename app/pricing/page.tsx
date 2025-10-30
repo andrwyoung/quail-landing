@@ -107,7 +107,7 @@ export default function PricingPage() {
             <h3 className="font-header font-medium text-xl mb-1">
               Our Promise To You:
             </h3>
-            <p className="text-xs text-text-light/70 mb-6">
+            <p className="text-xs text-text-light/70 mb-6 font-mono">
               Edward and Andrew — October 12, 2025
             </p>
             <div
