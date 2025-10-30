@@ -19,7 +19,7 @@ export default function DiscordButton({
       className={cn(
         "flex items-center gap-2 px-6 py-2 rounded-xl font-bold transition-all duration-150 shadow-lg hover:-translate-y-0.5 active:scale-95 whitespace-nowrap",
         isWhite
-          ? "bg-surface border-2 border-[#5865F2] text-[#5865F2] hover:bg-background"
+          ? "dark:bg-background bg-surface border-2 border-[#5865F2] text-[#5865F2] hover:bg-background dark:hover:bg-[#5865F2]/40"
           : "bg-[#5865F2]/80 hover:bg-[#4752C4] text-white"
       )}
     >

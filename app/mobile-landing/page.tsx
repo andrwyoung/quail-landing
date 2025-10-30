@@ -37,7 +37,8 @@ export default function MobileLandingPage() {
               href={IOS_QUAIL_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-2 bg-black hover:bg-black/80 text-white rounded-xl 
+              className="inline-flex items-center gap-2 px-6 py-2 bg-black dark:bg-white hover:bg-black/80 
+              dark:hover:bg-white/80 text-white  dark:text-black rounded-xl 
             font-bold transition-all duration-150 shadow-lg hover:-translate-y-0.5 active:scale-95 whitespace-nowrap"
             >
               <FaApple className="size-5" />
