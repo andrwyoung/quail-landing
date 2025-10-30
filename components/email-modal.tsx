@@ -4,7 +4,7 @@ import { Dialog, DialogContent, DialogTitle } from "./ui/dialog";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { useState } from "react";
-import { NOTION_POST_URL } from "@/types/constants/constants";
+import { NOTION_SUPPORT_POST_URL } from "@/types/constants/constants";
 import { toast } from "sonner";
 
 type Status = "idle" | "loading" | "success" | "error";
@@ -42,12 +42,13 @@ export default function EmailModal({
     try {
       setStatus("loading");
 
-      const res = await fetch(NOTION_POST_URL, {
+      const res = await fetch(NOTION_SUPPORT_POST_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: valueEmail,
           message: "Android waitlist signup from mobile landing page",
+          category: "android",
         }),
       });
 

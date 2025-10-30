@@ -9,9 +9,9 @@ import { StripeProduct } from "@/types/constants/stripe-constants";
 import { SubscriptionTier } from "@/types/user-types";
 import { useSearchParams } from "next/navigation";
 import { toast } from "sonner";
-import Image from "next/image";
 import { PricingCard } from "./pricing-card";
 import { useAppLinkSession } from "@/hooks/auth/use-app-link-session";
+import ThemeImage from "@/components/ui/theme-image";
 
 const MONTHLY_ORIGINAL = 14.99;
 const MONTHLY_DISCOUNT = 8.97;
@@ -84,7 +84,7 @@ export default function PricingPage() {
           className="relative max-w-[450px] group cursor-pointer mb-4 opacity-80"
           title="Apple??!!?!"
         >
-          <Image
+          <ThemeImage
             src={"/splash/pricing.png"}
             alt="Pricing Image"
             width={1505}

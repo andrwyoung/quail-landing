@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import Image from "next/image";
 import { useAppLinkSession } from "@/hooks/auth/use-app-link-session";
 import { useMetadataStore } from "@/store/metadata-store";
-import { NOTION_POST_URL } from "@/types/constants/constants";
+import { NOTION_SUPPORT_POST_URL } from "@/types/constants/constants";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -49,17 +49,16 @@ export default function DeleteAccountPage() {
     try {
       setStatus("loading");
 
-      // Reuse your existing message endpoint, or create /api/delete-account
-      const res = await fetch(NOTION_POST_URL, {
+      // Submit a support ticket to Notion Support DB
+      const res = await fetch(NOTION_SUPPORT_POST_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: valueEmail,
-          description: valueDescription,
-          message: `DELETE ACCOUNT: ${
-            profile?.user_id ? `userId: ${profile.user_id}` : "not logged in"
-          }\n\n
-          ${description}`,
+          userId: profile?.user_id ?? null,
+          subject: "Delete My Account",
+          category: "account deletion",
+          message: `delete account\n\n${valueDescription}`,
         }),
       });
 

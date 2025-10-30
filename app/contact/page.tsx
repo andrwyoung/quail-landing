@@ -5,8 +5,11 @@ import { FaEnvelope } from "react-icons/fa6";
 import { useState } from "react";
 import CopySupportEmail from "@/components/ui/copy-email";
 import DiscordButton from "@/components/ui/discord-button";
-import { EDWARD_EMAIL, NOTION_POST_URL } from "@/types/constants/constants";
-import Image from "next/image";
+import {
+  EDWARD_EMAIL,
+  NOTION_SUPPORT_POST_URL,
+} from "@/types/constants/constants";
+import ThemeImage from "@/components/ui/theme-image";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -62,15 +65,15 @@ export default function ContactPage() {
     try {
       setStatus("loading");
 
-      const res = await fetch(NOTION_POST_URL, {
+      const res = await fetch(NOTION_SUPPORT_POST_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: valueName,
           email: valueEmail,
-          message: `${
-            valueSubject ? `Subject: ${valueSubject}\n\n` : ""
-          }${valueMessage}`,
+          subject: valueSubject || undefined,
+          message: valueMessage,
+          category: "contact",
         }),
       });
 
@@ -115,7 +118,7 @@ export default function ContactPage() {
           className="relative max-w-sm group cursor-pointer mb-4 opacity-80"
           title="Contact us?!!?!"
         >
-          <Image
+          <ThemeImage
             src={"/splash/contact.png"}
             priority
             alt="Waitlist Image"
