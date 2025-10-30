@@ -1,7 +1,6 @@
 "use client";
 
-import Navbar from "@/components/navigation/navbar";
-import Footer from "@/components/navigation/footer";
+import ScreenTemplate from "@/components/screen-template";
 import { Input } from "@/components/ui/input";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -82,9 +81,7 @@ export default function DeleteAccountPage() {
   const errorId = hasError ? "delete-error" : undefined;
 
   return (
-    <main className="relative flex flex-col items-center min-h-screen bg-background text-text font-body overflow-x-clip">
-      <Navbar />
-
+    <ScreenTemplate>
       <section className="flex flex-col items-center justify-center mb-6 mt-18 max-w-4xl mx-auto px-6 text-center">
         <div
           className="relative max-w-sm group cursor-pointer mb-4 opacity-80 px-6"
@@ -204,8 +201,6 @@ export default function DeleteAccountPage() {
           </form>
         </div>
       </section>
-
-      <Footer />
-    </main>
+    </ScreenTemplate>
   );
 }

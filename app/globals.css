@@ -4,6 +4,7 @@
   /* Fonts */
   --font-header: var(--font-literata), sans-serif;
   --font-body: var(--font-mulish), sans-serif;
+  --font-mono: var(--font-chivo-mono), sans-serif;
 
   /* Primary */
   --color-primary: var(--color-primary);

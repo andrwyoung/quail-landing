@@ -8,3 +8,7 @@ export const SUCCESSFUL_LOGIN_REDIRECT = "/pricing";
 export const ELAE_URL = "https://www.readquail.com/login";
 
 export const NOTION_POST_URL = "/api/subscribe";
+
+export const IOS_QUAIL_LINK =
+  "https://apps.apple.com/us/app/quail-reader/id6751991221";
+export const DISCORD_INVITE_LINK = "https://discord.gg/uqjrgx8xQH";

@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import Navbar from "@/components/navigation/navbar";
+import ScreenTemplate from "@/components/screen-template";
 import { useMetadataStore } from "@/store/metadata-store";
 import { startCheckout } from "@/lib/stripe/start-checkout";
 import { getHasLicense } from "@/lib/stripe/user-has-license";
@@ -9,7 +9,6 @@ import { StripeProduct } from "@/types/constants/stripe-constants";
 import { SubscriptionTier } from "@/types/user-types";
 import { useSearchParams } from "next/navigation";
 import { toast } from "sonner";
-import Footer from "@/components/navigation/footer";
 import Image from "next/image";
 import { PricingCard } from "./pricing-card";
 import { useAppLinkSession } from "@/hooks/auth/use-app-link-session";
@@ -78,8 +77,7 @@ export default function PricingPage() {
   const lifetimeCta = alreadyBought ? ACTIVE_SUB_CTA : "Claim Offer";
 
   return (
-    <main className="text-text bg-background  overflow-x-clip">
-      <Navbar />
+    <ScreenTemplate>
       <LoginModal open={loginModalOpen} setOpen={setLoginModalOpen} />
       <div className="flex flex-col items-center min-h-screen font-body px-6 py-16">
         <div
@@ -202,7 +200,6 @@ export default function PricingPage() {
           </div>
         </div>
       </div>
-      <Footer />
-    </main>
+    </ScreenTemplate>
   );
 }

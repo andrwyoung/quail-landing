@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Literata, Mulish } from "next/font/google";
+import { Literata, Mulish, Chivo_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { Toaster } from "sonner";
@@ -12,6 +12,11 @@ const mulish = Mulish({
 
 const literata = Literata({
   variable: "--font-literata",
+  subsets: ["latin"],
+});
+
+const chivoMono = Chivo_Mono({
+  variable: "--font-chivo-mono",
   subsets: ["latin"],
 });
 
@@ -63,7 +68,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${mulish.variable} ${literata.variable} antialiased `}>
+      <body
+        className={`${mulish.variable} ${literata.variable} ${chivoMono.variable} antialiased `}
+      >
         <Analytics />
         <UserHook />
         <Toaster />

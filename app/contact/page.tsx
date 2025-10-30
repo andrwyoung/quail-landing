@@ -1,11 +1,10 @@
 "use client";
-import Navbar from "../../components/navigation/navbar";
-import Footer from "../../components/navigation/footer";
+import ScreenTemplate from "@/components/screen-template";
 import { Input } from "@/components/ui/input";
 import { FaEnvelope } from "react-icons/fa6";
-import { FaDiscord } from "react-icons/fa";
 import { useState } from "react";
 import CopySupportEmail from "@/components/ui/copy-email";
+import DiscordButton from "@/components/ui/discord-button";
 import { EDWARD_EMAIL, NOTION_POST_URL } from "@/types/constants/constants";
 import Image from "next/image";
 
@@ -110,9 +109,7 @@ export default function ContactPage() {
   const statusId = "contact-status";
 
   return (
-    <main className="relative flex flex-col items-center min-h-screen bg-background text-text font-body  overflow-x-clip">
-      <Navbar />
-
+    <ScreenTemplate>
       <section className="flex flex-col items-center justify-center mb-32 mt-18 max-w-4xl mx-auto px-6 text-center">
         <div
           className="relative max-w-sm group cursor-pointer mb-4 opacity-80"
@@ -146,16 +143,7 @@ export default function ContactPage() {
           <p className=" text-text-light mb-6">
             Reach out directly on Discord or hang out with us for the journey.
           </p>
-          <a
-            href="https://discord.gg/uqjrgx8xQH"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-2 bg-[#5865F2]/80 hover:bg-[#4752C4] text-white rounded-xl 
-            font-bold transition-all duration-150 shadow-lg hover:-translate-y-0.5 active:scale-95"
-          >
-            <FaDiscord className="text-xl" />
-            Join Discord
-          </a>
+          <DiscordButton />
         </div>
       </section>
 
@@ -343,8 +331,6 @@ export default function ContactPage() {
           </form>
         </div>
       </section>
-
-      <Footer />
-    </main>
+    </ScreenTemplate>
   );
 }

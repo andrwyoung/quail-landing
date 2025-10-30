@@ -1,12 +1,9 @@
 "use client";
-import Footer from "@/components/navigation/footer";
-import Navbar from "@/components/navigation/navbar";
+import ScreenTemplate from "@/components/screen-template";
 
 export default function PrivacyPage() {
   return (
-    <main className="bg-background text-text">
-      <Navbar />
-
+    <ScreenTemplate>
       <div className="prose mx-auto max-w-3xl font-body font-medium px-6 pt-16 pb-32">
         <h1 className="text-3xl font-bold mb-8">Privacy Policy</h1>
         <p className="mb-2">
@@ -227,8 +224,6 @@ export default function PrivacyPage() {
           .
         </p>
       </div>
-
-      <Footer />
-    </main>
+    </ScreenTemplate>
   );
 }
