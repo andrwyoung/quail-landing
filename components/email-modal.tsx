@@ -70,7 +70,7 @@ export default function EmailModal({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="rounded-lg bg-background shadow-lg font-body max-w-md font-medium w-full py-16 px-6 sm:p-6">
+      <DialogContent className="rounded-lg bg-background shadow-lg font-body text-text max-w-md font-medium w-full py-16 px-6 sm:p-6">
         <DialogTitle>
           <span className="text-3xl font-medium font-header">
             Join the Android Beta
