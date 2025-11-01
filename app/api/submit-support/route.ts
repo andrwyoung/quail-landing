@@ -88,10 +88,6 @@ export async function POST(req: Request) {
           },
         ],
       },
-      // Person - leave empty
-      Person: {
-        people: [],
-      },
     };
 
     const res = await fetch("https://api.notion.com/v1/pages", {
@@ -115,6 +111,17 @@ export async function POST(req: Request) {
         body = await res.text();
       }
 
+      // Log detailed error information for debugging
+      console.error("Notion API Error:", {
+        status: res.status,
+        statusText: res.statusText,
+        body: body,
+        requestPayload: {
+          parent: { database_id: process.env.SUPPORT_NOTION_DATABASE_ID },
+          properties,
+        },
+      });
+
       let errorMessage = "Notion error";
       if (typeof body === "string") {
         errorMessage = body;
@@ -135,7 +142,8 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json({ ok: true, ticketId });
-  } catch {
+  } catch (error) {
+    console.error("Unexpected error in submit-support route:", error);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
