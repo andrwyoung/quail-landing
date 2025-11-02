@@ -1,15 +1,69 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import ScreenTemplate from "@/components/screen-template";
 import { FaApple } from "react-icons/fa6";
 import DiscordButton from "@/components/ui/discord-button";
 import EmailModal from "@/components/email-modal";
 import { ButtonSquare } from "@/components/ui/button-square";
 import { IOS_QUAIL_LINK } from "@/types/constants/constants";
+import { trackEvent } from "@/lib/amplitude";
 
 export default function MobileLandingPage() {
   const [emailModalOpen, setEmailModalOpen] = useState(false);
+  const searchParams = useSearchParams();
+  const utmSource = searchParams.get("utm_source");
+
+  // Track UTM source
+  useEffect(() => {
+    if (utmSource) {
+      console.log("User came from:", utmSource);
+      // Store in sessionStorage for tracking throughout the session
+      sessionStorage.setItem("utm_source", utmSource);
+
+      // Track UTM source in Amplitude
+      trackEvent("landing_page_visit", {
+        utm_source: utmSource,
+        page: "mobile_landing",
+      });
+    }
+  }, [utmSource]);
+
+  // Helper to get utm_source for events
+  const getEventProperties = (additionalProps = {}) => ({
+    utm_source: sessionStorage.getItem("utm_source") || "direct",
+    ...additionalProps,
+  });
+
+  const handleIOSClick = () => {
+    trackEvent(
+      "ios_download_click",
+      getEventProperties({ location: "mobile_landing" })
+    );
+  };
+
+  const handleAndroidDiscordClick = () => {
+    trackEvent(
+      "android_discord_click",
+      getEventProperties({ location: "android_section" })
+    );
+  };
+
+  const handleEmailModalOpen = () => {
+    setEmailModalOpen(true);
+    trackEvent(
+      "android_email_modal_open",
+      getEventProperties({ location: "android_section" })
+    );
+  };
+
+  const handleFeedbackDiscordClick = () => {
+    trackEvent(
+      "feedback_discord_click",
+      getEventProperties({ location: "feedback_section" })
+    );
+  };
   return (
     <ScreenTemplate>
       {/* Header Section */}
@@ -37,6 +91,7 @@ export default function MobileLandingPage() {
               href={IOS_QUAIL_LINK}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={handleIOSClick}
               className="inline-flex items-center gap-2 px-6 py-2 bg-black dark:bg-white hover:bg-black/80 
               dark:hover:bg-white/80 text-white  dark:text-black rounded-xl 
             font-bold transition-all duration-150 shadow-lg hover:-translate-y-0.5 active:scale-95 whitespace-nowrap"
@@ -58,13 +113,15 @@ export default function MobileLandingPage() {
           </div> */}
           {/* <div className="h-px bg-border mb-4 mx-12" /> */}
           <div className="flex flex-col items-center gap-3">
-            <DiscordButton text="Apply on Discord" />
+            <div onClick={handleAndroidDiscordClick}>
+              <DiscordButton text="Apply on Discord" />
+            </div>
             <div className="flex items-center gap-3 w-full">
               <div className="h-px flex-1 bg-border" />
               <span className="text-sm text-text-light font-mono">or</span>
               <div className="h-px flex-1 bg-border" />
             </div>
-            <ButtonSquare onClick={() => setEmailModalOpen(true)}>
+            <ButtonSquare onClick={handleEmailModalOpen}>
               Enter your Email
             </ButtonSquare>
           </div>
@@ -76,7 +133,9 @@ export default function MobileLandingPage() {
         <p className="font-header text-sm md:text-base mb-4 text-center text-text-light">
           Have a question, or just want to share feedback?
         </p>
-        <DiscordButton variant="white" />
+        <div onClick={handleFeedbackDiscordClick}>
+          <DiscordButton variant="white" />
+        </div>
       </section>
 
       <EmailModal open={emailModalOpen} setOpen={setEmailModalOpen} />

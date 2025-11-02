@@ -6,6 +6,7 @@ import { Button } from "./ui/button";
 import { useState } from "react";
 import { NOTION_SUPPORT_POST_URL } from "@/types/constants/constants";
 import { toast } from "sonner";
+import { trackEvent } from "@/lib/amplitude";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -59,6 +60,14 @@ export default function EmailModal({
       setStatus("success");
       setEmail("");
       toast.success("Thanks! We'll be in touch soon.");
+
+      // Track successful signup in Amplitude
+      const source = sessionStorage.getItem("utm_source") || "direct";
+      trackEvent("android_beta_signup", {
+        utm_source: source,
+        email: valueEmail,
+      });
+
       setOpen(false);
     } catch (err) {
       console.error(err);
