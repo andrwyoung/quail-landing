@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Literata, Mulish, Chivo_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
@@ -77,7 +78,7 @@ export default function RootLayout({
           <UserHook />
           <Toaster />
 
-          {children}
+          <Suspense fallback={null}>{children}</Suspense>
         </AmplitudeProvider>
       </body>
     </html>
