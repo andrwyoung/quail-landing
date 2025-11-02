@@ -41,7 +41,18 @@ export function trackEvent(
   }
 
   try {
-    amplitude.track(eventName, eventProperties);
+    // Automatically include utm_source in all events
+    const utmSource =
+      typeof window !== "undefined"
+        ? sessionStorage.getItem("utm_source") || "direct"
+        : "direct";
+
+    const enrichedProperties = {
+      utm_source: utmSource,
+      ...eventProperties,
+    };
+
+    amplitude.track(eventName, enrichedProperties);
   } catch (error) {
     console.error(`Error tracking event "${eventName}":`, error);
   }

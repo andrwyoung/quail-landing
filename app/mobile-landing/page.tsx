@@ -24,45 +24,26 @@ export default function MobileLandingPage() {
 
       // Track UTM source in Amplitude
       trackEvent("landing_page_visit", {
-        utm_source: utmSource,
         page: "mobile_landing",
       });
     }
   }, [utmSource]);
 
-  // Helper to get utm_source for events
-  const getEventProperties = (additionalProps = {}) => ({
-    utm_source: sessionStorage.getItem("utm_source") || "direct",
-    ...additionalProps,
-  });
-
   const handleIOSClick = () => {
-    trackEvent(
-      "ios_download_click",
-      getEventProperties({ location: "mobile_landing" })
-    );
+    trackEvent("ios_download_click", { location: "mobile_landing" });
   };
 
   const handleAndroidDiscordClick = () => {
-    trackEvent(
-      "android_discord_click",
-      getEventProperties({ location: "android_section" })
-    );
+    trackEvent("android_discord_click", { location: "android_section" });
   };
 
   const handleEmailModalOpen = () => {
     setEmailModalOpen(true);
-    trackEvent(
-      "android_email_modal_open",
-      getEventProperties({ location: "android_section" })
-    );
+    trackEvent("android_email_modal_open", { location: "android_section" });
   };
 
   const handleFeedbackDiscordClick = () => {
-    trackEvent(
-      "feedback_discord_click",
-      getEventProperties({ location: "feedback_section" })
-    );
+    trackEvent("feedback_discord_click", { location: "feedback_section" });
   };
   return (
     <ScreenTemplate>

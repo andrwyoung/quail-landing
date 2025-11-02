@@ -62,9 +62,7 @@ export default function EmailModal({
       toast.success("Thanks! We'll be in touch soon.");
 
       // Track successful signup in Amplitude
-      const source = sessionStorage.getItem("utm_source") || "direct";
       trackEvent("android_beta_signup", {
-        utm_source: source,
         email: valueEmail,
       });
 

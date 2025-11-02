@@ -32,7 +32,7 @@ export default function LoginModal({
   } = useOtpLogin({ onSuccess: () => setOpen(false) });
 
   const {
-    loading: oAuthLoading,
+    // loading: oAuthLoading,
     message: oAuthMessage,
     signInWithApple,
     signInWithGoogle,
@@ -48,7 +48,8 @@ export default function LoginModal({
     }
   };
 
-  const loading = oAuthLoading || otpLoading;
+  // const loading = oAuthLoading || otpLoading;
+  const loading = otpLoading;
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>

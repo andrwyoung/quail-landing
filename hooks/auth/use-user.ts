@@ -12,6 +12,7 @@ import { nowDate } from "@/utils/now-ms";
 import { User } from "@supabase/supabase-js";
 import { useCallback, useEffect } from "react";
 import { toast } from "sonner";
+import { trackEvent, identifyUser } from "@/lib/amplitude";
 
 export function useUser() {
   const setUser = useMetadataStore((s) => s.setUser);
@@ -52,12 +53,28 @@ export function useUser() {
           .single();
         if (insertError) {
           console.error("Error creating user profile:", insertError);
+          trackEvent("profile_creation_failed", {
+            error: insertError.message,
+            user_id: user.id,
+          });
           return;
         }
 
         // if things go smoothly, then we run the welcome message
         if (newProfile) {
           setProfile(newProfile);
+
+          // Track new user signup
+          identifyUser(user.id, {
+            email: user.email || "",
+          });
+
+          trackEvent("new_user_signed_up", {
+            user_id: user.id,
+            email: user.email,
+            provider: user.app_metadata?.provider || "unknown",
+          });
+
           // setUserPreferences(null); // just to be safe
         }
       } else {
@@ -65,6 +82,18 @@ export function useUser() {
 
         // this runs if an existing user is logging back in
         setProfile(existingProfile);
+
+        // Identify returning user
+        identifyUser(user.id, {
+          email: user.email || "",
+        });
+
+        trackEvent("user_logged_in", {
+          user_id: user.id,
+          email: user.email,
+          provider: user.app_metadata?.provider || "unknown",
+          subscription_tier: existingProfile.subscription_tier || "none",
+        });
       }
     },
     [setProfile]
@@ -91,7 +120,10 @@ export function useUser() {
           useMetadataStore.getState().reset();
 
           // should only happen on log out
-          if (event === "SIGNED_OUT") toast.success("Logged out successfully.");
+          if (event === "SIGNED_OUT") {
+            trackEvent("user_logged_out");
+            toast.success("Logged out successfully.");
+          }
         }
       }
     );
