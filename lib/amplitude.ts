@@ -13,7 +13,14 @@ export function initAmplitude() {
   }
 
   try {
-    amplitude.init(apiKey);
+    amplitude.init(apiKey, undefined, {
+      defaultTracking: {
+        pageViews: true,
+        sessions: true,
+        formInteractions: false,
+        fileDownloads: false,
+      },
+    });
 
     isInitialized = true;
     console.log("Amplitude initialized");
