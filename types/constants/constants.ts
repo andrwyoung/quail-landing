@@ -12,4 +12,7 @@ export const NOTION_SUPPORT_POST_URL = "/api/submit-support";
 
 export const IOS_QUAIL_LINK =
   "https://apps.apple.com/us/app/quail-reader/id6751991221";
+
+export const ANDROID_QUAIL_LINK =
+  "https://play.google.com/store/apps/details?id=com.andrwyoung.quail";
 export const DISCORD_INVITE_LINK = "https://discord.gg/uqjrgx8xQH";

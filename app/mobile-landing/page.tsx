@@ -4,10 +4,13 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import ScreenTemplate from "@/components/screen-template";
 import { FaApple } from "react-icons/fa6";
+import { SiGoogleplay } from "react-icons/si";
 import DiscordButton from "@/components/ui/discord-button";
 import EmailModal from "@/components/email-modal";
-import { ButtonSquare } from "@/components/ui/button-square";
-import { IOS_QUAIL_LINK } from "@/types/constants/constants";
+import {
+  ANDROID_QUAIL_LINK,
+  IOS_QUAIL_LINK,
+} from "@/types/constants/constants";
 import { trackEvent } from "@/lib/amplitude";
 
 export default function MobileLandingPage() {
@@ -31,15 +34,6 @@ export default function MobileLandingPage() {
 
   const handleIOSClick = () => {
     trackEvent("ios_download_click", { location: "mobile_landing" });
-  };
-
-  const handleAndroidDiscordClick = () => {
-    trackEvent("android_discord_click", { location: "android_section" });
-  };
-
-  const handleEmailModalOpen = () => {
-    setEmailModalOpen(true);
-    trackEvent("android_email_modal_open", { location: "android_section" });
   };
 
   const handleFeedbackDiscordClick = () => {
@@ -88,12 +82,25 @@ export default function MobileLandingPage() {
           <h2 className="font-header font-medium text-text text-2xl mb-1">
             Android
           </h2>
-          <p className="text-text-light text-sm mb-4">Join our Open Beta!</p>
-          {/* <div className="rounded-full bg-surface px-4 w-fit text-xs py-0.5 mb-4">
-            <p className="text-white font-bold">Open Beta</p>
-          </div> */}
+          <p className="text-text-light text-sm mb-4">
+            Download in the Play store!
+          </p>
+          <div className="flex-1 flex flex-col items-center justify-center">
+            <a
+              href={ANDROID_QUAIL_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={handleIOSClick}
+              className="inline-flex items-center gap-2 px-6 py-2 bg-white dark:bg-black hover:bg-white/80 
+              dark:hover:bg-black/80 text-black dark:text-white rounded-xl border border-border
+            font-bold transition-all duration-150 shadow-lg hover:-translate-y-0.5 active:scale-95 whitespace-nowrap"
+            >
+              <SiGoogleplay className="size-5" />
+              <span>Google Play Store</span>
+            </a>
+          </div>
           {/* <div className="h-px bg-border mb-4 mx-12" /> */}
-          <div className="flex flex-col items-center gap-3">
+          {/* <div className="flex flex-col items-center gap-3">
             <div onClick={handleAndroidDiscordClick}>
               <DiscordButton text="Apply on Discord" />
             </div>
@@ -105,7 +112,7 @@ export default function MobileLandingPage() {
             <ButtonSquare onClick={handleEmailModalOpen}>
               Enter your Email
             </ButtonSquare>
-          </div>
+          </div> */}
         </div>
       </section>
 
