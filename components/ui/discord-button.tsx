@@ -1,12 +1,15 @@
 import { DISCORD_INVITE_LINK } from "@/types/constants/constants";
 import { FaDiscord } from "react-icons/fa6";
 import { cn } from "@/utils/cn";
+import { trackEvent } from "@/lib/amplitude";
 
 export default function DiscordButton({
   text = "Join The Discord",
+  trackingLocation,
   variant = "default",
 }: {
   text?: string;
+  trackingLocation: string;
   variant?: "default" | "white";
 }) {
   const isWhite = variant === "white";
@@ -16,6 +19,9 @@ export default function DiscordButton({
       href={DISCORD_INVITE_LINK}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={() =>
+        trackEvent("discord_click", { location: trackingLocation })
+      }
       className={cn(
         "flex items-center gap-2 px-6 py-2 rounded-xl font-bold transition-all duration-150 shadow-lg hover:-translate-y-0.5 active:scale-95 whitespace-nowrap",
         isWhite

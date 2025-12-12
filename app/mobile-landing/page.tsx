@@ -3,16 +3,13 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import ScreenTemplate from "@/components/screen-template";
-import { FaApple } from "react-icons/fa6";
-import { SiGoogleplay } from "react-icons/si";
 import DiscordButton from "@/components/ui/discord-button";
 import EmailModal from "@/components/email-modal";
-import {
-  ANDROID_QUAIL_LINK,
-  IOS_QUAIL_LINK,
-} from "@/types/constants/constants";
+import { AppStoreButton } from "@/components/ui/ctas/app-store-button";
+import { GooglePlayButton } from "@/components/ui/ctas/google-play-button";
 import { trackEvent } from "@/lib/amplitude";
 
+const PAGE_TRACKING_LOCATION = "mobile_landing";
 export default function MobileLandingPage() {
   const [emailModalOpen, setEmailModalOpen] = useState(false);
   const searchParams = useSearchParams();
@@ -27,18 +24,11 @@ export default function MobileLandingPage() {
 
       // Track UTM source in Amplitude
       trackEvent("landing_page_visit", {
-        page: "mobile_landing",
+        page: PAGE_TRACKING_LOCATION,
       });
     }
   }, [utmSource]);
 
-  const handleIOSClick = () => {
-    trackEvent("ios_download_click", { location: "mobile_landing" });
-  };
-
-  const handleFeedbackDiscordClick = () => {
-    trackEvent("feedback_discord_click", { location: "feedback_section" });
-  };
   return (
     <ScreenTemplate>
       {/* Header Section */}
@@ -62,18 +52,7 @@ export default function MobileLandingPage() {
             Download on the app store!
           </p>
           <div className="flex-1 flex flex-col items-center justify-center">
-            <a
-              href={IOS_QUAIL_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={handleIOSClick}
-              className="inline-flex items-center gap-2 px-6 py-2 bg-black dark:bg-white hover:bg-black/80 
-              dark:hover:bg-white/80 text-white  dark:text-black rounded-xl 
-            font-bold transition-all duration-150 shadow-lg hover:-translate-y-0.5 active:scale-95 whitespace-nowrap"
-            >
-              <FaApple className="size-5" />
-              <span>iOS App Store</span>
-            </a>
+            <AppStoreButton trackingLocation={PAGE_TRACKING_LOCATION} />
           </div>
         </div>
 
@@ -86,33 +65,8 @@ export default function MobileLandingPage() {
             Download in the Play store!
           </p>
           <div className="flex-1 flex flex-col items-center justify-center">
-            <a
-              href={ANDROID_QUAIL_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={handleIOSClick}
-              className="inline-flex items-center gap-2 px-6 py-2 bg-white dark:bg-black hover:bg-white/80 
-              dark:hover:bg-black/80 text-black dark:text-white rounded-xl border border-border
-            font-bold transition-all duration-150 shadow-lg hover:-translate-y-0.5 active:scale-95 whitespace-nowrap"
-            >
-              <SiGoogleplay className="size-5" />
-              <span>Google Play Store</span>
-            </a>
+            <GooglePlayButton trackingLocation={PAGE_TRACKING_LOCATION} />
           </div>
-          {/* <div className="h-px bg-border mb-4 mx-12" /> */}
-          {/* <div className="flex flex-col items-center gap-3">
-            <div onClick={handleAndroidDiscordClick}>
-              <DiscordButton text="Apply on Discord" />
-            </div>
-            <div className="flex items-center gap-3 w-full">
-              <div className="h-px flex-1 bg-border" />
-              <span className="text-sm text-text-light font-mono">or</span>
-              <div className="h-px flex-1 bg-border" />
-            </div>
-            <ButtonSquare onClick={handleEmailModalOpen}>
-              Enter your Email
-            </ButtonSquare>
-          </div> */}
         </div>
       </section>
 
@@ -121,9 +75,10 @@ export default function MobileLandingPage() {
         <p className="font-header text-sm md:text-base mb-4 text-center text-text-light">
           Have a question, or just want to share feedback?
         </p>
-        <div onClick={handleFeedbackDiscordClick}>
-          <DiscordButton variant="white" />
-        </div>
+        <DiscordButton
+          variant="white"
+          trackingLocation={PAGE_TRACKING_LOCATION}
+        />
       </section>
 
       <EmailModal open={emailModalOpen} setOpen={setEmailModalOpen} />
