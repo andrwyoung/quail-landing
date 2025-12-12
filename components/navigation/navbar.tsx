@@ -2,21 +2,20 @@ import React, { RefObject, useState } from "react";
 import Link from "next/link";
 import LoginModal from "../login-modal";
 import { useMetadataStore } from "@/store/metadata-store";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Logo from "../ui/logo";
 import { FaFeatherPointed } from "react-icons/fa6";
 import { EmailSignupHandle } from "../email-signup";
 
 export default function Navbar({
   scrolled = true,
-  signupRef,
 }: {
   scrolled?: boolean;
   signupRef?: RefObject<EmailSignupHandle | null>;
 }) {
   const [openLogin, setOpenLogin] = useState(false);
   const router = useRouter();
-  const pathname = usePathname();
+  // const pathname = usePathname();
 
   const user = useMetadataStore((s) => s.user);
   const loggedIn = !!user;
@@ -83,22 +82,22 @@ export default function Navbar({
           <Link href="/" className="hover:text-primary">
             Home
           </Link>
-          <a href="/pricing" className="hover:text-primary">
+          {/* <a href="/pricing" className="hover:text-primary">
             Pricing
-          </a>
+          </a> */}
           <a href="/contact" className="hover:text-primary">
             Contact
           </a>
         </nav>
 
         <div className="flex flex-row items-center gap-4">
-          <Link
+          {/* <Link
             href="/pricing"
             className="font-body text-sm md:hidden hover:underline hover:text-primary transition-all 
             font-semibold duration-150"
           >
             Pricing
-          </Link>
+          </Link> */}
           <Link
             href="/contact"
             className="font-body text-sm md:hidden hover:underline hover:text-primary transition-all 
@@ -109,7 +108,7 @@ export default function Navbar({
           <button
             className="font-body text-sm md:text-base hover:underline hover:text-primary
               transition-all duration-50 cursor-pointer font-semibold flex flex-row items-center 
-              group gap-1"
+              group gap-2 px-4 py-1"
             onClick={() => {
               if (loggedIn) router.replace("/dashboard");
               else setOpenLogin(true);
@@ -119,7 +118,7 @@ export default function Navbar({
             {loggedIn ? "Account" : "Login"}
           </button>
 
-          <button
+          {/* <button
             type="button"
             onClick={() => {
               if (pathname === "/") {
@@ -143,7 +142,7 @@ export default function Navbar({
             }`}
           >
             Apply for Early Access
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

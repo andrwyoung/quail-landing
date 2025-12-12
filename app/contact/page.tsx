@@ -146,7 +146,7 @@ export default function ContactPage() {
           <p className=" text-text-light mb-6">
             Reach out directly on Discord or hang out with us for the journey.
           </p>
-          <DiscordButton />
+          <DiscordButton trackingLocation="contact_page" />
         </div>
       </section>
 

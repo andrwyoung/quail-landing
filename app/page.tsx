@@ -9,10 +9,14 @@ import { FaFeatherPointed } from "react-icons/fa6";
 import Hero from "./sections/hero";
 import FadeInOnScroll from "@/components/ui/animations/fade-in-on-scroll";
 import { motion } from "framer-motion";
-import EmailSignup, { EmailSignupHandle } from "@/components/email-signup";
+import { EmailSignupHandle } from "@/components/email-signup";
 import { useRef } from "react";
 import ThemeImage from "@/components/ui/theme-image";
+import { GooglePlayButton } from "@/components/ui/ctas/google-play-button";
+import { IosAppStoreButton } from "@/components/ui/ctas/ios-app-store-button";
+import DiscordButton from "@/components/ui/discord-button";
 
+const PAGE_TRACKING_LOCATION = "main_bottom_cta";
 const steps = [
   {
     title: "Import anything",
@@ -398,13 +402,32 @@ export default function Home() {
 
           <div className="bg-surface rounded-xl px-8 py-6 text-center shadow-xl ">
             <div className="text-xs uppercase tracking-wider font-bold text-text-light mb-2">
-              Join the waitlist
+              Free to Use
             </div>
-            <h2 className="font-header text-2xl md:text-3xl font-bold text-text mb-8">
-              Get early access
+            <h2 className="font-header text-2xl md:text-3xl font-bold text-text mb-6">
+              Try it out!
             </h2>
 
-            <EmailSignup ref={signupRef} />
+            {/* <EmailSignup ref={signupRef} /> */}
+
+            <div className="flex flex-col items-center">
+              <p className="mb-4 font-medium">
+                Download the app and try it out for yourself:
+              </p>
+              {/* <EmailSignup /> */}
+              <div className="flex md:flex-row gap-4 flex-col">
+                <IosAppStoreButton trackingLocation={PAGE_TRACKING_LOCATION} />
+                <GooglePlayButton trackingLocation={PAGE_TRACKING_LOCATION} />
+              </div>
+
+              <p className="font-medium mt-12 mb-2">
+                Or chat with us on Discord!
+              </p>
+              <DiscordButton
+                variant="white"
+                trackingLocation={PAGE_TRACKING_LOCATION}
+              />
+            </div>
           </div>
         </section>
       </FadeInOnScroll>

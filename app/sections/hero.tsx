@@ -1,15 +1,17 @@
 "use client";
 import FadingHighlight from "../../components/fading-text";
-import EmailSignup from "@/components/email-signup";
 import FadeInOnScroll, {
   FadeIn,
 } from "@/components/ui/animations/fade-in-on-scroll";
 import Pop from "@/components/ui/animations/pop";
+import { IosAppStoreButton } from "@/components/ui/ctas/ios-app-store-button";
+import { GooglePlayButton } from "@/components/ui/ctas/google-play-button";
 
 interface HeroProps {
   scrolled: boolean;
 }
 
+const PAGE_TRACKING_LOCATION = "main_page_hero";
 export default function Hero({ scrolled }: HeroProps) {
   return (
     <div className="flex flex-col items-start">
@@ -31,8 +33,13 @@ export default function Hero({ scrolled }: HeroProps) {
         </p>
 
         {/* Always visible email signup */}
-        <div className="flex flex-col md:mr-20">
-          <EmailSignup />
+        <div className="flex flex-col md:mr-20 items-center md:items-start">
+          <p className="mb-2 font-medium">Download now! 100% free to use</p>
+          {/* <EmailSignup /> */}
+          <div className="flex md:flex-row gap-4 flex-col">
+            <IosAppStoreButton trackingLocation={PAGE_TRACKING_LOCATION} />
+            <GooglePlayButton trackingLocation={PAGE_TRACKING_LOCATION} />
+          </div>
         </div>
       </FadeInOnScroll>
     </div>

@@ -3,7 +3,7 @@ import { cn } from "@/utils/cn";
 import { IOS_QUAIL_LINK } from "@/types/constants/constants";
 import { trackEvent } from "@/lib/amplitude";
 
-export function AppStoreButton({
+export function IosAppStoreButton({
   className,
   trackingLocation,
   text = "iOS App Store",

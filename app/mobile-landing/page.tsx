@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import ScreenTemplate from "@/components/screen-template";
 import DiscordButton from "@/components/ui/discord-button";
 import EmailModal from "@/components/email-modal";
-import { AppStoreButton } from "@/components/ui/ctas/app-store-button";
+import { IosAppStoreButton } from "@/components/ui/ctas/ios-app-store-button";
 import { GooglePlayButton } from "@/components/ui/ctas/google-play-button";
 import { trackEvent } from "@/lib/amplitude";
 
@@ -52,7 +52,7 @@ export default function MobileLandingPage() {
             Download on the app store!
           </p>
           <div className="flex-1 flex flex-col items-center justify-center">
-            <AppStoreButton trackingLocation={PAGE_TRACKING_LOCATION} />
+            <IosAppStoreButton trackingLocation={PAGE_TRACKING_LOCATION} />
           </div>
         </div>
 
