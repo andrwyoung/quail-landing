@@ -12,7 +12,7 @@ import { nowDate } from "@/utils/now-ms";
 import { User } from "@supabase/supabase-js";
 import { useCallback, useEffect } from "react";
 import { toast } from "sonner";
-import { trackEvent, identifyUser } from "@/lib/amplitude";
+import posthog from "posthog-js";
 
 export function useUser() {
   const setUser = useMetadataStore((s) => s.setUser);
@@ -53,7 +53,7 @@ export function useUser() {
           .single();
         if (insertError) {
           console.error("Error creating user profile:", insertError);
-          trackEvent("profile_creation_failed", {
+          posthog.capture("profile_creation_failed", {
             error: insertError.message,
             user_id: user.id,
           });
@@ -65,11 +65,11 @@ export function useUser() {
           setProfile(newProfile);
 
           // Track new user signup
-          identifyUser(user.id, {
+          posthog.identify(user.id, {
             email: user.email || "",
           });
 
-          trackEvent("new_user_signed_up", {
+          posthog.capture("new_user_signed_up", {
             user_id: user.id,
             email: user.email,
             provider: user.app_metadata?.provider || "unknown",
@@ -84,11 +84,11 @@ export function useUser() {
         setProfile(existingProfile);
 
         // Identify returning user
-        identifyUser(user.id, {
+        posthog.identify(user.id, {
           email: user.email || "",
         });
 
-        trackEvent("user_logged_in", {
+        posthog.capture("user_logged_in", {
           user_id: user.id,
           email: user.email,
           provider: user.app_metadata?.provider || "unknown",
@@ -121,7 +121,7 @@ export function useUser() {
 
           // should only happen on log out
           if (event === "SIGNED_OUT") {
-            trackEvent("user_logged_out");
+            posthog.capture("user_logged_out");
             toast.success("Logged out successfully.");
           }
         }

@@ -7,6 +7,7 @@ import { useState } from "react";
 import { NOTION_SUPPORT_POST_URL } from "@/types/constants/constants";
 import { toast } from "sonner";
 import { trackEvent } from "@/lib/amplitude";
+import posthog from "posthog-js";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -62,7 +63,7 @@ export default function EmailModal({
       toast.success("Thanks! We'll be in touch soon.");
 
       // Track successful signup in Amplitude
-      trackEvent("android_beta_signup", {
+      posthog.capture("android_beta_signup", {
         email: valueEmail,
       });
 

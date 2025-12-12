@@ -9,7 +9,7 @@ import { FaFeatherPointed } from "react-icons/fa6";
 import Hero from "./sections/hero";
 import FadeInOnScroll from "@/components/ui/animations/fade-in-on-scroll";
 import { motion } from "framer-motion";
-import { EmailSignupHandle } from "@/components/email-signup";
+import { EmailSignupHandle } from "@/components/DEP-email-signup";
 import { useRef } from "react";
 import ThemeImage from "@/components/ui/theme-image";
 import { GooglePlayButton } from "@/components/ui/ctas/google-play-button";

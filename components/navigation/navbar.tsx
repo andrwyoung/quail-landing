@@ -5,7 +5,7 @@ import { useMetadataStore } from "@/store/metadata-store";
 import { useRouter } from "next/navigation";
 import Logo from "../ui/logo";
 import { FaFeatherPointed } from "react-icons/fa6";
-import { EmailSignupHandle } from "../email-signup";
+import { EmailSignupHandle } from "../DEP-email-signup";
 
 export default function Navbar({
   scrolled = true,

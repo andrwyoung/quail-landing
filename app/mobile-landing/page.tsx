@@ -4,10 +4,10 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import ScreenTemplate from "@/components/screen-template";
 import DiscordButton from "@/components/ui/discord-button";
-import EmailModal from "@/components/email-modal";
+import EmailModal from "@/components/DEP-email-modal";
 import { IosAppStoreButton } from "@/components/ui/ctas/ios-app-store-button";
 import { GooglePlayButton } from "@/components/ui/ctas/google-play-button";
-import { trackEvent } from "@/lib/amplitude";
+import posthog from "posthog-js";
 
 const PAGE_TRACKING_LOCATION = "mobile_landing";
 export default function MobileLandingPage() {
@@ -23,8 +23,9 @@ export default function MobileLandingPage() {
       sessionStorage.setItem("utm_source", utmSource);
 
       // Track UTM source in Amplitude
-      trackEvent("landing_page_visit", {
+      posthog.capture("landing_page_visit", {
         page: PAGE_TRACKING_LOCATION,
+        source: utmSource,
       });
     }
   }, [utmSource]);

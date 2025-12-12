@@ -12,7 +12,7 @@ import { toast } from "sonner";
 import { PricingCard } from "./pricing-card";
 import { useAppLinkSession } from "@/hooks/auth/use-app-link-session";
 import ThemeImage from "@/components/ui/theme-image";
-import { trackEvent } from "@/lib/amplitude";
+import posthog from "posthog-js";
 
 const MONTHLY_ORIGINAL = 14.99;
 const MONTHLY_DISCOUNT = 8.97;
@@ -51,7 +51,7 @@ export default function PricingPage() {
       toast.info("Checkout was cancelled.");
 
       // Track checkout cancellation
-      trackEvent("checkout_cancelled", {
+      posthog.capture("checkout_cancelled", {
         from_app: fromApp,
       });
 
@@ -63,7 +63,7 @@ export default function PricingPage() {
 
   async function handleCheckout(product: StripeProduct) {
     if (!user?.id) {
-      trackEvent("checkout_initiated_but_login_required", {
+      posthog.capture("checkout_initiated_but_login_required", {
         plan: product,
         from_app: redirectedFromApp,
       });
@@ -71,7 +71,7 @@ export default function PricingPage() {
       return;
     }
 
-    trackEvent("checkout_initiated", {
+    posthog.capture("checkout_initiated", {
       plan: product,
       from_app: redirectedFromApp,
       user_id: user.id,
